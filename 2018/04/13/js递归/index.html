@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html style="display: none;" >
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.2 -->
+    <script>
+        window.materialVersion = "1.5.2"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            js递归 | 
+        
+        Hexo
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Hexo">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2018/04/13/js递归/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Hexo">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com/2018/04/13/js递归/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="js递归 | Hexo">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="">
+    
+
+    
+        <meta property="article:published_time" content="Fri Apr 13 2018 14:31:33 GMT+0800">
+        <meta property="article:modified_time" content="Fri Apr 13 2018 14:32:08 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://yoursite.com/2018/04/13/js递归/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2018/04/13/js递归/index.html",
+    "headline": "js递归",
+    "datePublished": "Fri Apr 13 2018 14:31:33 GMT+0800",
+    "dateModified": "Fri Apr 13 2018 14:32:08 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "John Doe",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Hexo",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#递归基础"><span class="post-toc-number">1.</span> <span class="post-toc-text">递归基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归的概念"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">递归的概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归的思想"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">递归的思想</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归的步骤-技巧"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">递归的步骤(技巧)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#简单递归练习"><span class="post-toc-number">2.</span> <span class="post-toc-text">简单递归练习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#求1-100的和"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">求1-100的和</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#求-1-3-5-7-9-…第n项的结果和前n项和-序号从0开始"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">求 1,3,5,7,9,…第n项的结果和前n项和,序号从0开始</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#求-2-4-6-8-10…-第n项与前n项之和"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">求 2,4,6,8,10… 第n项与前n项之和</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数列-1-1-2-4-7-11-16…求第-n-项-求前n项和"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">数列 1,1,2,4,7,11,16…求第 n 项,求前n项和</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Fibonacci数列-斐波那契数列"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">Fibonacci数列(斐波那契数列)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#高级递归练习"><span class="post-toc-number">3.</span> <span class="post-toc-text">高级递归练习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#阶乘"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">阶乘</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#求幂"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">求幂</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#深拷贝-使用递归方式"><span class="post-toc-number">4.</span> <span class="post-toc-text">深拷贝,使用递归方式</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用递归实现-getElementsByClassName"><span class="post-toc-number">5.</span> <span class="post-toc-text">使用递归实现 getElementsByClassName</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                js递归
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>John Doe</strong>
+        <span>Apr 13, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=js递归&url=http://yoursite.com/2018/04/13/js递归/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=js递归&url=http://yoursite.com/2018/04/13/js递归/index.html&via=John Doe" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/13/js递归/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/13/js递归/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                Share to Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="递归基础"><a href="#递归基础" class="headerlink" title="递归基础"></a>递归基础</h1><h2 id="递归的概念"><a href="#递归的概念" class="headerlink" title="递归的概念"></a>递归的概念</h2><ul>
+<li>在程序中函数直接或间接调用自己</li>
+</ul>
+<ol>
+<li>直接调用自己</li>
+<li>简介调用自己</li>
+</ol>
+<ul>
+<li>跳出结构,有了跳出才有结果</li>
+</ul>
+<h2 id="递归的思想"><a href="#递归的思想" class="headerlink" title="递归的思想"></a>递归的思想</h2><ul>
+<li>递归的调用,最终还是要转换为自己这个函数</li>
+</ul>
+<ol>
+<li>如果有个函数foo,如果他是递归函数,到最后问题还是转换为函数foo的形式</li>
+<li>递归的思想就是将一个未知问题转换为一个已解决的问题来实现</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">...foo(...)...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="递归的步骤-技巧"><a href="#递归的步骤-技巧" class="headerlink" title="递归的步骤(技巧)"></a>递归的步骤(技巧)</h2><ol>
+<li>假设递归函数已经写好</li>
+<li>寻找递推关系</li>
+<li>将递推关系的结构转换为递归体</li>
+<li>将临界条件加入到递归体中</li>
+</ol>
+<h1 id="简单递归练习"><a href="#简单递归练习" class="headerlink" title="简单递归练习"></a>简单递归练习</h1><h2 id="求1-100的和"><a href="#求1-100的和" class="headerlink" title="求1-100的和"></a>求1-100的和</h2><ul>
+<li>分析:</li>
+</ul>
+<ol>
+<li>假设递归函数已经写好为sum,既sum(100),就是求1-100的和</li>
+<li><p>寻找递推关系: 就是 n 与 n-1 ,或 n-2 之间的关系<br><strong>sum(n) == sum(n-1) + n</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var res = sum(100);</span><br><span class="line">var res = sum(99) + 100;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将递归结构转换成递归体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">return sum(n-1) + n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将临界条件加入到递归中</p>
+</li>
+</ol>
+<ul>
+<li>求100 转换为 求99</li>
+<li>求99 转换为 求98</li>
+<li>求98 转换为 求97</li>
+<li>…</li>
+<li>求2 转换为 求1</li>
+<li>求1 转换为 求1</li>
+<li>即 sum(1) = 1</li>
+</ul>
+<ol start="5">
+<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">if(n==1) return 1;</span><br><span class="line">return sum(n-1) + n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="求-1-3-5-7-9-…第n项的结果和前n项和-序号从0开始"><a href="#求-1-3-5-7-9-…第n项的结果和前n项和-序号从0开始" class="headerlink" title="求 1,3,5,7,9,…第n项的结果和前n项和,序号从0开始"></a>求 1,3,5,7,9,…第n项的结果和前n项和,序号从0开始</h2><ul>
+<li>分析</li>
+</ul>
+<ol>
+<li>假设递归函数已经完成foo(n),得到奇数</li>
+<li>递归关系:</li>
+</ol>
+<ul>
+<li>foo(n) = foo(n-1)+2</li>
+</ul>
+<ol start="3">
+<li><p>递归体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">return foo(n) = sum(n-1)+2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>跳出条件</p>
+</li>
+</ol>
+<ul>
+<li>foo(n) = foo(n-1) + 2</li>
+<li>foo(1) = foo(0) + 2</li>
+<li>foo(0) = 1;</li>
+</ul>
+<ol start="5">
+<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">return foo(n-1) + 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>前 n 项的和</li>
+<li>分析</li>
+</ul>
+<ol>
+<li>假设完成,sum(n)就是前n项的和</li>
+<li>递推关系</li>
+</ol>
+<ul>
+<li>foo(n) = sum(n) + 第n-1项之前的和</li>
+</ul>
+<ol start="3">
+<li><p>递归体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">return foo(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>临界条件</p>
+</li>
+</ol>
+<ul>
+<li>n == 1 ,结果为1</li>
+</ul>
+<ol start="5">
+<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">return foo(n-1) + 2;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sum(n)&#123;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">return foo(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="求-2-4-6-8-10…-第n项与前n项之和"><a href="#求-2-4-6-8-10…-第n项与前n项之和" class="headerlink" title="求 2,4,6,8,10… 第n项与前n项之和"></a>求 2,4,6,8,10… 第n项与前n项之和</h2><ul>
+<li>分析</li>
+</ul>
+<ol>
+<li>假设已知函数 fn(n)为第n项,sum(n)为前n项之和</li>
+<li>递归关系</li>
+</ol>
+<ul>
+<li>fn(n) = fn(n-1) + 2</li>
+<li>sum(n) = fn(n) + sum(n-1)</li>
+</ul>
+<ol start="3">
+<li>递归体</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn(n)&#123;</span><br><span class="line">return fn(n) = (n-1) + 2</span><br><span class="line">&#125;</span><br><span class="line">function sum(n)&#123;</span><br><span class="line">return sum(n) = fn(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>临界条件</li>
+</ol>
+<ul>
+<li>fn(0) = 2</li>
+<li>sum(0) = 2;</li>
+</ul>
+<ol start="5">
+<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn(n)&#123;</span><br><span class="line">if(n == 0) return 2;</span><br><span class="line">return fn(n-1) + 2;</span><br><span class="line">&#125;</span><br><span class="line">function sum(n)&#123;</span><br><span class="line">if(n==0) return 2;</span><br><span class="line">return fn(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="数列-1-1-2-4-7-11-16…求第-n-项-求前n项和"><a href="#数列-1-1-2-4-7-11-16…求第-n-项-求前n项和" class="headerlink" title="数列 1,1,2,4,7,11,16…求第 n 项,求前n项和"></a>数列 1,1,2,4,7,11,16…求第 n 项,求前n项和</h2><ul>
+<li>分析</li>
+</ul>
+<ol>
+<li>假设已知函数 foo(n) 为第n项</li>
+<li>递归关系<br><strong>从第 0 项开始计算</strong></li>
+</ol>
+<ul>
+<li>第 0 项, 1 =&gt; foo(0) + 0 = foo(1)</li>
+<li>第 1 项, 2 =&gt; foo(1) + 1 = foo(2)</li>
+<li>第 2 项, 3 =&gt; foo(2) + 2 = foo(3)</li>
+<li>…</li>
+<li>第 n-1 项, n =&gt; foo(n-1) + n-1 = foo(n)</li>
+<li>foo(n) = foo(n-1) + n-1;</li>
+</ul>
+<p><strong>从第 1 项开始计算</strong></p>
+<ul>
+<li>第 1 项, 2 =&gt;  fn( 1 ) + 0 = fn( 2 )</li>
+<li>第 2 项, 3  =&gt;  fn( 2 ) + 1 = fn( 3 )</li>
+<li>第 3 项, 4  =&gt;  fn( 3 ) + 2 = fn( 4 )</li>
+<li>…</li>
+<li>foo(n) = fn(n-1) + n - 2</li>
+<li>如果从 0 开始</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0  1  2  3  4  5   6</span><br><span class="line">1, 1, 2, 4, 7, 11, 16,</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果从 1 开始<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1  2  3  4  5  6   7</span><br><span class="line">1, 1, 2, 4, 7, 11, 16</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="3">
+<li>递归体</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">return foo(n-1)+n-1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>临界条件</li>
+</ol>
+<ul>
+<li>foo(0) == 1;</li>
+<li>foo(1) == 1;</li>
+</ul>
+<ol start="5">
+<li>递归函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">return foo(n-1) + n -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>分析</li>
+</ul>
+<ol>
+<li><p>假设已知函数 sum(n)为前n项和</p>
+</li>
+<li><p>递归关系</p>
+</li>
+</ol>
+<ul>
+<li>sum(n) = foo(n) + sum(n-1);</li>
+</ul>
+<ol start="3">
+<li><p>递归体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">return foo(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>临界条件</p>
+</li>
+</ol>
+<p>*　sum(0) = 1;</p>
+<ol start="5">
+<li>递归函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">return foo(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Fibonacci数列-斐波那契数列"><a href="#Fibonacci数列-斐波那契数列" class="headerlink" title="Fibonacci数列(斐波那契数列)"></a>Fibonacci数列(斐波那契数列)</h2><p>1,1,2,3,5,8,13,21,34,55,89…求第 n 项</p>
+<ul>
+<li>分析</li>
+</ul>
+<ol>
+<li>假设已知 fib(n) 为第 n 项</li>
+<li>递归关系</li>
+</ol>
+<ul>
+<li>fib(n) = fib(n-1) + fib(n-2)</li>
+</ul>
+<ol start="3">
+<li><p>递归体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function fib(n)&#123;</span><br><span class="line">return fib(n-1)+fib(n-2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>临界条件</p>
+</li>
+</ol>
+<ul>
+<li>fib(0) == 1</li>
+<li>fib(1) == 1</li>
+</ul>
+<ol start="5">
+<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fib(n)&#123;</span><br><span class="line">if(n == 0 || n ==1) return 1;</span><br><span class="line">return fib(n-1) + fib(n-2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="高级递归练习"><a href="#高级递归练习" class="headerlink" title="高级递归练习"></a>高级递归练习</h1><h2 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h2><p>概念:</p>
+<ul>
+<li>阶乘是一个运算, 一个数字的阶乘表示的是从 1 开始 累乘到这个数字.</li>
+<li>例如 3! 表示 <code>1 * 2 * 3</code>. 5! 就是  <code>1 * 2 * 3 * 4 * 5</code>. 规定 0 没有阶乘,</li>
+<li>阶乘 从 1 开始.</li>
+<li>分析:</li>
+</ul>
+<ol>
+<li>假设已知 foo(n) 为 1-n 的积</li>
+<li>递归关系</li>
+</ol>
+<ul>
+<li>foo(n) = foo(n-1) * n</li>
+</ul>
+<ol start="3">
+<li><p>递归体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">return foo(n-1) * n</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>临界条件</p>
+</li>
+</ol>
+<ul>
+<li>foo(1) == 1</li>
+</ul>
+<ol start="5">
+<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">if( n == 1) return 1;</span><br><span class="line">return foo(n - 1) * n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="求幂"><a href="#求幂" class="headerlink" title="求幂"></a>求幂</h2><ul>
+<li>概念:<br>求幂就是求 某一个数 几次方<br>2*2 2 的 平方, 2 的 2 次方<br>求 n 的 m 次方<br>最终要得到一个函数 power( n, m )<br>n 的 m 次方就是 m 个 n 相乘 即 n 乘以 (m-1) 个 n 相乘</li>
+<li>分析</li>
+</ul>
+<ol>
+<li>假设已知函数 power(n,m) 为 n 的 m 次幂</li>
+<li>递归关系</li>
+</ol>
+<ul>
+<li>power(n,m-1) * n</li>
+</ul>
+<ol start="3">
+<li><p>递归体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function power(n,m)&#123;</span><br><span class="line">return power(n,m-1) * n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>临界条件</p>
+</li>
+</ol>
+<ul>
+<li>m == 1 ,return n</li>
+<li>m == 0 ,reutnr 1</li>
+</ul>
+<ol start="5">
+<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function power(n,m)&#123;</span><br><span class="line">if(m == 1) return n;</span><br><span class="line">return power(n,m-1) * n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="深拷贝-使用递归方式"><a href="#深拷贝-使用递归方式" class="headerlink" title="深拷贝,使用递归方式"></a>深拷贝,使用递归方式</h1><p>概念:</p>
+<ol>
+<li>如果拷贝的时候, 将数据的所有引用结构都拷贝一份, 那么数据在内存中独立就是深拷贝(内存隔离,完全独立)</li>
+<li>如果拷贝的时候, 只针对当前对象的属性进行拷贝, 而属性是引用类型这个不考虑, 那么就是浅拷贝</li>
+<li>拷贝: 复制一份. 指将对象数据复制.</li>
+<li>在讨论深拷与浅拷的时候一定要保证对象的属性也是引用类型.<br>实现方法:</li>
+<li>如果要实现深拷贝那么就需要考虑将对象的属性, 与属性的属性,都拷贝过来</li>
+<li>分析(2个参数,简单实现)</li>
+<li>假设已经实现 clone ( o1, o2),将对象 o2 的成员拷贝一份交给 o1</li>
+<li>递推关系</li>
+</ol>
+<ul>
+<li><p>混合方法,将 o2 的成员拷贝到 o1 中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function clone( o1, o2)&#123;</span><br><span class="line">for(var key in o2)&#123;</span><br><span class="line">o1[key] = o2[key];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>假设方法已经实现,如果 o2[key] 是对象</p>
+</li>
+<li>继续使用这个方法</li>
+<li>需要考虑 o2[key] 是引用类型,再一次使用clone函数</li>
+<li>如果 o2[key] 不是引用类型,那么直接赋值</li>
+</ul>
+<ol start="3">
+<li>临界条件</li>
+</ol>
+<ul>
+<li>因为是 for in 循环,没有成员遍历时,自动结束</li>
+</ul>
+<ol start="4">
+<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function clone(o1,o2)&#123;</span><br><span class="line">for(var key in o2)&#123;</span><br><span class="line">if(typeof o2[key] == &apos;object&apos;)&#123;</span><br><span class="line">o1[key] = &#123;&#125;;</span><br><span class="line">clone(o1[key],o2[key])</span><br><span class="line">&#125;else&#123;</span><br><span class="line">o1[key] = o2[key];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>复杂实现(一个参数)<br>原理: clone(o) = new Object; 返回一个对象<br>递归函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function clone(o)&#123;</span><br><span class="line">var temp = &#123;&#125;;</span><br><span class="line">for(var key in o)&#123;</span><br><span class="line">if(typeof o[key] == &apos;object&apos;)&#123;</span><br><span class="line">temp[key] = clone(o[key]);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">temp[key] = o[key];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">return temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="使用递归实现-getElementsByClassName"><a href="#使用递归实现-getElementsByClassName" class="headerlink" title="使用递归实现 getElementsByClassName"></a>使用递归实现 getElementsByClassName</h1><p>html结构:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">&lt;div&gt;1</span><br><span class="line">&lt;div class=&quot;c&quot;&gt;2&lt;/div&gt;</span><br><span class="line">&lt;div&gt;3&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;c&quot;&gt;4&lt;/div&gt;</span><br><span class="line">&lt;div&gt;5</span><br><span class="line">&lt;div&gt;6&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;c&quot;&gt;7&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;8&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>分析</p>
+<ol>
+<li>实现一个方法byClass()需要的参数是:<br>node: 在某个节点上寻找元素<br>className: 需要寻找的className<br>arr: 找到的元素存储到这个数组中</li>
+<li>遍历 node 的子节点,</li>
+<li>查看这个子节点是否还有子节点,如果没有直接存储到数组中,如果有就继续递归</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">function byClass(node, className, arr)&#123;</span><br><span class="line">//得到传入节点的所有子节点</span><br><span class="line">var lists = node.childNodes;</span><br><span class="line">for(var i = 0;i&lt; lists.length;i++)&#123;</span><br><span class="line">//判断是否有相同className元素</span><br><span class="line">if(arr[i],className == className)&#123;</span><br><span class="line">arr.push(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">//判断子节点是否还有子节点</span><br><span class="line">if(arr[i].childNodes.length &gt; 0)&#123;</span><br><span class="line">byClass(arr[i],className,arr);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/04/13/hello-world/" id="post_nav-older" class="next-content">
+            Older
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="John Doe's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        youremail@email.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                Home
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    Archives
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">April 2018<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            Theme - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Hexo
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
