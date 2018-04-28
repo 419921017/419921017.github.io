@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="作用域词法作用域作用域   域表示的就是范围,即作用范围 * 就是一个名字在什么地方能使用,在什么地方不能使用 块级作用域   块级别的作用范围12345678// 在 c , java 等编程语言中,下面的语法报错&amp;#123;    var num = 123;  // 应该用int , 这里是伪代码    &amp;#123;        console.log(num);   // 123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS面向对象之作用域">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/JS面向对象之作用于/index.html">
+<meta property="og:site_name" content="Liu Yu&#39;s Blog">
+<meta property="og:description" content="作用域词法作用域作用域   域表示的就是范围,即作用范围 * 就是一个名字在什么地方能使用,在什么地方不能使用 块级作用域   块级别的作用范围12345678// 在 c , java 等编程语言中,下面的语法报错&amp;#123;    var num = 123;  // 应该用int , 这里是伪代码    &amp;#123;        console.log(num);   // 123">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-28T04:12:27.655Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS面向对象之作用域">
+<meta name="twitter:description" content="作用域词法作用域作用域   域表示的就是范围,即作用范围 * 就是一个名字在什么地方能使用,在什么地方不能使用 块级作用域   块级别的作用范围12345678// 在 c , java 等编程语言中,下面的语法报错&amp;#123;    var num = 123;  // 应该用int , 这里是伪代码    &amp;#123;        console.log(num);   // 123">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/13/JS面向对象之作用于/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JS面向对象之作用域 | Liu Yu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liu Yu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/JS面向对象之作用于/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liu Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Yu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS面向对象之作用域
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-13T14:31:33+08:00">2018-04-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><h1 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h1><h2 id="作用域-1"><a href="#作用域-1" class="headerlink" title="作用域"></a>作用域</h2><p>   <strong>域</strong>表示的就是<strong>范围</strong>,即<strong>作用范围</strong></p>
+<pre><code>* 就是一个名字在什么地方能使用,在什么地方不能使用
+</code></pre><h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><p>   <strong>块</strong>级别的作用范围<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 在 c , java 等编程语言中,下面的语法报错</span><br><span class="line">&#123;</span><br><span class="line">    var num = 123;  // 应该用int , 这里是伪代码</span><br><span class="line">    &#123;</span><br><span class="line">        console.log(num);   // 123</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(num);   // 报错</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="在-js-中采取词法作用域"><a href="#在-js-中采取词法作用域" class="headerlink" title="在 js 中采取词法作用域"></a>在 js 中采取词法作用域</h3><p>   <strong>词法(代码)</strong>作用域,就是代码在编写过程中体现出来的作用范围,代码一旦写好,不用执行,他的作用范围就已经确定好了,这个就是所谓的<strong>词法作用域</strong><br>   在 js 中的词法作用域规则</p>
+<pre><code>1. 函数允许方位函数外的数据
+2. 整个代码结构中只有函数可以限定作用域
+3. 作用规则首先是**提升规则**分析
+4. **就近原则**如果当前作用规则有了名字,就不考虑外面的名字
+</code></pre><h3 id="在-js-中作用域分析方法"><a href="#在-js-中作用域分析方法" class="headerlink" title="在 js 中作用域分析方法"></a>在 js 中作用域分析方法</h3><pre><code>1. 先进行预解析,分析预解析过程
+    *　程序在执行过程, 会先将代码读取到内存中检查. 会将所有的声明在此时进行标记. 所谓的标记就是
+让 js 解释器知道有这个名字, 后面在使用名字的时候, 不会出现未定义的错误. 这个标记过程就是提升.
+    *　声明
+    1. 名字的声明, 标识符的声明( 变量名声明 )
+     * 名字的声明就是让我们的解释器知道有这个名字
+     * 名字没有任何数据与之对应
+    2. 函数的声明
+     * 函数声明包含两部分
+     * 函数声明与函数表达式有区别, 函数声明是单独写在一个结构中, 不存在任何语句, 逻辑判断等结构中
+     * 首先函数声明告诉解释器有这个名字存在. 该阶段与名字声明一样
+     * 告诉解释器, 这个名字对应的函数体是什么**(函数名和函数体绑定链接)**
+2. 再进行代码执行过程
+</code></pre><h3 id="简单例题"><a href="#简单例题" class="headerlink" title="简单例题"></a>简单例题</h3><p>例子 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var num = 123;</span><br><span class="line">function foo()&#123;</span><br><span class="line">    console.log(num);</span><br><span class="line">&#125;</span><br><span class="line">foo();  // 输出 123</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析</p>
+<ol>
+<li>预解析<blockquote>
+<pre><code>变量num变量名提升
+函数foo函数名提升
+</code></pre></blockquote>
+</li>
+<li>代码执行<blockquote>
+<pre><code>num赋值123,函数内区域为独立区域,可以使用外部数据,但是现在变量名相同,覆盖外面的值
+函数foo执行
+函数区域中变量num变量名提升
+输出num 为undefined
+num赋值456
+输出num 为456
+</code></pre></blockquote>
+</li>
+</ol>
+</blockquote>
+<p>例子 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(false)&#123;</span><br><span class="line">    var num = 123;</span><br><span class="line">&#125;</span><br><span class="line">console.log(num);   // 输出undefined</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析</p>
+<ol>
+<li>预解析<blockquote>
+<pre><code>变量名num提升
+</code></pre></blockquote>
+</li>
+<li>执行代码<blockquote>
+<pre><code>if判断为false,不进入
+输出num,num定义未赋值,为undefined
+</code></pre></blockquote>
+</li>
+</ol>
+</blockquote>
+<p>例子 3:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var num = 123;</span><br><span class="line">function foo()&#123;</span><br><span class="line">    var num = 456;</span><br><span class="line">    function fn()&#123;</span><br><span class="line">        console.log(num);   //  输出456</span><br><span class="line">    &#125;;</span><br><span class="line">    fn();</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析</p>
+<ol>
+<li>预解析<blockquote>
+<pre><code>变量名num和函数名foo声明提升,函数名foo和函数体链接
+</code></pre></blockquote>
+</li>
+<li>执行代码<blockquote>
+<pre><code>num = 123, 赋值
+执行函数, 函数内部声明提升,变量名num和函数名fn
+变量num=456, 执行函数fn
+输出num, fn函数内部没有num,向上级寻找
+num=456, 输出num
+</code></pre></blockquote>
+</li>
+</ol>
+</blockquote>
+<p>例子 4:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var num = 123;</span><br><span class="line">function foo1()&#123;</span><br><span class="line">    var num = 456;</span><br><span class="line">    function foo2()&#123;</span><br><span class="line">        num = 789;</span><br><span class="line">        function foo3()&#123;</span><br><span class="line">            console.log(num);   // 输出789</span><br><span class="line">        &#125;</span><br><span class="line">        foo3();</span><br><span class="line">    &#125;</span><br><span class="line">    foo2();</span><br><span class="line">&#125;</span><br><span class="line">foo1();     // 输出456</span><br><span class="line">console.log(num);   // 输出123</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析</p>
+<ol>
+<li>预解析<blockquote>
+<pre><code>变量名num和函数名foo1声明提升,函数名foo1和函数体绑定
+</code></pre></blockquote>
+</li>
+<li>执行代码<blockquote>
+<pre><code>num = 123, 赋值
+ 执行函数foo1, 变量名num和函数名foo2声明提升, 函数名foo2和函数体绑定
+ num = 456, 赋值
+ 执行函数foo2, num在foo2函数中没有, 访问上级foo1得到num,  num = 789, 赋值函数名foo3声明提升并且绑定函数体
+ 执行函数foo3, 输出num, foo3中没有num,访问上级,得到num = 789
+ 输出num为789
+ 跳出函数, 输出num为123
+</code></pre></blockquote>
+</li>
+</ol>
+</blockquote>
+<p>例子 5:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if ( ! &apos;a&apos; in window ) &#123;</span><br><span class="line">    var a = 123;</span><br><span class="line">&#125;</span><br><span class="line">console.log( a );   // undefined</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析</p>
+<ol>
+<li>预解析<blockquote>
+<pre><code>变量a声明提升
+</code></pre></blockquote>
+</li>
+<li>执行代码<blockquote>
+<pre><code>判断window中是否存在a,a存在
+判断为false,不执行if中的代码
+输出a,为undefined
+</code></pre></blockquote>
+</li>
+</ol>
+</blockquote>
+<h3 id="复杂例题"><a href="#复杂例题" class="headerlink" title="复杂例题"></a>复杂例题</h3><p>例子 1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if ( true ) &#123;</span><br><span class="line">    function f1 () &#123;</span><br><span class="line">        console.log( &apos;true&apos; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    function f1 () &#123;</span><br><span class="line">        console.log( &apos;false&apos; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析<br>   新版浏览器</p>
+<ol>
+<li>预解析<blockquote>
+<pre><code>无,函数f1被浏览器认为是函数表达式,不进行变量名提升
+</code></pre></blockquote>
+</li>
+<li><p>执行代码</p>
+<blockquote>
+<pre><code>if判断进入true
+执行函数表达式f1
+输出结果为true
+</code></pre></blockquote>
+<p>旧版浏览器</p>
+</li>
+<li><p>预解析</p>
+<blockquote>
+<pre><code>函数f1变量声明提升,f1函数名和最后一个函数体连接在一起
+</code></pre></blockquote>
+</li>
+<li>执行代码<blockquote>
+<pre><code>if判断进入true
+执行f1
+输出false
+</code></pre></blockquote>
+</li>
+</ol>
+</blockquote>
+<p>例子 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if ( false ) &#123;</span><br><span class="line">    function f1 () &#123;</span><br><span class="line">        console.log( &apos;true&apos; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    function f1 () &#123;</span><br><span class="line">        console.log( &apos;false&apos; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析<br>   新版浏览器</p>
+<ol>
+<li>预解析<blockquote>
+<pre><code>无,f1为函数表达式,没有进行声明提升
+</code></pre></blockquote>
+</li>
+<li><p>执行代码</p>
+<blockquote>
+<pre><code>if判断
+执行f1
+输出false
+</code></pre></blockquote>
+<p>旧版浏览器</p>
+</li>
+<li>预解析<blockquote>
+<pre><code>函数名f1,声明提升,函数名和最后一个函数体链接在一起
+</code></pre></blockquote>
+</li>
+<li>执行代码<blockquote>
+<pre><code>if判断
+执行f1
+输出false
+</code></pre></blockquote>
+</li>
+</ol>
+</blockquote>
+<p>例子 3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var num = 123;</span><br><span class="line">function f1() &#123;</span><br><span class="line">    console.log( num );</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">    var num = 456;</span><br><span class="line">    f1();</span><br><span class="line">&#125;</span><br><span class="line">f2();</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析</p>
+<ol>
+<li>预解析<blockquote>
+<pre><code>声明提升,变量num,函数名f1,f2,函数名和函数体链接
+</code></pre></blockquote>
+</li>
+<li>执行代码<blockquote>
+<pre><code>num = 123
+执行函数f2
+变量num赋值456
+执行函数f1
+输出num,函数里面没有,向上寻找,上级为(0级作用域链),num=123,输出num为123
+</code></pre></blockquote>
+</li>
+</ol>
+</blockquote>
+<p>例子 4<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var num = 123;</span><br><span class="line">function f1() &#123;</span><br><span class="line">    console.log( num );</span><br><span class="line">&#125;</span><br><span class="line">function f2() &#123;</span><br><span class="line">    num = 456;</span><br><span class="line">    f1(num);</span><br><span class="line">&#125;</span><br><span class="line">f2();</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析</p>
+<ol>
+<li>预解析<blockquote>
+<pre><code>变量名num,函数名f1,f2声明提升,函数名和函数体链接一起
+</code></pre></blockquote>
+</li>
+<li>代码执行<blockquote>
+<pre><code>num=123
+执行函数f2
+num=456,f2中没有num,向上级寻找得到num为123,将num = 123赋值,num = 456
+执行f1, f1中没有num, 向上级寻找得到num为456
+输出num,num=456,输出num456
+</code></pre></blockquote>
+</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/13/JS面向对象之闭包/" rel="next" title="JS面向对象之闭包">
+                <i class="fa fa-chevron-left"></i> JS面向对象之闭包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/13/JS函数的调用模式/" rel="prev" title="JS中函数的调用模式">
+                JS中函数的调用模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Liu Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#词法作用域"><span class="nav-number">2.</span> <span class="nav-text">词法作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域-1"><span class="nav-number">2.1.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#块级作用域"><span class="nav-number">2.1.1.</span> <span class="nav-text">块级作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-js-中采取词法作用域"><span class="nav-number">2.1.2.</span> <span class="nav-text">在 js 中采取词法作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-js-中作用域分析方法"><span class="nav-number">2.1.3.</span> <span class="nav-text">在 js 中作用域分析方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单例题"><span class="nav-number">2.1.4.</span> <span class="nav-text">简单例题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂例题"><span class="nav-number">2.1.5.</span> <span class="nav-text">复杂例题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu Yu</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

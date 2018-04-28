@@ -271,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/28/使用面向对象进行开发/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/JS面向对象之原型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liu Yu">
@@ -290,8 +290,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/28/使用面向对象进行开发/" itemprop="url">
-                  Untitled
+                <a class="post-title-link" href="/2018/04/13/JS面向对象之原型/" itemprop="url">
+                  JS面向对象之面向对象之原型
                 </a>
               
             
@@ -311,225 +311,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-28T11:51:07+08:00">2018-04-28</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="面向对象基础一之初体验使用面向对象进行开发"><a href="#面向对象基础一之初体验使用面向对象进行开发" class="headerlink" title="面向对象基础一之初体验使用面向对象进行开发"></a>面向对象基础一之初体验使用面向对象进行开发</h1><blockquote>
-<p>对 JS 中的面向对象的基础进行讲述, 初体验使用面向对象进行开发</p>
-</blockquote>
-<h2 id="主要内容是"><a href="#主要内容是" class="headerlink" title="主要内容是"></a>主要内容是</h2><ol>
-<li>面向对象的概念及特性</li>
-<li>用面向对象的方式解决简单的标签创建实例</li>
-</ol>
-<h1 id="一些基础的概念"><a href="#一些基础的概念" class="headerlink" title="一些基础的概念"></a>一些基础的概念</h1><h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="面向对象的概念"><a href="#面向对象的概念" class="headerlink" title="面向对象的概念"></a>面向对象的概念</h3><ol>
-<li>面向对象就是使用对象</li>
-<li>面向对象开发就是使用对象开发</li>
-<li>面向过程就是以面向过程的方式开发</li>
-<li>面向对象是面向过程的封装</li>
-</ol>
-<h3 id="面向对象的特性"><a href="#面向对象的特性" class="headerlink" title="面向对象的特性"></a>面向对象的特性</h3><ol>
-<li><p>抽象性</p>
-<ul>
-<li>如果需要用一对象来描述一个数据, 那就需要抽取这个对象的<strong>核心数据</strong>来描述</li>
-<li>抽取需要的核心属性和方法</li>
-<li>需要在<strong>特定情况</strong>下,才能明确对象的<strong>具体意义</strong></li>
-</ul>
-</li>
-<li><p>封装性</p>
-<ul>
-<li>封装就是将数据和功能组合到一起<ul>
-<li>在 js 中, 对象就是<strong>键</strong>和**值的集合<ul>
-<li>键值如果是数据(基本数据, 复合数据, 空数据), 就称为<strong>属性</strong></li>
-<li>键值如果是函数,就称为<strong>方法</strong></li>
-</ul>
-</li>
-<li>对象就是将属性和方法<strong>封装</strong>起来</li>
-<li>方法是将过程封装起来</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>继承性</p>
-<ul>
-<li>继承性就是自己没有, 别人有, 将别人的拿过来自己用, 并且成为自己的</li>
-<li>传统继承基于模板</li>
-<li><p>js 的继承基于对象<br>在 js 中的简单的继承模式: 混入模式(mix)<br>在 jQuerty 中的混入叫做: extend</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var o1 = &#123; name : &apos;Jhon&apos; &#125;;</span><br><span class="line">var o2 = &#123; age : 19 &#125;;</span><br><span class="line">function mix(o1,o2)&#123;</span><br><span class="line">    for(var key in o2)&#123;</span><br><span class="line">        o1[key] = o2[key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">mix(o1, o2);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="使用面向过程和面向对象进行标签创建"><a href="#使用面向过程和面向对象进行标签创建" class="headerlink" title="使用面向过程和面向对象进行标签创建"></a>使用面向过程和面向对象进行标签创建</h1><h2 id="使用面向过程创建div-并设置样式"><a href="#使用面向过程创建div-并设置样式" class="headerlink" title="使用面向过程创建div, 并设置样式"></a>使用面向过程创建div, 并设置样式</h2><ul>
-<li>按部就班, 一步一步来</li>
-<li>只能一个一个添加属性</li>
-<li>如果创建多个div标签, 非常麻烦</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var div = document.createElement(&apos;div&apos;);</span><br><span class="line">documet.appendChild(div);</span><br><span class="line">div.style.width = &apos;200px&apos;;</span><br><span class="line">div.style.height = &apos;200px&apos;;</span><br><span class="line">div.style.backgroundColor = &apos;red&apos;;</span><br><span class="line">div.style.border = &apos;10px dashed blue&apos;;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-<h2 id="使用面向对象创建div-并设置样式"><a href="#使用面向对象创建div-并设置样式" class="headerlink" title="使用面向对象创建div, 并设置样式"></a>使用面向对象创建div, 并设置样式</h2><ul>
-<li>抽取对象(名词提炼): div, body</li>
-<li><p>分析属性和方法(动词提炼): appendChild, style</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function DivTag()&#123;</span><br><span class="line">    // 注意这里的 this 指的是 通过构造函数创建出来的实例对象</span><br><span class="line">    this.DOM = document.createElement(&apos;div&apos;);</span><br><span class="line">    this.appendTo = function(node)&#123;</span><br><span class="line">        // this是实例对象, 不是DOM节点, 不能直接使用DOM属性和方法</span><br><span class="line">        node.appendChild(this.DOM);</span><br><span class="line">    &#125;;</span><br><span class="line">    this.css = function(option)&#123;</span><br><span class="line">        for(var key in option)&#123;</span><br><span class="line">            this.DOM.style[key] = option[key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var divTag = new DivTag();</span><br><span class="line">divTag.appendTo(document.body);</span><br><span class="line">divTag.css(&#123;</span><br><span class="line">    width : &apos;200px&apos;,</span><br><span class="line">    height : &apos;200px&apos;,</span><br><span class="line">    backgroundColor : &apos;red&apos;,</span><br><span class="line">    border : &apos;10px dashed blue&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这样的使用对象的方式进行创建标签非常方便, 创建多个不同样式的标签也非常轻松</p>
-</li>
-<li>但是这样也有缺点, 不能和 jQuery 一样, 不能进行链式变成, 我们可以这样修改, 在每一个方法后面加上一个<code>return this</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function DivTag()&#123;</span><br><span class="line">    // 注意这里的 this 指的是 通过构造函数创建出来的实例对象</span><br><span class="line">    this.DOM = document.createElement(&apos;div&apos;);</span><br><span class="line">    this.appendTo = function(node)&#123;</span><br><span class="line">        // this是实例对象, 不是DOM节点, 不能直接使用DOM属性和方法</span><br><span class="line">        node.appendChild(this.DOM);</span><br><span class="line">        return this;</span><br><span class="line">    &#125;;</span><br><span class="line">    this.css = function(option)&#123;</span><br><span class="line">        for(var key in option)&#123;</span><br><span class="line">            this.DOM.style[key] = option[key];</span><br><span class="line">        &#125;</span><br><span class="line">        return this;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var divTag1 = new DivTag()</span><br><span class="line">    .appendTo(document.body)</span><br><span class="line">    .css(&#123;</span><br><span class="line">        width : &apos;200px&apos;,</span><br><span class="line">        height : 200px,</span><br><span class="line">        backgroundColor : &apos;red&apos;,</span><br><span class="line">        border : &apos;10px dashed blue&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">var divTag2 = new DivTag()</span><br><span class="line">    .appendTo(document.body)</span><br><span class="line">    .css(&#123;</span><br><span class="line">        width : &apos;400px&apos;,</span><br><span class="line">        height : &apos;400px&apos;,</span><br><span class="line">        backgroundColor : &apos;pink&apos;,</span><br><span class="line">        border : &apos;10px dashed green&apos;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="什么是面向对象"><a href="#什么是面向对象" class="headerlink" title="什么是面向对象"></a>什么是面向对象</h2><p>面向对象说白了就是对面向过程进行了封装<br>比如说:<br>需求是 一个字符串是 <code>str = &#39;abcdefg&#39;</code>, 找到里面的<code>e</code>,并返回<code>e</code>的索引</p>
-<ul>
-<li><p>使用面向过程的处理办法就是, 遍历字符串, 得到索引</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;abcdefg&apos;;</span><br><span class="line">for(var i = 0;i &lt; str.length;i++)&#123;</span><br><span class="line">    var char = str.charAt(i);</span><br><span class="line">    if(char == &apos;e&apos;)&#123;</span><br><span class="line">        conole.log(i);</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用面向过程的处理办法就是, 使用<code>indexOf</code>, 得到索引</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;abcdefg&apos;;</span><br><span class="line">console.log(str.indexOf(&apos;e&apos;));</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>用生活中吃饭的的例子就可以这样理解:</p>
-<ul>
-<li><p>如果你自己烧, 那就需要(非常的麻烦, 时间有很长)</p>
-<ol>
-<li>买菜</li>
-<li>洗菜</li>
-<li>烧饭烧菜</li>
-<li>洗碗</li>
-</ol>
-</li>
-<li><p>如果是上饭店, 那就非常简单(因为买菜, 洗菜, 烧饭烧菜, 洗碗的工作都是别人帮你完成了)</p>
-<ol>
-<li>吃就行了</li>
-</ol>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/28/JS面向对象之原型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liu Yu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Yu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/28/JS面向对象之原型/" itemprop="url">
-                  Untitled
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-                
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-28T11:50:33+08:00">2018-04-28</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-13T14:31:33+08:00">2018-04-13</time>
             
 
             
@@ -765,7 +547,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/28/JS面向对象之原型链/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/JS面向对象之原型链/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liu Yu">
@@ -784,8 +566,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/28/JS面向对象之原型链/" itemprop="url">
-                  Untitled
+                <a class="post-title-link" href="/2018/04/13/JS面向对象之原型链/" itemprop="url">
+                  JS面向对象之面向对象之原型链
                 </a>
               
             
@@ -805,7 +587,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-28T11:49:16+08:00">2018-04-28</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-13T14:31:33+08:00">2018-04-13</time>
             
 
             
@@ -999,7 +781,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/28/JS中的事件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/服务器部署(Ubuntu, Node, MongoDb)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liu Yu">
@@ -1018,241 +800,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/28/JS中的事件/" itemprop="url">
-                  Untitled
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-                
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-28T11:46:53+08:00">2018-04-28</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="事件的三个阶段"><a href="#事件的三个阶段" class="headerlink" title="事件的三个阶段"></a>事件的三个阶段</h2><ol>
-<li>捕捉</li>
-<li>目标</li>
-<li>冒泡</li>
-</ol>
-<h2 id="不同浏览器下的事件"><a href="#不同浏览器下的事件" class="headerlink" title="不同浏览器下的事件"></a>不同浏览器下的事件</h2><ol>
-<li>低版本IE不支持捕获阶段</li>
-<li>IE和W3C不同绑定事件解绑事件的方法和区别, 参数是什么, </li>
-<li>事件对象e有什么区别</li>
-</ol>
-<h2 id="事件的绑定方法"><a href="#事件的绑定方法" class="headerlink" title="事件的绑定方法"></a>事件的绑定方法</h2><ol>
-<li><p>DOM元素设置 <code>on + eventType</code>来绑定事件程序</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;alert(&apos;click!&apos;)&quot;&gt;点击我&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>最原始的事件绑定方法</li>
-<li><p>缺点</p>
-<ol>
-<li><p>事件处理程序和HTML结构混杂在一起</p>
-<p> 早起在结构, 样式, 表现分离的时代很忌讳这一点. 现在在MV*框架中将事件绑定和DOM结构放在一起处理, 似乎便于维护(不用来回切换html, js 文件), 而且也符合可预见(predictable)性的规则</p>
-</li>
-<li><p>命名空间的冲突</p>
-<p> 因为<code>onclick</code>中的JavaScript代码片段执行环境是全局作用域. 在JavaScript语言中没有相关的命名空间特性. 比较容易造成命名空间冲突, 非要用这样的绑定方法, 需要用对象来进行一层封装</p>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>古老的绑定方法<br> 使用DOM Element上面的<code>on + eventType</code>属性API</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;javascript: void(0)&quot; id=&quot;button&quot;&gt;&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var el = document.getElementById(&apos;button&apos;)</span><br><span class="line">    el.onclick = function () &#123;alert(&apos;button click&apos;)&#125;</span><br><span class="line">    el.onclick = function () &#123;alert(&apos;button click (Rewrite event handler before)&apos;)&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>缺点</p>
-<ol>
-<li><p>属性值会被覆盖, 无法绑定<strong>多个</strong>事件处理函数, 如果我们要注册多个onload事件处理程序的话就需要自己封装一个方法来阻止这种情况发生</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function addLoadEvnet (fn) &#123;</span><br><span class="line">    var oldonload = window.onload</span><br><span class="line">    if (typeof oldonload !== &apos;function&apos;) &#123;</span><br><span class="line">        window.onload = fn</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        window.onload = function () &#123;</span><br><span class="line">            oldonload()</span><br><span class="line">            fn()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">addLoadEvent(function () &#123;alert(&apos;load 1&apos;)&#125;)</span><br><span class="line">addLoadEvent(function () &#123;alert(&apos;load 2&apos;)&#125;)</span><br></pre></td></tr></table></figure>
-<p> 注意这只是个示例，生产环境很少会用到。一般用 DOM Ready 就可以了，因为 JavaScript 的执行通常不用等到页面资源全部加载完，DOM 加载完就可以了</p>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>现代/标准方法<br> 标准的绑定方法有两种<code>addEventListener</code>和<code>attachEvent</code>, 前者是标准浏览器支持, 后者是IE8以下浏览器支持, 通常需要做兼容性封装</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function addEvent (target, type, handler) &#123;</span><br><span class="line">    if (target.addEventListener) &#123;</span><br><span class="line">        target.addEventListener(type, handler, false)</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        target.attachEvent(&apos;on&apos; + type, handler)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">addEvent(document, &apos;click&apos;, function () &#123;alert(this === document)&#125;)</span><br><span class="line">addEvent(document, &apos;click&apos;, function () &#123;alert(this === document)&#125;)</span><br></pre></td></tr></table></figure>
-<p> 在IE8和标准浏览器下的效果是不一样的, <code>addEventListener</code>中的<code>this</code>指向元素本身(target), <code>attachEvent</code>中的<code>this</code>则指向<code>window</code>, 为了修复这个问题, 我们需要在<code>attachEvent</code>上面做一些调整让他保持和<code>addEventListener</code>一样的效果, 但是这样注册的handler就是个匿名函数, <strong>无法移除</strong>!</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function addEvnet (target, type, handler) &#123;</span><br><span class="line">    if (target.addEventListener) &#123;</span><br><span class="line">        target.addEventListerner(type, handler, false)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        target.attachEvent(&apos;on&apos; + type, function () &#123;</span><br><span class="line">            return handler.call(target)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">addEvent(document, &apos;click&apos;, function () &#123;alert(this === document)&#125;)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>小tips</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;javascript: alert(1)&quot; onclick=&quot;alert(2)&quot; id=&quot;link&quot;&gt;&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var link = document.getElementById(&apos;link&apos;)</span><br><span class="line">    link.onclick = function() &#123;alert(3)&#125;</span><br><span class="line">    $(&apos;#link&apos;).bind(&apos;click&apos;, function()&#123;alert(4&#125;)</span><br><span class="line">    $(&apos;#link&apos;).bind(&apos;click&apos;, function()&#123;alert(5&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>正确结果为 <code>3, 4, 5, 1</code></p>
-</li>
-<li>链接上的href伪JavaScript协议相当于在浏览器地址栏执行了一段js代码, 链接如果是这种格式, 点击的时候相当于执行这段js</li>
-<li>行内的事件绑定和元素调用onclick绑定事件会被覆盖</li>
-<li>使用jQuery(内部使用标准事件注册API)可以绑定多个事件处理程序</li>
-</ul>
-</li>
-</ol>
-<h2 id="事件解绑"><a href="#事件解绑" class="headerlink" title="事件解绑"></a>事件解绑</h2><ul>
-<li>addEventListener相对应的方法为removeEventListener( type, fn, boolean)</li>
-<li>接受三个参数: 事件名, 事件处理函数,  和布尔值</li>
-<li>布尔值为true, 表示捕获阶段调用事件处理函数. 布尔值为false, 表示冒泡阶段调用事件处理函数</li>
-<li><p>错误示例: 因为是匿名函数, 绑定和解绑的事件处理函数是两个不同的函数</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">document.body.addEventListener(&apos;touchmove&apos;, function (event) &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line">&#125;, false);</span><br><span class="line">document.body.removeEventListener(&apos;touchmove&apos;, function (event) &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line">&#125;, false);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>正确示例: 放在<code>addEventListener</code>和<code>removeEventListener</code>的函数不能携带参数</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function bodyScroll(event)&#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line">&#125;</span><br><span class="line">document.body.addEventListener(&apos;touchmove&apos;,bodyScroll,false);</span><br><span class="line">document.body.removeEventListener(&apos;touchmove&apos;,bodyScroll,false);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><ul>
-<li>大部分事件会沿着触发的目标元素往上传播, 比如<code>body &gt; div &gt; p &gt; span</code>如果他们都注册了点击事件, 那么在span上触发了点击事件后, p, div, body也会依次按顺序触发</li>
-<li>事件冒泡是可以被停止的  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function stopPropagation (event) &#123;</span><br><span class="line">    event = event || window.event</span><br><span class="line">    if (event.stopPropagation) &#123;</span><br><span class="line">        event.stopPropagation()</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        event.cancelBubbel = true  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">addEvent(&apos;element&apos;, &apos;click&apos;, function (e) &#123;</span><br><span class="line">    stopPropagation(e)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="取消事件行为"><a href="#取消事件行为" class="headerlink" title="取消事件行为"></a>取消事件行为</h2><ul>
-<li><p>取消冒泡</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function (event) &#123;</span><br><span class="line">    event.stopPropagation()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>取消默认行为</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function (event) &#123;</span><br><span class="line">    event.preventDefault()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><ul>
-<li>标准浏览器在事件处理程序被调用时<strong>事件对象</strong>会通过参数传递给处理程序, IE8以下的浏览器, 事件对象可以通过全局的<code>window.event</code>来访问. </li>
-<li>获取当前的DOM Element  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">addEvent(document, &apos;click&apos;, function (event) &#123;</span><br><span class="line">    // IE8以下 undefined</span><br><span class="line">    console.log(event)</span><br><span class="line">&#125;)</span><br><span class="line">addEventListener(document, &apos;click&apos;, function (event) &#123;</span><br><span class="line">    event = event || window.event</span><br><span class="line">    // IE8以下 undefined</span><br><span class="line">    // 标准浏览器 [object HTMLElement]</span><br><span class="line">    console.log(event.target)</span><br><span class="line">    var target = event.target || event.srcElement</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="事件代理-事件委托-Event-Delegation"><a href="#事件代理-事件委托-Event-Delegation" class="headerlink" title="事件代理(事件委托)Event Delegation"></a>事件代理(事件委托)Event Delegation</h2><ul>
-<li>有时候我们需要给不存在的(可能将来会有的)的一段DOM添加事件, 比如Ajax请求完成后渲染的DOM节点绑定事件. 一般逻辑会在渲染前执行, 绑定的时候找不到新元素所以并不能成功. 如果代码在Ajax请求完成之后在绑定事件, 会加重数据渲染和事件处理的耦合.</li>
-<li><p>可以使用事件委托来解决这些事情, 事件委托的性能比单个事件绑定性能高很多</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=&quot;list&quot;&gt;</span><br><span class="line">    &lt;li id=&quot;item-1&quot;&gt;item1&lt;/li&gt;</span><br><span class="line">    &lt;li id=&quot;item-2&quot;&gt;item2&lt;/li&gt;</span><br><span class="line">    &lt;li id=&quot;item-3&quot;&gt;item3&lt;/li&gt;</span><br><span class="line">    &lt;li id=&quot;item-4&quot;&gt;item4&lt;/li&gt;</span><br><span class="line">    &lt;li id=&quot;item-5&quot;&gt;item5&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">---------------------------------------</span><br><span class="line">&lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function bindEvent(el, n) &#123;</span><br><span class="line">        addEvent(lis[i], &apos;click&apos;, function() &#123; console.log(i); &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    // 用 setTimeout 模拟 Ajax 伪代码</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        var ajaxData = &apos;&lt;li id=&quot;item-1&quot;&gt;item1&lt;/li&gt; &lt;li id=&quot;item-2&quot;&gt;item2&lt;/li&gt; &lt;li id=&quot;item-3&quot;&gt;item3&lt;/li&gt; &lt;li id=&quot;item-4&quot;&gt;item4&lt;/li&gt; &lt;li id=&quot;item-5&quot;&gt;item5&lt;/li&gt;&apos;;</span><br><span class="line">        var ul = document.getElementById(&apos;list&apos;)</span><br><span class="line">        ul.innerHTML(ajaxData);</span><br><span class="line">        var lis = ul.getElementsByTagName(&apos;li&apos;);</span><br><span class="line"></span><br><span class="line">        for (var i = 0; i &lt; lis.length; i++) &#123;</span><br><span class="line">            bindEvent(lis[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>  假如 ul 中的 HTML 是 Ajax 异步插入的，通常我们的做法是 插入完成后遍历每个 li 绑定事件处理程序</p>
-<p>  使用事件代理, 只需要将事件绑定到<code>ul</code>元素上, 根据事件冒泡元素沿着DOM树向上传播到所有父元素上, 我们只需要判断目标元素是否是我们想绑定的元素</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=&quot;list&quot;&gt;&lt;/list&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function delegateEvent(el, eventType, fn) &#123;</span><br><span class="line">        addEvent(el, eventType, function(event) &#123;</span><br><span class="line">            event = event || window.event;</span><br><span class="line">            var target = event.target || event.srcElement;</span><br><span class="line">            fn(target);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    var el = document.getElementById(&apos;list&apos;);</span><br><span class="line">    // 用 setTimeout 模拟 Ajax 伪代码</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        var ajaxData = &apos;&lt;li id=&quot;item-1&quot;&gt;item1&lt;/li&gt; &lt;li id=&quot;item-2&quot;&gt;item2&lt;/li&gt; &lt;li id=&quot;item-3&quot;&gt;item3&lt;/li&gt; &lt;li id=&quot;item-4&quot;&gt;item4&lt;/li&gt; &lt;li id=&quot;item-5&quot;&gt;item5&lt;/li&gt;&apos;;</span><br><span class="line">        el.innerHTML(ajaxData)</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">    </span><br><span class="line">    delegateEvent(el, &apos;click&apos;, function(target) &#123;</span><br><span class="line">        console.log(target.id);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li>优点<ol>
-<li>大量节省内存, 减少事件注册, 比如在table上代理所有td的click事件就很好</li>
-<li>可以实现新增子对象无需要再次对其进行绑定事件, 对动态内容非常合适</li>
-</ol>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/JS递归/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liu Yu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Yu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/13/JS递归/" itemprop="url">
-                  js递归
+                <a class="post-title-link" href="/2018/04/13/服务器部署(Ubuntu, Node, MongoDb)/" itemprop="url">
+                  J阿里云服务器部署(Ubuntu, Node, MongoDb)
                 </a>
               
             
@@ -1311,322 +860,533 @@
       
         
           
-            <h1 id="递归基础"><a href="#递归基础" class="headerlink" title="递归基础"></a>递归基础</h1><h2 id="递归的概念"><a href="#递归的概念" class="headerlink" title="递归的概念"></a>递归的概念</h2><ul>
-<li>在程序中函数直接或间接调用自己</li>
-</ul>
-<ol>
-<li>直接调用自己</li>
-<li>简介调用自己</li>
+            <h1 id="阿里云服务器部署-Ubuntu-Node-MongoDb"><a href="#阿里云服务器部署-Ubuntu-Node-MongoDb" class="headerlink" title="阿里云服务器部署(Ubuntu, Node, MongoDb)"></a>阿里云服务器部署(Ubuntu, Node, MongoDb)</h1><h2 id="登陆远程服务器"><a href="#登陆远程服务器" class="headerlink" title="登陆远程服务器"></a>登陆远程服务器</h2><h3 id="本地登录"><a href="#本地登录" class="headerlink" title="本地登录"></a>本地登录</h3><ol>
+<li><p>命令行登陆 ssh <a href="mailto:root@xx.xx.xx.xx" target="_blank" rel="noopener">root@xx.xx.xx.xx</a></p>
+</li>
+<li><p>查看硬盘使用情况 <code>df -h</code></p>
+</li>
+<li><p><code>.zshrc</code> 修改该文件 软连接</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias ssh_aliyun = &quot;ssh root@xx.xx.xx.xx&quot;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
+<h3 id="新增升权用户"><a href="#新增升权用户" class="headerlink" title="新增升权用户"></a>新增升权用户</h3><ol>
+<li>设置配置信息 <code>adduser xxx_manager</code></li>
+<li>授权 <code>gpasswd -a xxx_manager sudo</code>, 设置相对比较高的权限</li>
+<li><p>修改权限文件 <code>sudo visudo</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification</span><br><span class="line">root  ALL=(ALL:ALL) ALL</span><br><span class="line">xxx_manager ALL=(ALL:ALL) ALL</span><br><span class="line"></span><br><span class="line">4个ALL:</span><br><span class="line">1. 对所有sudo生效</span><br><span class="line">2. 可以以任何用户用户执行</span><br><span class="line">3. 任何组</span><br><span class="line">4. 所有命令</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启ssh服务 <code>service ssh restart</code></p>
+</li>
+</ol>
+<h3 id="ssh免密登陆"><a href="#ssh免密登陆" class="headerlink" title="ssh免密登陆"></a>ssh免密登陆</h3><ul>
+<li><p>本地创建</p>
+<ol>
+<li><p>本地创建 <code>ssh-keygen -t rsa -b 4096 -C  &#39;xxx@email.com&#39;</code> , 生成秘钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code></p>
+</li>
+<li><p>ssh代理 <code>eval &quot;$(ssh-agent -s)&quot;</code></p>
+</li>
+<li><p>将<code>ssh key</code>加入到<code>ssh-agent</code> <code>ssh-add ~/.ssh/id_rsa</code></p>
+</li>
+</ol>
+</li>
+<li><p>服务器创建</p>
+<ol>
+<li>连接服务器<code>ssh ssh_aliyun</code></li>
+<li>服务器创建 <code>ssh-keygen -t rsa -b 4096 -C  &#39;xxx@email.com&#39;</code> , 生成秘钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code></li>
+<li>ssh代理 <code>eval &quot;$(ssh-agent -s)&quot;</code></li>
+<li>将<code>ssh key</code>加入到<code>ssh-agent</code> <code>ssh-add ~/.ssh/id_rsa</code></li>
+<li>查看文件是否生成 <code>ls -a</code></li>
+<li>在~/.ssh文件目录下 <code>vi authorized_keys</code>, 将本地的公钥ssh.pub添加到服务器上</li>
+<li>授权 <code>chmod 600 authorized_keys</code></li>
+<li>重启ssh服务 <code>sudo service ssh restart</code></li>
+</ol>
+</li>
+</ul>
+<h3 id="增强服务器安全等级"><a href="#增强服务器安全等级" class="headerlink" title="增强服务器安全等级"></a>增强服务器安全等级</h3><ul>
+<li><p>修改ssh配置文件</p>
+<ol>
+<li>打开配置文件 <code>sudo vi /etc/ssh/sshd_config</code></li>
+<li>修改默认端口, 将<code>Port 22</code>修改为 <code>Port 39999</code>( 阿里云需要设置安全组规则 )</li>
+<li>修改DNS配置项 <code>UseDNS no</code></li>
+<li>是否允许空密码 <code>PermitEmptyPassword no</code></li>
+<li>新增权限(最后一行新增) <code>AllowUsers xxx_manager</code></li>
+<li>修改允许root登陆 <code>PermitRootLogin no</code></li>
+<li>是否允许密码登陆 <code>PasswordAuthentication no</code></li>
+<li>重启ssh服务 <code>sudo service ssh restart</code></li>
+<li>重新登陆 <code>ssh -p 39999 xxx_manager@xx.xx.xx.xx</code></li>
+</ol>
+</li>
+<li><p>防火墙iptables</p>
+</li>
+</ul>
+<h3 id="Nodejs生产环境"><a href="#Nodejs生产环境" class="headerlink" title="Nodejs生产环境"></a>Nodejs生产环境</h3><ol>
+<li>更新 <code>sudo apt-get update</code></li>
+<li>安装 <code>sudo apt-get install vim openssl build-essential libssl-dev wget crul git</code></li>
+<li>安装nvm用来管理nodejs <code>wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash</code></li>
+<li>nvm 安装 nodejs <code>nvm install v8.11.1</code></li>
+<li>nvm 设置默认版本 <code>nvm alias default v8.11.1</code></li>
+<li>nrm 管理registry <code>npm install -g nrm</code></li>
+<li>增加系统文件监控数目 <code>echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf &amp;&amp; sudo sysctl -p</code></li>
+<li>cnpm <code>npm install -g cnpm</code>, 如果模块安装不上可以通过cnpm同步 <code>cnpm sync xxx</code></li>
+<li>安装常用依赖 <code>npm install -g pm2 webpack gulp grunt-cli</code>…</li>
+</ol>
+<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><ul>
+<li>端口代理: 用root级别权限实现对80端口的监听, 同时把来自80端口的流量分配给node服务的另外端口</li>
+<li>安装<ul>
+<li>判断是否存在apache服务器是否存在 <code>sudo service apache stop</code> 或者 <code>sudo service apache2 stop</code></li>
+<li>删除apache <code>sudo apt-get remove apache2</code></li>
+<li>更新包列表 <code>sudo apt-get update</code></li>
+<li>安装nginx <code>sudo apt-get install nginx</code></li>
+<li>判断nginx是否安装成功 <code>nginx -v</code></li>
+</ul>
+</li>
+<li><p>配置</p>
 <ul>
-<li>跳出结构,有了跳出才有结果</li>
+<li>进入配置目录 <code>cd etc/nginx/conf.d</code></li>
+<li>新建配置文件 <code>sudo vi xxx-com-8081.conf</code>, 命名规则<code>服务名-域名-端口</code></li>
+<li><p>配置文件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 定义服务名</span><br><span class="line">upstream xxx &#123;</span><br><span class="line">    # 设置端口</span><br><span class="line">    server 127.0.0.1:8081;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    // 设置服务器</span><br><span class="line">    server_name: xx.xx.xx.xx;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header X-Nginx-Proxy true;</span><br><span class="line"></span><br><span class="line">        proxy_pass http://xxx;</span><br><span class="line">        proxy_redirect off;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回到上级目录<code>cd .. sudo vi nginx.conf</code></p>
+</li>
+<li>去除注释, 将 <code>conf.d/*</code> 和 <code>sites-enableed/*</code> 这两个文件下的所有文件都加载</li>
+<li>服务器信息不显示 <code>server_tokens off</code></li>
+<li>检测 nginx <code>sudo nginx -t</code></li>
+<li>重启 nginx <code>sudo nginx -s reload</code></li>
 </ul>
-<h2 id="递归的思想"><a href="#递归的思想" class="headerlink" title="递归的思想"></a>递归的思想</h2><ul>
-<li>递归的调用,最终还是要转换为自己这个函数</li>
+</li>
 </ul>
+<h3 id="管理域名解析"><a href="#管理域名解析" class="headerlink" title="管理域名解析"></a>管理域名解析</h3><h3 id="服务器安装MongoDB"><a href="#服务器安装MongoDB" class="headerlink" title="服务器安装MongoDB"></a>服务器安装MongoDB</h3><ul>
+<li><p>换源</p>
 <ol>
-<li>如果有个函数foo,如果他是递归函数,到最后问题还是转换为函数foo的形式</li>
-<li>递归的思想就是将一个未知问题转换为一个已解决的问题来实现</li>
+<li>配置文件 <code>sudo vi /ect/apt/apt.conf</code></li>
+<li>注释镜像</li>
+<li>修改源 <code>sudo vi /ect/apt/sources.list.d/mongodb-org-x.xx.list</code></li>
+<li>将源地址改成 <code>http://mirrors/aliyun.com/xxxxxxxxxxxxx</code></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">...foo(...)...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="递归的步骤-技巧"><a href="#递归的步骤-技巧" class="headerlink" title="递归的步骤(技巧)"></a>递归的步骤(技巧)</h2><ol>
-<li>假设递归函数已经写好</li>
-<li>寻找递推关系</li>
-<li>将递推关系的结构转换为递归体</li>
-<li>将临界条件加入到递归体中</li>
-</ol>
-<h1 id="简单递归练习"><a href="#简单递归练习" class="headerlink" title="简单递归练习"></a>简单递归练习</h1><h2 id="求1-100的和"><a href="#求1-100的和" class="headerlink" title="求1-100的和"></a>求1-100的和</h2><ul>
-<li>分析:</li>
-</ul>
+</li>
+<li><p>安装</p>
 <ol>
-<li>假设递归函数已经写好为sum,既sum(100),就是求1-100的和</li>
-<li><p>寻找递推关系: 就是 n 与 n-1 ,或 n-2 之间的关系<br><strong>sum(n) == sum(n-1) + n</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var res = sum(100);</span><br><span class="line">var res = sum(99) + 100;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将递归结构转换成递归体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">return sum(n-1) + n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将临界条件加入到递归中</p>
-</li>
+<li><code>sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5</code></li>
+<li><code>echo &quot;deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list</code></li>
+<li><code>sudo apt-get update</code></li>
+<li><code>sudo apt-get install -y mongodb-org</code></li>
 </ol>
+</li>
+<li><p>开启服务</p>
+<ol>
+<li>修改防火墙</li>
+<li>开启 <code>sudo service mongod start</code></li>
+<li>检查日志 <code>cat /var/log/mongodb.log</code></li>
+<li>关闭 <code>sudo service mongod stop</code></li>
+<li>重启 <code>sudo service mongod restart</code></li>
+</ol>
+</li>
+<li><p>修改默认端口</p>
+<ol>
+<li>配置文件 <code>sudo vi /etc/mongod.conf</code></li>
+<li>修改端口 <code>port 19999</code></li>
+<li>修改防火墙</li>
+<li><code>sudo mongo --port 19999</code></li>
+</ol>
+</li>
+<li><p>本地数据备份</p>
 <ul>
-<li>求100 转换为 求99</li>
-<li>求99 转换为 求98</li>
-<li>求98 转换为 求97</li>
-<li>…</li>
-<li>求2 转换为 求1</li>
-<li>求1 转换为 求1</li>
-<li>即 sum(1) = 1</li>
+<li>导入新数据<ol>
+<li>本地数据备份 <code>sudo mongodump -h 127.0.0.1:27017 -d xxx-xxx -o xxx-xxx-backup</code></li>
+<li>本都将备份文件压缩 <code>tar zcvf xxx-xxx.tar.gz xxx-xxx</code></li>
+<li>本地将本地压缩后的文件上传到服务器 <code>scp -P 39999 ~/xx/xxx-xxx.tar.gz xxx_manager@xx.xx.xx.xx:/home/xxx_manager/dbbackup</code></li>
+<li>服务器解压缩 <code>tar xvf xxx-xxx.tar.gz</code></li>
+<li>服务器数据导入到数据库 <code>mongorestore --host 127.0.0.1:19999 -d xxx-xxx(数据库名) ./xx/xx/xx(数据路径)</code></li>
+</ol>
+</li>
+<li>新增数据<br>…</li>
 </ul>
-<ol start="5">
-<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">if(n==1) return 1;</span><br><span class="line">return sum(n-1) + n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/字符串转对象的一些方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liu Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Yu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/13/字符串转对象的一些方法/" itemprop="url">
+                  字符串转对象
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-13T14:31:33+08:00">2018-04-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="字符串转对象"><a href="#字符串转对象" class="headerlink" title="字符串转对象"></a>字符串转对象</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ul>
+<li>工作中如果需要原生 JS 完成字符转对象的话可以通过 JSON.parse(str), 但是这个方法是ES5中才出现, 如果需要兼容低版本就需要其它方法</li>
+<li>使用原生 JS 解决字符串转对象, 让我们更加容易处理</li>
+</ul>
+<h2 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 得打对**象格**式或 **json** 格式的一个字符串</span><br><span class="line">var str = &apos;&#123;&quot;name&quot;:&quot;张根硕&quot;,&quot;age&quot;:&quot;18&quot;&#125;&apos;;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用 ES5 中的方法 JSON.parse()<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var first = JSON.parse(str);</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="求-1-3-5-7-9-…第n项的结果和前n项和-序号从0开始"><a href="#求-1-3-5-7-9-…第n项的结果和前n项和-序号从0开始" class="headerlink" title="求 1,3,5,7,9,…第n项的结果和前n项和,序号从0开始"></a>求 1,3,5,7,9,…第n项的结果和前n项和,序号从0开始</h2><ul>
-<li>分析</li>
-</ul>
-<ol>
-<li>假设递归函数已经完成foo(n),得到奇数</li>
-<li>递归关系:</li>
+<blockquote>
+<p>ES5 中新添加的方法,将 json 格式<strong>字符串</strong>转换为<strong>对象</strong></p>
+</blockquote>
+<ol start="2">
+<li>使用 new Function 方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var second = (new Function(&apos;return &apos;+ str +&apos;;&apos;))();</span><br><span class="line">var second = new Function(&apos;return &apos;+ str +&apos;;&apos;)();</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<ul>
-<li>foo(n) = foo(n-1)+2</li>
-</ul>
+<blockquote>
+<p>使用<strong>函数的构造函数</strong>方法(传参只能传<strong>字符串</strong>), 自调用(或者执行), 得到<strong>对象</strong></p>
+</blockquote>
 <ol start="3">
-<li><p>递归体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">return foo(n) = sum(n-1)+2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>跳出条件</p>
+<li>使用 eval() 方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var third = eval(&apos;(&apos;+ str +&apos;)&apos;);</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<ul>
-<li>foo(n) = foo(n-1) + 2</li>
-<li>foo(1) = foo(0) + 2</li>
-<li>foo(0) = 1;</li>
-</ul>
-<ol start="5">
-<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">return foo(n-1) + 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ul>
-<li>前 n 项的和</li>
-<li>分析</li>
-</ul>
-<ol>
-<li>假设完成,sum(n)就是前n项的和</li>
-<li>递推关系</li>
-</ol>
-<ul>
-<li>foo(n) = sum(n) + 第n-1项之前的和</li>
-</ul>
-<ol start="3">
-<li><p>递归体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">return foo(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>临界条件</p>
-</li>
-</ol>
-<ul>
-<li>n == 1 ,结果为1</li>
-</ul>
-<ol start="5">
-<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">return foo(n-1) + 2;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sum(n)&#123;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">return foo(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="求-2-4-6-8-10…-第n项与前n项之和"><a href="#求-2-4-6-8-10…-第n项与前n项之和" class="headerlink" title="求 2,4,6,8,10… 第n项与前n项之和"></a>求 2,4,6,8,10… 第n项与前n项之和</h2><ul>
-<li>分析</li>
-</ul>
-<ol>
-<li>假设已知函数 fn(n)为第n项,sum(n)为前n项之和</li>
-<li>递归关系</li>
-</ol>
-<ul>
-<li>fn(n) = fn(n-1) + 2</li>
-<li>sum(n) = fn(n) + sum(n-1)</li>
-</ul>
-<ol start="3">
-<li>递归体</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn(n)&#123;</span><br><span class="line">return fn(n) = (n-1) + 2</span><br><span class="line">&#125;</span><br><span class="line">function sum(n)&#123;</span><br><span class="line">return sum(n) = fn(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用eval()方法, 传入<strong>字符串</strong>需要给字符串添加 “()” 进行包裹<br>如果不使用 ‘()’ 进行包裹,浏览器会将 ‘:’ 解析成代码块,最终会得到 ‘:’ 后的结果**<br>如 <code>&#39;{&quot;name&quot; : &quot;张全蛋&quot;}&#39;</code> 最后会的到 ‘张全蛋’ , 而 name 不显示</p>
+</blockquote>
 <ol start="4">
-<li>临界条件</li>
-</ol>
-<ul>
-<li>fn(0) = 2</li>
-<li>sum(0) = 2;</li>
-</ul>
-<ol start="5">
-<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn(n)&#123;</span><br><span class="line">if(n == 0) return 2;</span><br><span class="line">return fn(n-1) + 2;</span><br><span class="line">&#125;</span><br><span class="line">function sum(n)&#123;</span><br><span class="line">if(n==0) return 2;</span><br><span class="line">return fn(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>使用 eval() 和 (function(){})() 方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var forth = eval(&apos;(function()&#123;return &apos;+ str +&apos;;&#125;)()&apos;);</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="数列-1-1-2-4-7-11-16…求第-n-项-求前n项和"><a href="#数列-1-1-2-4-7-11-16…求第-n-项-求前n项和" class="headerlink" title="数列 1,1,2,4,7,11,16…求第 n 项,求前n项和"></a>数列 1,1,2,4,7,11,16…求第 n 项,求前n项和</h2><ul>
-<li>分析</li>
+<blockquote>
+<p>使用 eval() 方法, 将函数自调用, 得到<strong>对象</strong></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/使用面向对象进行开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liu Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Yu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/13/使用面向对象进行开发/" itemprop="url">
+                  面向对象基础一之初体验使用面向对象进行开发
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-13T14:31:33+08:00">2018-04-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="面向对象基础一之初体验使用面向对象进行开发"><a href="#面向对象基础一之初体验使用面向对象进行开发" class="headerlink" title="面向对象基础一之初体验使用面向对象进行开发"></a>面向对象基础一之初体验使用面向对象进行开发</h1><blockquote>
+<p>对 JS 中的面向对象的基础进行讲述, 初体验使用面向对象进行开发</p>
+</blockquote>
+<h2 id="主要内容是"><a href="#主要内容是" class="headerlink" title="主要内容是"></a>主要内容是</h2><ol>
+<li>面向对象的概念及特性</li>
+<li>用面向对象的方式解决简单的标签创建实例</li>
+</ol>
+<h1 id="一些基础的概念"><a href="#一些基础的概念" class="headerlink" title="一些基础的概念"></a>一些基础的概念</h1><h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="面向对象的概念"><a href="#面向对象的概念" class="headerlink" title="面向对象的概念"></a>面向对象的概念</h3><ol>
+<li>面向对象就是使用对象</li>
+<li>面向对象开发就是使用对象开发</li>
+<li>面向过程就是以面向过程的方式开发</li>
+<li>面向对象是面向过程的封装</li>
+</ol>
+<h3 id="面向对象的特性"><a href="#面向对象的特性" class="headerlink" title="面向对象的特性"></a>面向对象的特性</h3><ol>
+<li><p>抽象性</p>
+<ul>
+<li>如果需要用一对象来描述一个数据, 那就需要抽取这个对象的<strong>核心数据</strong>来描述</li>
+<li>抽取需要的核心属性和方法</li>
+<li>需要在<strong>特定情况</strong>下,才能明确对象的<strong>具体意义</strong></li>
 </ul>
+</li>
+<li><p>封装性</p>
+<ul>
+<li>封装就是将数据和功能组合到一起<ul>
+<li>在 js 中, 对象就是<strong>键</strong>和**值的集合<ul>
+<li>键值如果是数据(基本数据, 复合数据, 空数据), 就称为<strong>属性</strong></li>
+<li>键值如果是函数,就称为<strong>方法</strong></li>
+</ul>
+</li>
+<li>对象就是将属性和方法<strong>封装</strong>起来</li>
+<li>方法是将过程封装起来</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>继承性</p>
+<ul>
+<li>继承性就是自己没有, 别人有, 将别人的拿过来自己用, 并且成为自己的</li>
+<li>传统继承基于模板</li>
+<li><p>js 的继承基于对象<br>在 js 中的简单的继承模式: 混入模式(mix)<br>在 jQuerty 中的混入叫做: extend</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var o1 = &#123; name : &apos;Jhon&apos; &#125;;</span><br><span class="line">var o2 = &#123; age : 19 &#125;;</span><br><span class="line">function mix(o1,o2)&#123;</span><br><span class="line">    for(var key in o2)&#123;</span><br><span class="line">        o1[key] = o2[key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">mix(o1, o2);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="使用面向过程和面向对象进行标签创建"><a href="#使用面向过程和面向对象进行标签创建" class="headerlink" title="使用面向过程和面向对象进行标签创建"></a>使用面向过程和面向对象进行标签创建</h1><h2 id="使用面向过程创建div-并设置样式"><a href="#使用面向过程创建div-并设置样式" class="headerlink" title="使用面向过程创建div, 并设置样式"></a>使用面向过程创建div, 并设置样式</h2><ul>
+<li>按部就班, 一步一步来</li>
+<li>只能一个一个添加属性</li>
+<li>如果创建多个div标签, 非常麻烦</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var div = document.createElement(&apos;div&apos;);</span><br><span class="line">documet.appendChild(div);</span><br><span class="line">div.style.width = &apos;200px&apos;;</span><br><span class="line">div.style.height = &apos;200px&apos;;</span><br><span class="line">div.style.backgroundColor = &apos;red&apos;;</span><br><span class="line">div.style.border = &apos;10px dashed blue&apos;;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<h2 id="使用面向对象创建div-并设置样式"><a href="#使用面向对象创建div-并设置样式" class="headerlink" title="使用面向对象创建div, 并设置样式"></a>使用面向对象创建div, 并设置样式</h2><ul>
+<li>抽取对象(名词提炼): div, body</li>
+<li><p>分析属性和方法(动词提炼): appendChild, style</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function DivTag()&#123;</span><br><span class="line">    // 注意这里的 this 指的是 通过构造函数创建出来的实例对象</span><br><span class="line">    this.DOM = document.createElement(&apos;div&apos;);</span><br><span class="line">    this.appendTo = function(node)&#123;</span><br><span class="line">        // this是实例对象, 不是DOM节点, 不能直接使用DOM属性和方法</span><br><span class="line">        node.appendChild(this.DOM);</span><br><span class="line">    &#125;;</span><br><span class="line">    this.css = function(option)&#123;</span><br><span class="line">        for(var key in option)&#123;</span><br><span class="line">            this.DOM.style[key] = option[key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var divTag = new DivTag();</span><br><span class="line">divTag.appendTo(document.body);</span><br><span class="line">divTag.css(&#123;</span><br><span class="line">    width : &apos;200px&apos;,</span><br><span class="line">    height : &apos;200px&apos;,</span><br><span class="line">    backgroundColor : &apos;red&apos;,</span><br><span class="line">    border : &apos;10px dashed blue&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样的使用对象的方式进行创建标签非常方便, 创建多个不同样式的标签也非常轻松</p>
+</li>
+<li>但是这样也有缺点, 不能和 jQuery 一样, 不能进行链式变成, 我们可以这样修改, 在每一个方法后面加上一个<code>return this</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function DivTag()&#123;</span><br><span class="line">    // 注意这里的 this 指的是 通过构造函数创建出来的实例对象</span><br><span class="line">    this.DOM = document.createElement(&apos;div&apos;);</span><br><span class="line">    this.appendTo = function(node)&#123;</span><br><span class="line">        // this是实例对象, 不是DOM节点, 不能直接使用DOM属性和方法</span><br><span class="line">        node.appendChild(this.DOM);</span><br><span class="line">        return this;</span><br><span class="line">    &#125;;</span><br><span class="line">    this.css = function(option)&#123;</span><br><span class="line">        for(var key in option)&#123;</span><br><span class="line">            this.DOM.style[key] = option[key];</span><br><span class="line">        &#125;</span><br><span class="line">        return this;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var divTag1 = new DivTag()</span><br><span class="line">    .appendTo(document.body)</span><br><span class="line">    .css(&#123;</span><br><span class="line">        width : &apos;200px&apos;,</span><br><span class="line">        height : 200px,</span><br><span class="line">        backgroundColor : &apos;red&apos;,</span><br><span class="line">        border : &apos;10px dashed blue&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">var divTag2 = new DivTag()</span><br><span class="line">    .appendTo(document.body)</span><br><span class="line">    .css(&#123;</span><br><span class="line">        width : &apos;400px&apos;,</span><br><span class="line">        height : &apos;400px&apos;,</span><br><span class="line">        backgroundColor : &apos;pink&apos;,</span><br><span class="line">        border : &apos;10px dashed green&apos;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="什么是面向对象"><a href="#什么是面向对象" class="headerlink" title="什么是面向对象"></a>什么是面向对象</h2><p>面向对象说白了就是对面向过程进行了封装<br>比如说:<br>需求是 一个字符串是 <code>str = &#39;abcdefg&#39;</code>, 找到里面的<code>e</code>,并返回<code>e</code>的索引</p>
+<ul>
+<li><p>使用面向过程的处理办法就是, 遍历字符串, 得到索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;abcdefg&apos;;</span><br><span class="line">for(var i = 0;i &lt; str.length;i++)&#123;</span><br><span class="line">    var char = str.charAt(i);</span><br><span class="line">    if(char == &apos;e&apos;)&#123;</span><br><span class="line">        conole.log(i);</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用面向过程的处理办法就是, 使用<code>indexOf</code>, 得到索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;abcdefg&apos;;</span><br><span class="line">console.log(str.indexOf(&apos;e&apos;));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>用生活中吃饭的的例子就可以这样理解:</p>
+<ul>
+<li><p>如果你自己烧, 那就需要(非常的麻烦, 时间有很长)</p>
 <ol>
-<li>假设已知函数 foo(n) 为第n项</li>
-<li>递归关系<br><strong>从第 0 项开始计算</strong></li>
+<li>买菜</li>
+<li>洗菜</li>
+<li>烧饭烧菜</li>
+<li>洗碗</li>
 </ol>
-<ul>
-<li>第 0 项, 1 =&gt; foo(0) + 0 = foo(1)</li>
-<li>第 1 项, 2 =&gt; foo(1) + 1 = foo(2)</li>
-<li>第 2 项, 3 =&gt; foo(2) + 2 = foo(3)</li>
-<li>…</li>
-<li>第 n-1 项, n =&gt; foo(n-1) + n-1 = foo(n)</li>
-<li>foo(n) = foo(n-1) + n-1;</li>
-</ul>
-<p><strong>从第 1 项开始计算</strong></p>
-<ul>
-<li>第 1 项, 2 =&gt;  fn( 1 ) + 0 = fn( 2 )</li>
-<li>第 2 项, 3  =&gt;  fn( 2 ) + 1 = fn( 3 )</li>
-<li>第 3 项, 4  =&gt;  fn( 3 ) + 2 = fn( 4 )</li>
-<li>…</li>
-<li>foo(n) = fn(n-1) + n - 2</li>
-<li>如果从 0 开始</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0  1  2  3  4  5   6</span><br><span class="line">1, 1, 2, 4, 7, 11, 16,</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果从 1 开始<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1  2  3  4  5  6   7</span><br><span class="line">1, 1, 2, 4, 7, 11, 16</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<ol start="3">
-<li>递归体</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">return foo(n-1)+n-1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>临界条件</li>
-</ol>
-<ul>
-<li>foo(0) == 1;</li>
-<li>foo(1) == 1;</li>
-</ul>
-<ol start="5">
-<li>递归函数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">return foo(n-1) + n -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>分析</li>
-</ul>
+<li><p>如果是上饭店, 那就非常简单(因为买菜, 洗菜, 烧饭烧菜, 洗碗的工作都是别人帮你完成了)</p>
 <ol>
-<li><p>假设已知函数 sum(n)为前n项和</p>
-</li>
-<li><p>递归关系</p>
-</li>
+<li>吃就行了</li>
 </ol>
-<ul>
-<li>sum(n) = foo(n) + sum(n-1);</li>
+</li>
 </ul>
-<ol start="3">
-<li><p>递归体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">return foo(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>临界条件</p>
-</li>
-</ol>
-<p>*　sum(0) = 1;</p>
-<ol start="5">
-<li>递归函数</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function sum(n)&#123;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">return foo(n) + sum(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Fibonacci数列-斐波那契数列"><a href="#Fibonacci数列-斐波那契数列" class="headerlink" title="Fibonacci数列(斐波那契数列)"></a>Fibonacci数列(斐波那契数列)</h2><p>1,1,2,3,5,8,13,21,34,55,89…求第 n 项</p>
-<ul>
-<li>分析</li>
-</ul>
-<ol>
-<li>假设已知 fib(n) 为第 n 项</li>
-<li>递归关系</li>
-</ol>
-<ul>
-<li>fib(n) = fib(n-1) + fib(n-2)</li>
-</ul>
-<ol start="3">
-<li><p>递归体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function fib(n)&#123;</span><br><span class="line">return fib(n-1)+fib(n-2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>临界条件</p>
-</li>
-</ol>
-<ul>
-<li>fib(0) == 1</li>
-<li>fib(1) == 1</li>
-</ul>
-<ol start="5">
-<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fib(n)&#123;</span><br><span class="line">if(n == 0 || n ==1) return 1;</span><br><span class="line">return fib(n-1) + fib(n-2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="高级递归练习"><a href="#高级递归练习" class="headerlink" title="高级递归练习"></a>高级递归练习</h1><h2 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h2><p>概念:</p>
-<ul>
-<li>阶乘是一个运算, 一个数字的阶乘表示的是从 1 开始 累乘到这个数字.</li>
-<li>例如 3! 表示 <code>1 * 2 * 3</code>. 5! 就是  <code>1 * 2 * 3 * 4 * 5</code>. 规定 0 没有阶乘,</li>
-<li>阶乘 从 1 开始.</li>
-<li>分析:</li>
-</ul>
-<ol>
-<li>假设已知 foo(n) 为 1-n 的积</li>
-<li>递归关系</li>
-</ol>
-<ul>
-<li>foo(n) = foo(n-1) * n</li>
-</ul>
-<ol start="3">
-<li><p>递归体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">return foo(n-1) * n</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>临界条件</p>
-</li>
-</ol>
-<ul>
-<li>foo(1) == 1</li>
-</ul>
-<ol start="5">
-<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo(n)&#123;</span><br><span class="line">if( n == 1) return 1;</span><br><span class="line">return foo(n - 1) * n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="求幂"><a href="#求幂" class="headerlink" title="求幂"></a>求幂</h2><ul>
-<li>概念:<br>求幂就是求 某一个数 几次方<br>2*2 2 的 平方, 2 的 2 次方<br>求 n 的 m 次方<br>最终要得到一个函数 power( n, m )<br>n 的 m 次方就是 m 个 n 相乘 即 n 乘以 (m-1) 个 n 相乘</li>
-<li>分析</li>
-</ul>
-<ol>
-<li>假设已知函数 power(n,m) 为 n 的 m 次幂</li>
-<li>递归关系</li>
-</ol>
-<ul>
-<li>power(n,m-1) * n</li>
-</ul>
-<ol start="3">
-<li><p>递归体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function power(n,m)&#123;</span><br><span class="line">return power(n,m-1) * n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>临界条件</p>
-</li>
-</ol>
-<ul>
-<li>m == 1 ,return n</li>
-<li>m == 0 ,reutnr 1</li>
-</ul>
-<ol start="5">
-<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function power(n,m)&#123;</span><br><span class="line">if(m == 1) return n;</span><br><span class="line">return power(n,m-1) * n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="深拷贝-使用递归方式"><a href="#深拷贝-使用递归方式" class="headerlink" title="深拷贝,使用递归方式"></a>深拷贝,使用递归方式</h1><p>概念:</p>
-<ol>
-<li>如果拷贝的时候, 将数据的所有引用结构都拷贝一份, 那么数据在内存中独立就是深拷贝(内存隔离,完全独立)</li>
-<li>如果拷贝的时候, 只针对当前对象的属性进行拷贝, 而属性是引用类型这个不考虑, 那么就是浅拷贝</li>
-<li>拷贝: 复制一份. 指将对象数据复制.</li>
-<li>在讨论深拷与浅拷的时候一定要保证对象的属性也是引用类型.<br>实现方法:</li>
-<li>如果要实现深拷贝那么就需要考虑将对象的属性, 与属性的属性,都拷贝过来</li>
-<li>分析(2个参数,简单实现)</li>
-<li>假设已经实现 clone ( o1, o2),将对象 o2 的成员拷贝一份交给 o1</li>
-<li>递推关系</li>
-</ol>
-<ul>
-<li><p>混合方法,将 o2 的成员拷贝到 o1 中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function clone( o1, o2)&#123;</span><br><span class="line">for(var key in o2)&#123;</span><br><span class="line">o1[key] = o2[key];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>假设方法已经实现,如果 o2[key] 是对象</p>
-</li>
-<li>继续使用这个方法</li>
-<li>需要考虑 o2[key] 是引用类型,再一次使用clone函数</li>
-<li>如果 o2[key] 不是引用类型,那么直接赋值</li>
-</ul>
-<ol start="3">
-<li>临界条件</li>
-</ol>
-<ul>
-<li>因为是 for in 循环,没有成员遍历时,自动结束</li>
-</ul>
-<ol start="4">
-<li>递归函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function clone(o1,o2)&#123;</span><br><span class="line">for(var key in o2)&#123;</span><br><span class="line">if(typeof o2[key] == &apos;object&apos;)&#123;</span><br><span class="line">o1[key] = &#123;&#125;;</span><br><span class="line">clone(o1[key],o2[key])</span><br><span class="line">&#125;else&#123;</span><br><span class="line">o1[key] = o2[key];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>复杂实现(一个参数)<br>原理: clone(o) = new Object; 返回一个对象<br>递归函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function clone(o)&#123;</span><br><span class="line">var temp = &#123;&#125;;</span><br><span class="line">for(var key in o)&#123;</span><br><span class="line">if(typeof o[key] == &apos;object&apos;)&#123;</span><br><span class="line">temp[key] = clone(o[key]);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">temp[key] = o[key];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">return temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="使用递归实现-getElementsByClassName"><a href="#使用递归实现-getElementsByClassName" class="headerlink" title="使用递归实现 getElementsByClassName"></a>使用递归实现 getElementsByClassName</h1><p>html结构:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">&lt;div&gt;1</span><br><span class="line">&lt;div class=&quot;c&quot;&gt;2&lt;/div&gt;</span><br><span class="line">&lt;div&gt;3&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;c&quot;&gt;4&lt;/div&gt;</span><br><span class="line">&lt;div&gt;5</span><br><span class="line">&lt;div&gt;6&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;c&quot;&gt;7&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;8&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>分析</p>
-<ol>
-<li>实现一个方法byClass()需要的参数是:<br>node: 在某个节点上寻找元素<br>className: 需要寻找的className<br>arr: 找到的元素存储到这个数组中</li>
-<li>遍历 node 的子节点,</li>
-<li>查看这个子节点是否还有子节点,如果没有直接存储到数组中,如果有就继续递归</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">function byClass(node, className, arr)&#123;</span><br><span class="line">//得到传入节点的所有子节点</span><br><span class="line">var lists = node.childNodes;</span><br><span class="line">for(var i = 0;i&lt; lists.length;i++)&#123;</span><br><span class="line">//判断是否有相同className元素</span><br><span class="line">if(arr[i],className == className)&#123;</span><br><span class="line">arr.push(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">//判断子节点是否还有子节点</span><br><span class="line">if(arr[i].childNodes.length &gt; 0)&#123;</span><br><span class="line">byClass(arr[i],className,arr);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         

@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="面向对象基础一之初体验使用面向对象进行开发 对 JS 中的面向对象的基础进行讲述, 初体验使用面向对象进行开发  主要内容是 面向对象的概念及特性 用面向对象的方式解决简单的标签创建实例  一些基础的概念面向对象面向对象的概念 面向对象就是使用对象 面向对象开发就是使用对象开发 面向过程就是以面向过程的方式开发 面向对象是面向过程的封装  面向对象的特性 抽象性  如果需要用一对象来描述一个数据,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象基础一之初体验使用面向对象进行开发">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/使用面向对象进行开发/index.html">
+<meta property="og:site_name" content="Liu Yu&#39;s Blog">
+<meta property="og:description" content="面向对象基础一之初体验使用面向对象进行开发 对 JS 中的面向对象的基础进行讲述, 初体验使用面向对象进行开发  主要内容是 面向对象的概念及特性 用面向对象的方式解决简单的标签创建实例  一些基础的概念面向对象面向对象的概念 面向对象就是使用对象 面向对象开发就是使用对象开发 面向过程就是以面向过程的方式开发 面向对象是面向过程的封装  面向对象的特性 抽象性  如果需要用一对象来描述一个数据,">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-28T04:11:47.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象基础一之初体验使用面向对象进行开发">
+<meta name="twitter:description" content="面向对象基础一之初体验使用面向对象进行开发 对 JS 中的面向对象的基础进行讲述, 初体验使用面向对象进行开发  主要内容是 面向对象的概念及特性 用面向对象的方式解决简单的标签创建实例  一些基础的概念面向对象面向对象的概念 面向对象就是使用对象 面向对象开发就是使用对象开发 面向过程就是以面向过程的方式开发 面向对象是面向过程的封装  面向对象的特性 抽象性  如果需要用一对象来描述一个数据,">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/13/使用面向对象进行开发/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>面向对象基础一之初体验使用面向对象进行开发 | Liu Yu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liu Yu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/使用面向对象进行开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liu Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Yu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面向对象基础一之初体验使用面向对象进行开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-13T14:31:33+08:00">2018-04-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="面向对象基础一之初体验使用面向对象进行开发"><a href="#面向对象基础一之初体验使用面向对象进行开发" class="headerlink" title="面向对象基础一之初体验使用面向对象进行开发"></a>面向对象基础一之初体验使用面向对象进行开发</h1><blockquote>
+<p>对 JS 中的面向对象的基础进行讲述, 初体验使用面向对象进行开发</p>
+</blockquote>
+<h2 id="主要内容是"><a href="#主要内容是" class="headerlink" title="主要内容是"></a>主要内容是</h2><ol>
+<li>面向对象的概念及特性</li>
+<li>用面向对象的方式解决简单的标签创建实例</li>
+</ol>
+<h1 id="一些基础的概念"><a href="#一些基础的概念" class="headerlink" title="一些基础的概念"></a>一些基础的概念</h1><h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="面向对象的概念"><a href="#面向对象的概念" class="headerlink" title="面向对象的概念"></a>面向对象的概念</h3><ol>
+<li>面向对象就是使用对象</li>
+<li>面向对象开发就是使用对象开发</li>
+<li>面向过程就是以面向过程的方式开发</li>
+<li>面向对象是面向过程的封装</li>
+</ol>
+<h3 id="面向对象的特性"><a href="#面向对象的特性" class="headerlink" title="面向对象的特性"></a>面向对象的特性</h3><ol>
+<li><p>抽象性</p>
+<ul>
+<li>如果需要用一对象来描述一个数据, 那就需要抽取这个对象的<strong>核心数据</strong>来描述</li>
+<li>抽取需要的核心属性和方法</li>
+<li>需要在<strong>特定情况</strong>下,才能明确对象的<strong>具体意义</strong></li>
+</ul>
+</li>
+<li><p>封装性</p>
+<ul>
+<li>封装就是将数据和功能组合到一起<ul>
+<li>在 js 中, 对象就是<strong>键</strong>和**值的集合<ul>
+<li>键值如果是数据(基本数据, 复合数据, 空数据), 就称为<strong>属性</strong></li>
+<li>键值如果是函数,就称为<strong>方法</strong></li>
+</ul>
+</li>
+<li>对象就是将属性和方法<strong>封装</strong>起来</li>
+<li>方法是将过程封装起来</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>继承性</p>
+<ul>
+<li>继承性就是自己没有, 别人有, 将别人的拿过来自己用, 并且成为自己的</li>
+<li>传统继承基于模板</li>
+<li><p>js 的继承基于对象<br>在 js 中的简单的继承模式: 混入模式(mix)<br>在 jQuerty 中的混入叫做: extend</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var o1 = &#123; name : &apos;Jhon&apos; &#125;;</span><br><span class="line">var o2 = &#123; age : 19 &#125;;</span><br><span class="line">function mix(o1,o2)&#123;</span><br><span class="line">    for(var key in o2)&#123;</span><br><span class="line">        o1[key] = o2[key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">mix(o1, o2);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="使用面向过程和面向对象进行标签创建"><a href="#使用面向过程和面向对象进行标签创建" class="headerlink" title="使用面向过程和面向对象进行标签创建"></a>使用面向过程和面向对象进行标签创建</h1><h2 id="使用面向过程创建div-并设置样式"><a href="#使用面向过程创建div-并设置样式" class="headerlink" title="使用面向过程创建div, 并设置样式"></a>使用面向过程创建div, 并设置样式</h2><ul>
+<li>按部就班, 一步一步来</li>
+<li>只能一个一个添加属性</li>
+<li>如果创建多个div标签, 非常麻烦</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var div = document.createElement(&apos;div&apos;);</span><br><span class="line">documet.appendChild(div);</span><br><span class="line">div.style.width = &apos;200px&apos;;</span><br><span class="line">div.style.height = &apos;200px&apos;;</span><br><span class="line">div.style.backgroundColor = &apos;red&apos;;</span><br><span class="line">div.style.border = &apos;10px dashed blue&apos;;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<h2 id="使用面向对象创建div-并设置样式"><a href="#使用面向对象创建div-并设置样式" class="headerlink" title="使用面向对象创建div, 并设置样式"></a>使用面向对象创建div, 并设置样式</h2><ul>
+<li>抽取对象(名词提炼): div, body</li>
+<li><p>分析属性和方法(动词提炼): appendChild, style</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function DivTag()&#123;</span><br><span class="line">    // 注意这里的 this 指的是 通过构造函数创建出来的实例对象</span><br><span class="line">    this.DOM = document.createElement(&apos;div&apos;);</span><br><span class="line">    this.appendTo = function(node)&#123;</span><br><span class="line">        // this是实例对象, 不是DOM节点, 不能直接使用DOM属性和方法</span><br><span class="line">        node.appendChild(this.DOM);</span><br><span class="line">    &#125;;</span><br><span class="line">    this.css = function(option)&#123;</span><br><span class="line">        for(var key in option)&#123;</span><br><span class="line">            this.DOM.style[key] = option[key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var divTag = new DivTag();</span><br><span class="line">divTag.appendTo(document.body);</span><br><span class="line">divTag.css(&#123;</span><br><span class="line">    width : &apos;200px&apos;,</span><br><span class="line">    height : &apos;200px&apos;,</span><br><span class="line">    backgroundColor : &apos;red&apos;,</span><br><span class="line">    border : &apos;10px dashed blue&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样的使用对象的方式进行创建标签非常方便, 创建多个不同样式的标签也非常轻松</p>
+</li>
+<li>但是这样也有缺点, 不能和 jQuery 一样, 不能进行链式变成, 我们可以这样修改, 在每一个方法后面加上一个<code>return this</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function DivTag()&#123;</span><br><span class="line">    // 注意这里的 this 指的是 通过构造函数创建出来的实例对象</span><br><span class="line">    this.DOM = document.createElement(&apos;div&apos;);</span><br><span class="line">    this.appendTo = function(node)&#123;</span><br><span class="line">        // this是实例对象, 不是DOM节点, 不能直接使用DOM属性和方法</span><br><span class="line">        node.appendChild(this.DOM);</span><br><span class="line">        return this;</span><br><span class="line">    &#125;;</span><br><span class="line">    this.css = function(option)&#123;</span><br><span class="line">        for(var key in option)&#123;</span><br><span class="line">            this.DOM.style[key] = option[key];</span><br><span class="line">        &#125;</span><br><span class="line">        return this;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var divTag1 = new DivTag()</span><br><span class="line">    .appendTo(document.body)</span><br><span class="line">    .css(&#123;</span><br><span class="line">        width : &apos;200px&apos;,</span><br><span class="line">        height : 200px,</span><br><span class="line">        backgroundColor : &apos;red&apos;,</span><br><span class="line">        border : &apos;10px dashed blue&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">var divTag2 = new DivTag()</span><br><span class="line">    .appendTo(document.body)</span><br><span class="line">    .css(&#123;</span><br><span class="line">        width : &apos;400px&apos;,</span><br><span class="line">        height : &apos;400px&apos;,</span><br><span class="line">        backgroundColor : &apos;pink&apos;,</span><br><span class="line">        border : &apos;10px dashed green&apos;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="什么是面向对象"><a href="#什么是面向对象" class="headerlink" title="什么是面向对象"></a>什么是面向对象</h2><p>面向对象说白了就是对面向过程进行了封装<br>比如说:<br>需求是 一个字符串是 <code>str = &#39;abcdefg&#39;</code>, 找到里面的<code>e</code>,并返回<code>e</code>的索引</p>
+<ul>
+<li><p>使用面向过程的处理办法就是, 遍历字符串, 得到索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;abcdefg&apos;;</span><br><span class="line">for(var i = 0;i &lt; str.length;i++)&#123;</span><br><span class="line">    var char = str.charAt(i);</span><br><span class="line">    if(char == &apos;e&apos;)&#123;</span><br><span class="line">        conole.log(i);</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用面向过程的处理办法就是, 使用<code>indexOf</code>, 得到索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;abcdefg&apos;;</span><br><span class="line">console.log(str.indexOf(&apos;e&apos;));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>用生活中吃饭的的例子就可以这样理解:</p>
+<ul>
+<li><p>如果你自己烧, 那就需要(非常的麻烦, 时间有很长)</p>
+<ol>
+<li>买菜</li>
+<li>洗菜</li>
+<li>烧饭烧菜</li>
+<li>洗碗</li>
+</ol>
+</li>
+<li><p>如果是上饭店, 那就非常简单(因为买菜, 洗菜, 烧饭烧菜, 洗碗的工作都是别人帮你完成了)</p>
+<ol>
+<li>吃就行了</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/13/字符串转对象的一些方法/" rel="prev" title="字符串转对象">
+                字符串转对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Liu Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象基础一之初体验使用面向对象进行开发"><span class="nav-number">1.</span> <span class="nav-text">面向对象基础一之初体验使用面向对象进行开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要内容是"><span class="nav-number">1.1.</span> <span class="nav-text">主要内容是</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一些基础的概念"><span class="nav-number">2.</span> <span class="nav-text">一些基础的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象"><span class="nav-number">2.1.</span> <span class="nav-text">面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象的概念"><span class="nav-number">2.1.1.</span> <span class="nav-text">面向对象的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象的特性"><span class="nav-number">2.1.2.</span> <span class="nav-text">面向对象的特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用面向过程和面向对象进行标签创建"><span class="nav-number">3.</span> <span class="nav-text">使用面向过程和面向对象进行标签创建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用面向过程创建div-并设置样式"><span class="nav-number">3.1.</span> <span class="nav-text">使用面向过程创建div, 并设置样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用面向对象创建div-并设置样式"><span class="nav-number">3.2.</span> <span class="nav-text">使用面向对象创建div, 并设置样式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是面向对象"><span class="nav-number">4.1.</span> <span class="nav-text">什么是面向对象</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu Yu</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
