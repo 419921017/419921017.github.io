@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="函数的四种调用模式概念 在 js 中,无论是函数, 还是方法, 还是事件, 还是构造器,…这些东西的本质都是函数 函数, 方法, 事件, 构造器,…只是所处的位置不同 这四种模式分别是 函数模式 方法模式 构造器模式 上下文模式    函数模式 特征: 简单的函数调用, 函数名前面没有任何引导内容  1234567function foo()&amp;#123;&amp;#125;var fn = functio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中函数的调用模式">
+<meta property="og:url" content="http://yoursite.com/2017/03/15/JS函数的调用模式/index.html">
+<meta property="og:site_name" content="Liu Yu&#39;s Blog">
+<meta property="og:description" content="函数的四种调用模式概念 在 js 中,无论是函数, 还是方法, 还是事件, 还是构造器,…这些东西的本质都是函数 函数, 方法, 事件, 构造器,…只是所处的位置不同 这四种模式分别是 函数模式 方法模式 构造器模式 上下文模式    函数模式 特征: 简单的函数调用, 函数名前面没有任何引导内容  1234567function foo()&amp;#123;&amp;#125;var fn = functio">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-28T04:19:43.164Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS中函数的调用模式">
+<meta name="twitter:description" content="函数的四种调用模式概念 在 js 中,无论是函数, 还是方法, 还是事件, 还是构造器,…这些东西的本质都是函数 函数, 方法, 事件, 构造器,…只是所处的位置不同 这四种模式分别是 函数模式 方法模式 构造器模式 上下文模式    函数模式 特征: 简单的函数调用, 函数名前面没有任何引导内容  1234567function foo()&amp;#123;&amp;#125;var fn = functio">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/15/JS函数的调用模式/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JS中函数的调用模式 | Liu Yu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liu Yu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/15/JS函数的调用模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liu Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Yu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS中函数的调用模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-15T14:31:33+08:00">2017-03-15</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="函数的四种调用模式"><a href="#函数的四种调用模式" class="headerlink" title="函数的四种调用模式"></a>函数的四种调用模式</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ol>
+<li>在 js 中,无论是函数, 还是方法, 还是事件, 还是构造器,…这些东西的本质都是函数</li>
+<li>函数, 方法, 事件, 构造器,…只是所处的位置不同</li>
+<li>这四种模式分别是<ul>
+<li>函数模式</li>
+<li>方法模式</li>
+<li>构造器模式</li>
+<li>上下文模式</li>
+</ul>
+</li>
+</ol>
+<h2 id="函数模式"><a href="#函数模式" class="headerlink" title="函数模式"></a>函数模式</h2><blockquote>
+<p>特征: 简单的函数调用, 函数名前面没有任何<strong>引导内容</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;&#125;</span><br><span class="line">var fn = function()&#123;&#125;;</span><br><span class="line">...</span><br><span class="line">foo();</span><br><span class="line">fn();</span><br><span class="line">(function()&#123;&#125;)();</span><br><span class="line">// 上面的三种都是简单的函数调用</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>this</strong>的含义</p>
+<ol>
+<li>在函数中 this 表示全局对象</li>
+<li>在浏览器中 this 表示 window(js 中的 global)</li>
+</ol>
+</blockquote>
+<h2 id="方法模式"><a href="#方法模式" class="headerlink" title="方法模式"></a>方法模式</h2><blockquote>
+<p>特征: 方法一定是依附于一个对象, 将函数赋值给对象的一个属性, 那么就成为方法.就是函数前面必须有引导对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    this.method = function()&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">var o = &#123;</span><br><span class="line">    method : function()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>this</strong>的含义</p>
+<ul>
+<li>这个依附的对象(引导函数的对象)</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>注意点<br>在 arguments 这种伪数组, 或者 [] 数组这样的<strong>对象</strong>中, 这样调用函数也是方法调用, this 会只指向<strong>对象</strong></p>
+</blockquote>
+<h2 id="构造器模式"><a href="#构造器模式" class="headerlink" title="构造器模式"></a>构造器模式</h2><h3 id="构造函数在创建对象的时候-做了些什么"><a href="#构造函数在创建对象的时候-做了些什么" class="headerlink" title="构造函数在创建对象的时候, 做了些什么"></a>构造函数在创建对象的时候, 做了些什么</h3><ol>
+<li>使用 new 引导构造函数, 创建了一个实例对象</li>
+<li>在创建对象的同时, 将this指向这个刚刚创建的对象</li>
+<li>在构造函数中, 不需要 return , 会默认的 return this</li>
+</ol>
+<blockquote>
+<p>分析:<br>由于构造函数只是给 this 添加成员, 而方法也可以完成这个操作,对与 this 来说, 构造函数和方法没有本质区别</p>
+</blockquote>
+<h3 id="关于return的补充-在构造函数中"><a href="#关于return的补充-在构造函数中" class="headerlink" title="关于return的补充, 在构造函数中"></a>关于<strong>return</strong>的补充, 在构造函数中</h3><blockquote>
+<p>普通情况, 可以理解为构造函数已经默认进行了 return this, 添加在后面的都不会执行</p>
+</blockquote>
+<ol>
+<li>如果手动的添加 return ,就相当于 return this.</li>
+<li>如果手动的添加 return 基本类型(字符串, 数字, 布尔), 无效, 还是 return this</li>
+<li>如果手动的添加 return null 或 return undefined, 无效, 还是 return this</li>
+</ol>
+<blockquote>
+<p>特殊情况, return 对象, 最终返回对象</p>
+</blockquote>
+<ul>
+<li>手动添加 return 对象类型, 那么原来创建的 this 会被丢掉, 返回 return 后面的对象</li>
+</ul>
+<h2 id="上下文模式"><a href="#上下文模式" class="headerlink" title="上下文模式"></a>上下文模式</h2><h3 id="概念-上下文就是环境-就是自定义this的含义"><a href="#概念-上下文就是环境-就是自定义this的含义" class="headerlink" title="概念: 上下文就是环境, 就是自定义this的含义"></a>概念: 上下文就是<strong>环境</strong>, 就是自定义<strong>this</strong>的含义</h3><h3 id="语法"><a href="#语法" class="headerlink" title="语法:"></a>语法:</h3><ol>
+<li>函数名.apply( 对象, [参数]);<ul>
+<li>这个参数可以是<strong>数组</strong>, 也可以是<strong>伪数组</strong></li>
+</ul>
+</li>
+<li>函数名.call( 对象, 参数);<ul>
+<li>多个参数可以通过<code>,</code>进行隔离</li>
+</ul>
+</li>
+</ol>
+<h3 id="描述"><a href="#描述" class="headerlink" title="描述:"></a>描述:</h3><ol>
+<li>函数名表示的是函数本身, 使用<strong>函数</strong>进行调用的时候,默认<strong>this</strong>指的是<strong>全局变量</strong></li>
+<li>函数名也可以是方法提供, 使用<strong>方法</strong>调用的时候, <strong>this</strong>指的是<strong>当前对象</strong></li>
+<li>使用 apply 或者 call 进行调用后, 无论是函数, 还是方法的 this 指向全部无效了, this 的指向由 apply 或者 call 的第一个参数决定</li>
+</ol>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h3><ol>
+<li>如果函数或方法中没有<strong>this</strong>的操作, 那么无论是哪一种函数调用模式, 其实都一样</li>
+<li>如果是<strong>函数</strong>调用 foo(), 其实和 foo.apply(window) 类似</li>
+<li>如果是<strong>方法调用</strong> o.method(), 其实和 o.method.apply(o)</li>
+</ol>
+<blockquote>
+<p>无论是 call 还是 apply 在没有后面参数的情况下(函数无参数, 方法无参数), 两者一致<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    console.log(this);  // this =&gt; window</span><br><span class="line">&#125;</span><br><span class="line">var obj = &#123;&#125;;</span><br><span class="line">foo.apply( obj );   // this =&gt; obj</span><br><span class="line">foo.call( obj );    // this =&gt; obj</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="apply-和-call-第一个参数的使用规则"><a href="#apply-和-call-第一个参数的使用规则" class="headerlink" title="apply 和 call 第一个参数的使用规则"></a>apply 和 call 第一个参数的使用规则</h3><ol>
+<li>如果传入的是一个对象, 就相当于设置该函数中的<strong>this</strong>为参数</li>
+<li><p>如果不传参数, 或者传入 null, undefined 等,那么<strong>this</strong>就默认是 window</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">foo();</span><br><span class="line">foo.apply();</span><br><span class="line">foo.apply(null);</span><br><span class="line">foo.apply(undefined);</span><br><span class="line">foo.call();</span><br><span class="line">foo.call(null);</span><br><span class="line">foo.call(undefined);</span><br><span class="line">// 上面都this都指向window</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果传入的是基本类型, 那么<strong>this</strong>指向的就是基本类型的包装类型的引用</p>
+<ul>
+<li>number =&gt; Number</li>
+<li>boolean =&gt; Boolean</li>
+<li>string =&gt; String</li>
+</ul>
+</li>
+</ol>
+<h3 id="除-this-外的其他参数"><a href="#除-this-外的其他参数" class="headerlink" title="除 this 外的其他参数"></a>除 this 外的其他参数</h3><p>再使用上下文调用的时候, 原函数(方法)可能会带有参数, 那么要让这些参数在上下文中调用, 就需要这个第二, ( n )个参数来表示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo(num)&#123;</span><br><span class="line">    console.log(num);</span><br><span class="line">&#125;</span><br><span class="line">foo.apply(null, [123]);</span><br><span class="line">// 相当于</span><br><span class="line">foo(123);</span><br></pre></td></tr></table></figure></p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><blockquote>
+<p>上下文调用只是修改<strong>this</strong>, 但是使用最多的地方是<strong>借用函数调用</strong></p>
+<ol>
+<li>将伪数组转换为数组<ul>
+<li>传统方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;&#125;;</span><br><span class="line">a[0] = &apos;a&apos;;</span><br><span class="line">a[1] = &apos;b&apos;;</span><br><span class="line">a.length = 2;</span><br><span class="line">// 使用数组自带方法 concat();</span><br><span class="line">// 不修改原数组</span><br><span class="line">var arr = [];</span><br><span class="line">var newArr = arr.concat(a);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<pre><code>&gt;分析
+&gt;由于 a 是伪数组, 并不是真正的数组, 不能使用数组的方法, concat 会将 a 作为一个整体 Object 加入数组
+&gt; apply 方法有一个特性, 可以将**数组**或者**伪数组**作为参数
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo.apply( obj, 伪数组 ); // IE8 不支持</span><br></pre></td></tr></table></figure>
+
+&gt;将 a 作为 apply 的第二个参数
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">var newArr = Array.prototype.concat.apply( arr, a);</span><br></pre></td></tr></table></figure>
+
+&gt;由上面的数组转换, 我们可以得到结论, 应该涉及到数组操作的方法理论上都应该可以
+&gt; push, pop, unshift, shift
+&gt; slice
+&gt; splice
+</code></pre><ol start="2">
+<li><p>让伪数组使用 push 方法</p>
+<blockquote>
+<p>小技巧, 伪数组添加元素</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;length : 0&#125;;   // 设置伪数组的长度</span><br><span class="line">a[ a.length++   ] = &apos;a&apos;;</span><br><span class="line">a[ a.length++   ] = &apos;b&apos;;</span><br><span class="line">// 在给伪数组的元素赋值时, 同时修改伪数组的 length 属性</span><br><span class="line">// a[0] = &apos;a&apos;; a.length++;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>伪数组使用 push 方法</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">arr.push.apply( arr, a );</span><br><span class="line">// 利用 apply 可以处理伪数组的特性, 进行传参</span><br><span class="line">// 相当于 arr.push(a[0], a[1])</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>让伪数组使用 slice 方法</p>
+<blockquote>
+<p>数组的 slice 语法</p>
+<ul>
+<li>arr.slice( index, endIndex ), 不包含 endIndex</li>
+<li>如果第二个参数不传参, 那么截取从 index 一直到数组结尾</li>
+<li>slice 方法不会修改原数组<br>通过 apply 实现伪数组使用 slice 方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123; length : 0 &#125;;</span><br><span class="line">a[a.length++] = &apos;a&apos;;</span><br><span class="line">a[a.length++] = &apos;b&apos;;</span><br><span class="line">var arr =[];</span><br><span class="line">var newArr = arr.slice.apply(a ,[0])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h3 id="获取数组中的最大值"><a href="#获取数组中的最大值" class="headerlink" title="获取数组中的最大值"></a>获取数组中的最大值</h3><blockquote>
+<p>传统方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5,6,7,8,9];</span><br><span class="line">var max = arr[0];</span><br><span class="line">for(var i = 0;i &lt; arr.length;i++)&#123;</span><br><span class="line">    if(max &lt; arr[i])&#123;</span><br><span class="line">        max = arr[i]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>使用 apply 借用 Math.max 获取数组中最大值<br>利用 apply 可以传入参数可以是<strong>数组</strong>或是<strong>伪数组</strong>的特性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5,6,7,8,9];</span><br><span class="line">Math.max.apply(null, arr);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="创建对象的几种模式"><a href="#创建对象的几种模式" class="headerlink" title="创建对象的几种模式"></a>创建对象的几种模式</h2><blockquote>
+<p>了解了四种函数调用模式, 我们可以深一步了解创建对象的几种方式, 对象是通过构造函数创建的</p>
+</blockquote>
+<ol>
+<li><p>工厂模式<br>特点:</p>
+<ol>
+<li>大量重复执行的代码, 解决重复实例化的问题</li>
+<li>函数创建对象并返回</li>
+<li>最典型的工厂模式就是 <code>document.createElement()</code></li>
+<li>无法知道是谁创建了这个实例对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function createPerson(name, age, gender)&#123;</span><br><span class="line">    var o = &#123;&#125;;</span><br><span class="line">    o.name = name;</span><br><span class="line">    o.age = age;</span><br><span class="line">    o.gender = gender;</span><br><span class="line">    return o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>构造方法<br>特点:</p>
+<ol>
+<li>解决了重复实例化问题</li>
+<li>能够知道是谁创建了这个对象(constructor)</li>
+<li>需要通过 new 运算符穿件对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Person(name,age,gender)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this.gender = gender;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>寄生式构造函数创建对象<br>特点:</p>
+<ol>
+<li>外表看起来就是构造犯法, 但本质不是通过构造方法创建对象</li>
+<li>工厂模式 + 构造函数模式</li>
+<li>不能确定对象的关系, 不推荐使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function createPerson(name,age,gender)&#123;</span><br><span class="line">    var o = &#123;&#125;;</span><br><span class="line">    o.name = name;</span><br><span class="line">    o.age = age;</span><br><span class="line">    o.gender = gender;</span><br><span class="line">    return o;</span><br><span class="line">&#125;</span><br><span class="line">var p = new createPerson(&apos;Bob&apos;,19,&apos;male&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>混合式创建</p>
+<ol>
+<li>构造函数 +　原型</li>
+<li>解决了构造函数传参和共享的问题</li>
+<li>不共享的参数使用构造函数</li>
+<li>共享的使用原型</li>
+<li>这种混合模式很好的解决了<strong>传参</strong>和<strong>引用</strong>共享的难题<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function createPerson(name,age,gender)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this.gender = gender;</span><br><span class="line">&#125;</span><br><span class="line">createPerson.prototype = &#123;</span><br><span class="line">    constructor : createPerson,</span><br><span class="line">    wife : &apos;高圆圆&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>借用构造函数继承(对象冒充)<br>特点:</p>
+<ol>
+<li>借用构造函数(对象冒充)只能继承构造函数的成员, 无法继承原型的成员<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Person(name,age,gender)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age;</span><br><span class="line">    this.gender = gender;</span><br><span class="line">&#125;</span><br><span class="line">function Studner(name,age,gender,course)&#123;</span><br><span class="line">    // 借用构造函数Person, 创建 Student 对象</span><br><span class="line">    Person.call(this,name,age,gender);</span><br><span class="line">    this.course = course;</span><br><span class="line">&#125;</span><br><span class="line">var boy = new Student(&apos;Bob&apos;,19,&apos;male&apos;,;Math);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>寄生式继承<br>特点:</p>
+<ol>
+<li>原型 + 工厂模式</li>
+<li>通过临时中转<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 临时中转</span><br><span class="line">function person(o)&#123;</span><br><span class="line">    function Foo()&#123;&#125;;</span><br><span class="line">    F.prototype = o;</span><br><span class="line">    return new F();</span><br><span class="line">&#125;</span><br><span class="line">// 寄生函数</span><br><span class="line">function create(o)&#123;</span><br><span class="line">    var fn = person(o);</span><br><span class="line">    fn.move = function()&#123;&#125;;</span><br><span class="line">    fn.eat = function()&#123;&#125;;</span><br><span class="line">    fn.sleep = function()&#123;&#125;;</span><br><span class="line">    return fn;</span><br><span class="line">&#125;</span><br><span class="line">var boy = &#123;</span><br><span class="line">    name : &apos;Bob&apos;,</span><br><span class="line">    age : 19,</span><br><span class="line">    famliy : [&apos;father&apos;,&apos;mother&apos;,&apos;wife&apos;]</span><br><span class="line">&#125;</span><br><span class="line">var boy1 = create(boy);</span><br><span class="line">console.log(boy1.name);</span><br><span class="line">console.log(boy1.family);</span><br><span class="line">// 此时 boy1 有了 boy 的成员</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h3><p>例题 1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function Foo()&#123;</span><br><span class="line">    getName = function()&#123; alert(1); &#125;;</span><br><span class="line">    return this;</span><br><span class="line">&#125;</span><br><span class="line">function getName()&#123;</span><br><span class="line">    alert(5);</span><br><span class="line">&#125;</span><br><span class="line">Foo.getName = function()&#123; alert(2); &#125;;</span><br><span class="line">Foo.prototype.getName = function()&#123; alert(3); &#125;;</span><br><span class="line"></span><br><span class="line">getName = function()&#123; alert(4); &#125;;</span><br><span class="line"></span><br><span class="line">Foo.getName();         // 2</span><br><span class="line">getName();                 // 4</span><br><span class="line">Foo().getName(); // 4  1</span><br><span class="line"></span><br><span class="line">getName();              // 4  1</span><br><span class="line">new Foo.getName();          // 2</span><br><span class="line">new Foo().getName();       // 3</span><br><span class="line"></span><br><span class="line">new new Foo().getName();    // 3</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析</p>
+<pre><code>1. 预解析
+    * 函数名 Foo 和函数名 getName 声明提升,函数名和函数体绑定
+2. 执行代码
+    * 执行 Foo.getName();
+        * 输出 2
+    * 执行 getName();
+        * 此时 getName 是在全局中, 未被修改, 输出4
+    * Foo().getName();
+        * 此事 Foo() 只是一个函数, 执行完成后 getName 被重新赋值
+        * getName 因为被重新赋值为 1, 输出1
+    * getName()
+        * 由于 getName 被重新赋值, 所以输出 1
+    * new Foo.getName();
+        * Foo.getName 并未被修改
+        * new 没有起任何作用
+        * 输出2
+    * new Foo().getName();
+        * 构造函数创建了实例对象
+        * 对象中没有 getName 方法, 要从对象的构造函数中的原型中寻找
+        * 在 Foo.prototype 中得到 getName 输出为 3
+    * new new Foo().getName();
+    * 构造函数创建了实例对象
+    * 对象中没有 getName 方法, 要从对象的构造函数中的原型中寻找
+    * new 没有起作用
+    * 在 Foo.prototype 中得到 getName 输出为 3
+</code></pre></blockquote>
+<p>例题 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var length = 10;</span><br><span class="line">function fn() &#123;</span><br><span class="line">    console.log( this.length );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj = &#123;</span><br><span class="line">    length: 5,</span><br><span class="line">    method: function ( fn ) &#123;</span><br><span class="line">        fn();</span><br><span class="line">        arguments[ 0 ]();  // [ fn, 1, 2, 3, length: 4]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.method( fn, 1, 2, 3 );</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析</p>
+<pre><code>1. 预解析
+    * 变量名 length, obj 和 函数名fn 声明提升, 函数名和函数体绑定
+2. 执行代码
+    * length = 10, 此时 length 可以看作是 window 下的属性
+    * obj = {}, 进行赋值
+    * 执行 obj 中的 method 方法
+    * 将 函数体 fn 进行传参
+    * 跳进函数 fn,执行函数 fn(), 函数中的 this 指的是 window 下的 length, 为10
+    * 明确**argument**是一个对象, argument[0] 指的是 fn
+    * 使用对象调用函数, 这里的 this 指的是 argument 这个对象
+    * 得到 argument.length 为 4
+    * 最后输出结果为 10 4
+</code></pre></blockquote>
+<p>例题 3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;</span><br><span class="line">    method : function()&#123;</span><br><span class="line">        console.log(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">o.method();</span><br><span class="line">var f = o.method;</span><br><span class="line">f();</span><br><span class="line">(o.method)();</span><br><span class="line">var obj = &#123;&#125;;</span><br><span class="line">(obj.fn = o.method)();</span><br><span class="line">(obj.fn)();</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>分析</p>
+<pre><code>1. 预解析
+    * 变量名 o, f ,obj 声明提升
+2. 执行函数
+    * o = {},进行赋值
+    * 执行o.method方法, 这里的 this 指的是 o 这个对象
+    * 将 o.method 函数体,赋值给f
+    * 执行 f(), 这里的 this 指的是window
+    * (o.method)是一个函数表达式, 和 o.method() 的结果一致
+    * obj = {}, obj进行赋值
+    * o.method 的函数体, 赋值给obj.fn, 执行之后, 这里的 this 指的是window
+    * (obj.fn)是一个函数表达式, 和 obj.fn() 的结果一致, tshi 指向 obj
+</code></pre></blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/13/字符串转对象的一些方法/" rel="next" title="字符串转对象">
+                <i class="fa fa-chevron-left"></i> 字符串转对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/13/JS递归/" rel="prev" title="js递归">
+                js递归 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Liu Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数的四种调用模式"><span class="nav-number">1.</span> <span class="nav-text">函数的四种调用模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数模式"><span class="nav-number">1.2.</span> <span class="nav-text">函数模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法模式"><span class="nav-number">1.3.</span> <span class="nav-text">方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造器模式"><span class="nav-number">1.4.</span> <span class="nav-text">构造器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数在创建对象的时候-做了些什么"><span class="nav-number">1.4.1.</span> <span class="nav-text">构造函数在创建对象的时候, 做了些什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于return的补充-在构造函数中"><span class="nav-number">1.4.2.</span> <span class="nav-text">关于return的补充, 在构造函数中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上下文模式"><span class="nav-number">1.5.</span> <span class="nav-text">上下文模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念-上下文就是环境-就是自定义this的含义"><span class="nav-number">1.5.1.</span> <span class="nav-text">概念: 上下文就是环境, 就是自定义this的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.5.2.</span> <span class="nav-text">语法:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#描述"><span class="nav-number">1.5.3.</span> <span class="nav-text">描述:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">1.5.4.</span> <span class="nav-text">注意:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-和-call-第一个参数的使用规则"><span class="nav-number">1.5.5.</span> <span class="nav-text">apply 和 call 第一个参数的使用规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#除-this-外的其他参数"><span class="nav-number">1.5.6.</span> <span class="nav-text">除 this 外的其他参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">1.5.7.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取数组中的最大值"><span class="nav-number">1.5.8.</span> <span class="nav-text">获取数组中的最大值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建对象的几种模式"><span class="nav-number">1.6.</span> <span class="nav-text">创建对象的几种模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#经典例题"><span class="nav-number">1.6.1.</span> <span class="nav-text">经典例题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu Yu</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

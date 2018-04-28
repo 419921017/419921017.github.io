@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="JavaScript核心JavaScript基础预解析 所有语言都是基于面向对象开发的, 包括继承, 封装, 多态   继承: 子类继承父类的属性和方法   多态: 重载和重写   在JS中用var和function进行声明的, 需要进行预解析, function的优先级较高 无论条件是否成立, 带var的都需要提前声明 预解析的只有=左边的, 右边的不参与 自执行函数在全局作用域下是不进行预解析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript核心">
+<meta property="og:url" content="http://yoursite.com/2017/07/20/JS核心/index.html">
+<meta property="og:site_name" content="Liu Yu&#39;s Blog">
+<meta property="og:description" content="JavaScript核心JavaScript基础预解析 所有语言都是基于面向对象开发的, 包括继承, 封装, 多态   继承: 子类继承父类的属性和方法   多态: 重载和重写   在JS中用var和function进行声明的, 需要进行预解析, function的优先级较高 无论条件是否成立, 带var的都需要提前声明 预解析的只有=左边的, 右边的不参与 自执行函数在全局作用域下是不进行预解析">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-28T04:19:28.334Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript核心">
+<meta name="twitter:description" content="JavaScript核心JavaScript基础预解析 所有语言都是基于面向对象开发的, 包括继承, 封装, 多态   继承: 子类继承父类的属性和方法   多态: 重载和重写   在JS中用var和function进行声明的, 需要进行预解析, function的优先级较高 无论条件是否成立, 带var的都需要提前声明 预解析的只有=左边的, 右边的不参与 自执行函数在全局作用域下是不进行预解析">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/20/JS核心/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript核心 | Liu Yu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liu Yu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/20/JS核心/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liu Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Yu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript核心
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-20T14:31:33+08:00">2017-07-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript核心"><a href="#JavaScript核心" class="headerlink" title="JavaScript核心"></a>JavaScript核心</h1><h2 id="JavaScript基础"><a href="#JavaScript基础" class="headerlink" title="JavaScript基础"></a>JavaScript基础</h2><h3 id="预解析"><a href="#预解析" class="headerlink" title="预解析"></a>预解析</h3><blockquote>
+<p>所有语言都是基于面向对象开发的, 包括<em>继承</em>, <em>封装</em>, <em>多态</em></p>
+</blockquote>
+<blockquote>
+<p>继承: 子类继承父类的属性和方法</p>
+</blockquote>
+<blockquote>
+<p>多态: 重载和重写</p>
+</blockquote>
+<ul>
+<li>在JS中用<code>var</code>和<code>function</code>进行声明的, 需要进行预解析, <code>function</code>的优先级较高</li>
+<li>无论条件是否成立, 带<code>var</code>的都需要提前声明</li>
+<li>预解析的只有<code>=</code>左边的, 右边的不参与</li>
+<li>自执行函数在全局作用域下是不进行预解析的</li>
+<li>预解析时, 如果名字已经声明过, 不会重新声明, 但是会重新赋值</li>
+<li>函数中<code>return</code>下面的如果是函数,但要进行预解析,<code>return</code>后面的是跟着返回值,不进行预解析</li>
+</ul>
+<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><blockquote>
+<p>一个变量的作用域是源码中定义这个变量的区域</p>
+</blockquote>
+<ul>
+<li>全局变量拥有全局作用域, JS的任何代码中都有全局作用域<code>Window</code></li>
+<li>函数会产生作用域, 这是局部作用域, 里面声明的变量都是<strong>局部变量</strong></li>
+<li>在函数内用<code>var</code>声明变量,如果全局作用域中有相同的,那么全局变量就被局部变量所遮盖</li>
+</ul>
+<h3 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h3><blockquote>
+<p>JS中, 在函数内声明的所有变量在函数体内始终是可见的</p>
+</blockquote>
+<ul>
+<li>在函数中声明的变量都会变量声明至函数的顶部</li>
+<li>在函数使用变量, 如果函数中没有会在函数外寻找(无限往外层寻找, 直到找不到)</li>
+</ul>
+<h3 id="内存释放与作用域销毁"><a href="#内存释放与作用域销毁" class="headerlink" title="内存释放与作用域销毁"></a>内存释放与作用域销毁</h3><ol>
+<li><p>函数<code>return</code>一个引用类型的值, 并且在函数外面被接收, 这种情况一般不会被销毁</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo () &#123;</span><br><span class="line">    return function() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">var f = foo()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有一个私有作用域给DOM元素的事件添加方法, 这种情况一般不会被销毁</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function () &#123;</span><br><span class="line">    element.onClick = function() &#123;</span><br><span class="line">        xxx</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数执行一次然后把返回值执行一次, 当返回值执行完成后才销毁</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">    return function() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">foo()()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="for-in循环"><a href="#for-in循环" class="headerlink" title="for-in循环"></a>for-in循环</h3><p><code>for-in</code>循环再遍历的时候, 默认的话可以把自己私有的和他所属类的原型上拓展的属性和方法都可以遍历到, 一般情况下只需要遍历私有属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (let key in object) &#123;</span><br><span class="line">    if (object.hasOwnProperty(key))&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p><code>object.instanceof(constructor)</code> 检测<code>constructor</code>(构造函数)是否在<code>Object</code>(实例)的原型链上.</p>
+<ul>
+<li>函数的多面性<ol>
+<li>普通函数: 普通函数, 执行的时候会形成自己的作用域</li>
+<li>类: 有自己的实例, 实力的原型<code>__proto__</code>指向类的原型属性, 有原型属性<code>prototype</code></li>
+<li>对象: 有成员, 包含属性和方法</li>
+</ol>
+</li>
+<li>所有函数都有他的原型属性<code>prototype</code>, 所有实例对象都有原型<code>__proto__</code>指向构造函数的原型属性<code>prototype</code></li>
+</ul>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><h3 id="数值转换"><a href="#数值转换" class="headerlink" title="数值转换"></a>数值转换</h3><ul>
+<li><code>Number()</code>: 可以用于任何数据类型</li>
+<li><code>parseInt()</code>: 提供第二个参数, 基数(多少进制)</li>
+<li><code>parseFloat()</code>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>方法名称</th>
+<th>空字符串</th>
+<th>null</th>
+<th>undefined</th>
+<th>NaN</th>
+<th>true</th>
+<th>false</th>
+<th>不传参</th>
+<th>普通对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number()</td>
+<td>0</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>parseInt()</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>parseFloat()</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+<h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><h3 id="通用方法"><a href="#通用方法" class="headerlink" title="通用方法"></a>通用方法</h3><ul>
+<li><code>length</code> 返回字符串长度</li>
+<li><code>toString()</code> 返回字符串基本值</li>
+<li><code>toLocaleString()</code> 返回字符串基本值</li>
+<li><code>valueOf()</code> 返回字符串基本值</li>
+</ul>
+<h3 id="访问字符串指定位置的方法"><a href="#访问字符串指定位置的方法" class="headerlink" title="访问字符串指定位置的方法"></a>访问字符串指定位置的方法</h3><ul>
+<li><code>charAt(index)</code></li>
+<li><code>charCodeAt(index)</code> Unicode编码</li>
+<li><code>string[index]</code></li>
+</ul>
+<h3 id="字符串位置方法"><a href="#字符串位置方法" class="headerlink" title="字符串位置方法"></a>字符串位置方法</h3><ul>
+<li><code>indexOf()</code> 从字符串开头到结尾搜索字符串, 第二个参数是搜索位置, 返回字符串位置, 如果没有返回-1</li>
+<li><code>lastIndexOf()</code> 从字符串结尾到开头结尾搜索字符串, 第二个参数是搜索位置, 返回字符串位置, 如果没有返回-1</li>
+</ul>
+<h3 id="字符串操作方法"><a href="#字符串操作方法" class="headerlink" title="字符串操作方法"></a>字符串操作方法</h3><ul>
+<li>A.concat(B) 将一个或多个字符串拼接起来, 返回拼接后的新字符串</li>
+<li><code>slice(startIndex, endIndex)</code>, 返回新字符串, 将传入的负值和字符串长度相加</li>
+<li><code>substr(startIndex, length)</code>, 返回新字符串, 第一个负值加上字符串长度, 第二个负值转换为0</li>
+<li><code>substring(startIndex, endIndex)</code>, 返回新字符串, 会将所有传入的负值转换为0</li>
+</ul>
+<h3 id="字符串大小写转换方法"><a href="#字符串大小写转换方法" class="headerlink" title="字符串大小写转换方法"></a>字符串大小写转换方法</h3><ul>
+<li><code>toLowerCase()</code> 小写</li>
+<li><code>toLocaleLowerCase()</code> 本地化小写</li>
+<li><code>toUpperCase()</code> 大写</li>
+<li><code>toLocaleUpperCase()</code> 本地化大写</li>
+</ul>
+<h3 id="字符串匹配"><a href="#字符串匹配" class="headerlink" title="字符串匹配"></a>字符串匹配</h3><ul>
+<li><code>match()</code> 本质上与RegExp()和exec()方法相同, 参数为正则表达式或者RegExp对象</li>
+<li><code>search()</code> 返回匹配项的索引, 从头往后寻找</li>
+<li><code>replace()</code> 替换方法, 两个参数, 第一个参数接受正则表达式或者字符串, 第二个参数接受字符串或者函数, 第一个参数接受字符串, 只能替换一个, 替换全部就需要正则+g</li>
+<li><code>split()</code> 将字符串按参数分割拼接成数组, 第一个参数可以使字符串也可是RegExp对象, 第二个参数接受长度, 不会超过最长</li>
+</ul>
+<h3 id="比较字符串"><a href="#比较字符串" class="headerlink" title="比较字符串"></a>比较字符串</h3><ul>
+<li><code>localeCompare()</code></li>
+<li>如果字符串在字母表中应该排在字符串参数之前，则返回一个负数（大多数情况下是 -1 ，具体的值要视实现而定）</li>
+<li>如果字符串等于字符串参数，则返回 0</li>
+<li>如果字符串在字母表中应该排在字符串参数之后，则返回一个正数（大多数情况下是 1 ，具体的值同样要视实现而定）<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3></li>
+<li><code>trim()</code> 创建字符串的副本, 删除前缀和后缀空格, 返回新字符串</li>
+<li><code>trimLeft()</code> 创建字符串的副本, 删除前缀, 返回新字符串</li>
+<li><code>trimRight()</code> 创建字符串的副本, 删除后缀空格, 返回新字符串</li>
+</ul>
+<h3 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h3><ul>
+<li><code>fromCharCode()</code> 将Unicode编码转换为字符串, 和charCodeAt()相反</li>
+</ul>
+<h3 id="ES6方法"><a href="#ES6方法" class="headerlink" title="ES6方法"></a>ES6方法</h3><ul>
+<li>模板字符串 <code>${}</code></li>
+<li>允许变量做属性名, 但是必须要{}包裹</li>
+<li><code>codePointAt()</code> 正确处理了4个字节存储字符, 返回字符的码点</li>
+<li><code>for...of</code>可以遍历字符串</li>
+<li><code>includes()</code> 返回Boolean 是否找到参数字符串</li>
+<li><code>startWidth()</code> 返回Boolean 参数字符串是否在字符串头部</li>
+<li><code>endWidth()</code> 返回Boolean 参数字符串是否在字符串尾部</li>
+<li><code>repeat()</code> 返回新字符串, 将字符串重复n次</li>
+<li><code>padStart()</code> 字符串头部补全</li>
+<li><code>padEnd()</code> 字符串尾部补全</li>
+</ul>
+<h2 id="Array类型"><a href="#Array类型" class="headerlink" title="Array类型"></a>Array类型</h2><h3 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h3><ul>
+<li><code>[]</code> 字面量的方式</li>
+<li><code>new Array()</code> 构造函数, 如果有参数则指定长度</li>
+</ul>
+<h3 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h3><ul>
+<li><code>arr[length]</code> 新索引赋值, 数组尾部添加新元素</li>
+<li><code>push()</code> 数组尾部添加新元素, 返回添加的项</li>
+<li><code>pop()</code> 数组删除最后一位元素, 返回删除的项</li>
+<li><code>unshift()</code> 数组最前面添加新元素, 返回添加的项</li>
+<li><code>shift()</code> 删除数组第一位元素, 返回删除的项</li>
+<li><code>delete()</code> 删除数组, 与给数组赋值undefined类似, 但是delete不会修改数组的length属性, 也不会填充已删除元素留下的空白</li>
+<li><code>slice()</code> 创建新数组, 接受一或者两个参数, 起始和结束的位置, 只有一个参数时, 返回开始位置到数组末尾的新数组, 如果有2个参数, 返回从开始位置到结束位置(不包含结束位置)新数组</li>
+<li><p><code>splice()</code> 插入, 替换或删除数组, 会修改数组长度</p>
+<ol>
+<li>删除: 两个参数, 第一个起始位置, 第二个删除数量. <code>splice(0, 2)</code>会删除数组前2项</li>
+<li>插入: N个参数, 第一个起始位置, 第二个为0, 后面的为插入元素. <code>splice(2, 0, &#39;red&#39;, &#39;bule&#39;)</code></li>
+<li>替换: N个参数, 第一个起始位置, 第二个为替换个数, 后面为插入元素. <code>splice(2, 2, &#39;red&#39;, &#39;blue&#39;)</code></li>
+</ol>
+</li>
+<li><p><code>concat()</code></p>
+<ul>
+<li>创建新数组, 接受的参数天添加到新数组的末尾</li>
+<li>没有参数, 返回数组的副本</li>
+<li>传递多个参数, 依次将每一项都添加到结果数组中</li>
+<li>添加的不是数组, 依次添加到数组末尾</li>
+</ul>
+</li>
+</ul>
+<h3 id="转换方法-1"><a href="#转换方法-1" class="headerlink" title="转换方法"></a>转换方法</h3><ul>
+<li><code>toString()</code> 转字符串</li>
+<li><code>toLocaleString()</code> 转本地字符串</li>
+<li><code>valueOf()</code> 转字符串</li>
+<li><code>join()</code> 将数组按参数分割成字符串, 默认为<code>,</code></li>
+</ul>
+<h3 id="排序方法"><a href="#排序方法" class="headerlink" title="排序方法"></a>排序方法</h3><ul>
+<li><code>reverse()</code> 颠倒数组</li>
+<li><code>sort()</code> 默认会按升序排列数组, 参数为<code>function</code></li>
+</ul>
+<h3 id="位置方法"><a href="#位置方法" class="headerlink" title="位置方法"></a>位置方法</h3><ul>
+<li><code>indexOf()</code> 两个参数: 要查找的项, 要查找的起始位置(可选). 从开头(0)开始查找</li>
+<li><code>lastIndexOf()</code> 两个参数: 要查找的项, 要查找的起始位置(可选). 从末尾(arr.length - 1)开始查找</li>
+</ul>
+<h3 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h3><p>ES5为数组提供了5个迭代方法, 每个方法接受2个参数: 要在每一项运行的函数和(可选)运行该函数的作用域对象————影响<code>this</code>的值. 传入的函数中接受三个值: 数组项的值, 该项在数组中的位置, 数组本身. 根据使用的方法不同, 这个函数执行后的返回值可能会也可能不会影响访问的返回值</p>
+<ul>
+<li><code>every()</code> 对数组中的每一项运行给定函数, 如果该函数对每一项都返回<code>true</code>, 则返回<code>true</code></li>
+<li><code>filter()</code> 对数组中的每一项运行给定函数, 返回该函数会返回true的项形成数组</li>
+<li><code>forEach()</code> 对数组中的每一项运行给定函数, 没有返回值</li>
+<li><code>map()</code> 对数组中的每一项运行给定函数, 返回每次函数调用的结果组成数组</li>
+<li><code>some()</code> 对数组中的每一项运行给定函数, 如果函数对任一项返回true, 则返回true</li>
+</ul>
+<h3 id="并归方法"><a href="#并归方法" class="headerlink" title="并归方法"></a>并归方法</h3><ul>
+<li>reduce(): 从头迭代数组所有项, 构建一个最终返回值</li>
+<li>reduceRight(): 由后向前迭代数组所有项, 构建一个返回值  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var total = [0, 1, 2, 3].reduce(function(sum, value) &#123;</span><br><span class="line">  return sum + value;</span><br><span class="line">&#125;, 0);</span><br><span class="line">// total is 6</span><br><span class="line"></span><br><span class="line">var flattened = [[0, 1], [2, 3], [4, 5]].reduce(function(a, b) &#123;</span><br><span class="line">  return a.concat(b);</span><br><span class="line">&#125;, []);</span><br><span class="line">// flattened is [0, 1, 2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="ES6方法-1"><a href="#ES6方法-1" class="headerlink" title="ES6方法"></a>ES6方法</h3><ul>
+<li><code>...arr</code> 扩展运算符(spread)三个点<code>...</code>. 类似于<code>rest</code>参数的逆运算, 将一个数组转化为都好分隔的参数序列</li>
+<li><code>Array.from()</code> 将伪数组(类似数组的对象和可遍历的对象)转化为数组</li>
+<li><code>Array.of()</code> 将一组值转化为数组</li>
+<li><code>[].find()</code> 找出第一个符合对象的数组成员. 参数是一个回调函数, 所有数组成员依次执行该回调函数, 直到找到符合条件的, 然后返回该成员. 如果没有符合条件的则返回undefined</li>
+<li><code>fill()</code> 使用给定值, 填充数组</li>
+<li>遍历数组, 返回遍历器对象, 可以使用<code>for...of...</code>循环进行遍历<ol>
+<li><code>entries()</code> 对键值对进行遍历</li>
+<li><code>keys()</code> 对键值进行遍历</li>
+<li><code>values()</code> 对键名进行遍历</li>
+</ol>
+</li>
+<li><code>Array.prototype.includes()</code> 返回一个布尔值, 表示数组是否包含给定值, 与字符串的<code>includes()</code>方法类似</li>
+</ul>
+<h3 id="归纳"><a href="#归纳" class="headerlink" title="归纳"></a>归纳</h3><table>
+<thead>
+<tr>
+<th>数组方法</th>
+<th>是否会修改原数组</th>
+<th>是否有返回值</th>
+<th>返回内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>join()</td>
+<td>false</td>
+<td>true</td>
+<td>生成后的字符串</td>
+</tr>
+<tr>
+<td>reverse()</td>
+<td>true</td>
+<td>true</td>
+<td>排序后的新数组</td>
+</tr>
+<tr>
+<td>sort()</td>
+<td>true</td>
+<td>true</td>
+<td>排序后的新数组</td>
+</tr>
+<tr>
+<td>concat()</td>
+<td>false</td>
+<td>true</td>
+<td>拼接后的新数组</td>
+</tr>
+<tr>
+<td>slice()</td>
+<td>false</td>
+<td>true</td>
+<td>截取后的新数组</td>
+</tr>
+<tr>
+<td>splice()</td>
+<td>true</td>
+<td>true</td>
+<td>删除后的新数组</td>
+</tr>
+<tr>
+<td>push()</td>
+<td>true</td>
+<td>true</td>
+<td>增加后的数组长度</td>
+</tr>
+<tr>
+<td>pop()</td>
+<td>true</td>
+<td>true</td>
+<td>被删除的项</td>
+</tr>
+<tr>
+<td>unshift()</td>
+<td>true</td>
+<td>true</td>
+<td>增加后的数组长度</td>
+</tr>
+<tr>
+<td>shift()</td>
+<td>true</td>
+<td>true</td>
+<td>被删除的项</td>
+</tr>
+<tr>
+<td>every()</td>
+<td>false</td>
+<td>true</td>
+<td>返回一个Boolean</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>false</td>
+<td>true</td>
+<td>返回一个Boolean</td>
+</tr>
+<tr>
+<td>map()</td>
+<td>false</td>
+<td>true</td>
+<td>返回一个数组</td>
+</tr>
+<tr>
+<td>some()</td>
+<td>false</td>
+<td>true</td>
+<td>返回一个数组</td>
+</tr>
+<tr>
+<td>forEach()</td>
+<td>false</td>
+<td>false</td>
+<td>undefined</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Object类型"><a href="#Object类型" class="headerlink" title="Object类型"></a>Object类型</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ul>
+<li><p>对象属性是由名字, 值和一组特性(attribute)构成的. 在ES5中, 属性值可以用一个或两个方法替代, 这两个方法就是<code>getter</code>和<code>setter</code>. 由<code>getter</code>和<code>setter</code>定义的属性叫做<strong>存取器属性</strong>(accessor prototy), 不同于<strong>数据属性</strong>, 数据属性只有一个简单的值.</p>
+</li>
+<li><p>当程序查询存储器属性的值时, JavaScript调用<code>getter</code>方法(无参数), 这个方法返回的值就是属性存取表达式的值. 当程序设置存储器属性的值时, 使用<code>setter</code>方法, 将赋值表达式右侧的值当参数传入<code>setter</code>, 可以忽略返回值.</p>
+</li>
+<li><p>数据属性的4个特性分别是它的值(value), 可写性(writable), 可枚举性(enumerable), 可配置性(configurable). 存取器属性不具有值(value)和科协性(writable), 他的可写性是由<code>setter</code>方法的存在决定的. 存储器属性的4个特性为读取(get), 写入(set), 可枚举性(enumerable), 可配置性</p>
+</li>
+<li><p>对象的常用属性</p>
+<ol>
+<li>创建(create)</li>
+<li>设置(set)</li>
+<li>查找(query)</li>
+<li>删除(delete)</li>
+<li>检测(test)</li>
+<li>枚举(enumerable)</li>
+</ol>
+</li>
+<li>创建对象的方法, ES5定义了一个<code>Object.craete()</code>方法用来创建一个新对象, 有两个参数. 第一个参数是这个对象的原型, 第二个参数(可选)对这个对象进行描述.</li>
+<li>对象的原型<code>prototype</code>属性使用过来继承属性的, <code>__proto__</code>是实例对象查询和设置原型. 类的所有实力对象从同一个原型对象上继承成员, 因此原型是类的核心.</li>
+</ul>
+<h3 id="检测属性"><a href="#检测属性" class="headerlink" title="检测属性"></a>检测属性</h3><p>JavaScript对象是键值对的集合, 我们需要检测集合中成员的所属关系, 判断某个属性是否存在这个对象中. 可以通过<code>in</code>运算符, <code>hasOwnproperty()</code>, <code>propertyIsEnumerable</code>来完成这个工作, 也可以通过属性查询来做到.</p>
+<p><code>in</code>运算符的左侧是属性名, 右侧是对象. 如果对象的自有属性或者原型中有这个属性, 则返回<code>true</code></p>
+<p>对象的<code>hasOwnproperty</code>方法用来检测给定的名字是否是对象的自有属性, 如果属于继承属性, 则返回<code>false</code></p>
+<p><code>propertyIsEnumerable()</code>是<code>hasOwnproperty()</code>的增强版, 只检测自有属性且这个属性是可枚举属性为<code>true</code>, 才返回<code>true</code></p>
+<h3 id="属性的特性"><a href="#属性的特性" class="headerlink" title="属性的特性"></a>属性的特性</h3><p>在ES5中使用<code>Object.getPropertyOf()</code>传入对象属性, 可以查询他的原型</p>
+<p>在ES中没有<code>Object.getPropertyOf()</code>方法, 一般使用<code>object.constructor.property</code>来检测一个对象的原型. 通过<code>new</code>来创建对象, 通常继承一个<code>constructor</code>属性, 这个属性代表创建这个对象的构造函数.</p>
+<h3 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h3><ul>
+<li><code>constructor</code> 指向构造函数</li>
+<li><code>hasOwnProperty(propertyName)</code> 检测属性是否是该对象的自有属性(在对象中存在并且在原型中不存在), <code>propertyName</code>必须是字符串</li>
+<li><code>isPropertyOf(Object)</code> 检测参数对象是否是这个对象的原型</li>
+<li><code>propertyIsEnumerable(propertyName)</code> 检测属性是否能被<code>for...in</code>枚举, <code>propertyName</code>必须是字符串</li>
+<li><code>toLocaleString()</code> 返回本地字符串</li>
+<li><code>toString()</code> 返回字符串</li>
+<li><code>valueOf()</code> 返回字符串, 数值或者<code>Boolean</code>表示, 通常和<code>toString()</code>返回的值一样</li>
+</ul>
+<h3 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h3><ul>
+<li>对象的扩展性在于能否给对象添加新属性<ul>
+<li><code>Object.isExtensible(Object)</code>  判断对象是否可扩展</li>
+<li><code>Object.preventExtensions(Object)</code> 将对象转为<strong>不可扩展的</strong>, 这个行为不可逆. 这个方法只影响对象本身, 对原型不影响</li>
+</ul>
+</li>
+<li>可扩展属性的目的是将对象锁定, 避免外界干扰. 对象的扩展属性常常和属性的可配置性与可写性配合使用.<ul>
+<li><code>Object.seal()</code> 和<code>Object.preventExtensions()</code> 属性类似, 除了可以将对象设置为不可扩展的还可以将对象的自有属性设置为不可配置的. 既不能给添加新属性, 而且已有的属性也不能删除和配置, 不过可写属性依然可以配置. 对于已经封闭的(sealed)起来的对象不能解封.</li>
+<li><code>Object.isSeal()</code> 检测对象是否封闭</li>
+<li><code>Object.freeze()</code> 更加严格的锁定对象<strong>冻结</strong>. 除了将对象设置为不可扩展的和将其属性设置为不可配置的, 还奖所有属性都设置为只读(如果对象存取器属性具有<code>setter</code>方法, 存取器属性不受影响, 任可以通过属性赋值来调用他们).</li>
+<li><code>Object.isFrozen()</code>  检测对象是否冻结</li>
+</ul>
+</li>
+</ul>
+<h3 id="ES6方法-2"><a href="#ES6方法-2" class="headerlink" title="ES6方法"></a>ES6方法</h3><ul>
+<li>ES6允许直接写入变量和函数作为对象的成员</li>
+<li><code>Object.is()</code> 比较两个值是否严格相等, 相当于<code>===</code></li>
+<li><code>Object.assign()</code> 用于对象的合并, 将源对象(source)的所有可枚举属性, 复制到对象(target)</li>
+<li><code>__proto__</code> 读取或者设置当前对象的<code>property</code>对象</li>
+<li><code>Object.setPropertyOf()</code> 与<code>__proto__</code>相同, 用来设置一个对象的<code>property</code>对象, 返回参数对象.</li>
+<li><code>Object.getPropertyOf()</code> 读取一个对象的<code>property</code></li>
+<li><code>Object.values()</code> 返回一个数组, 成员是对象自身属性(不含继承)的可遍历值属性的键值</li>
+<li><code>Object.entries()</code> 返回一个数组, 成员是对象自身属性(不含继承)的可遍历值属性的键值对</li>
+<li><code>...</code> 扩展运算符, 取出参数对象的所有可遍历属性, 拷贝到到对象之中</li>
+</ul>
+<h3 id="对象总结"><a href="#对象总结" class="headerlink" title="对象总结"></a>对象总结</h3><table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>是否可以给当前对象增加新属性</th>
+<th>是否可以删除现属性</th>
+<th>是否可以删除现属性</th>
+<th>检测方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>preventExtensible()</td>
+<td>false</td>
+<td>true</td>
+<td>是</td>
+<td>isExtensible()</td>
+</tr>
+<tr>
+<td>seal()</td>
+<td>false</td>
+<td>false</td>
+<td>true</td>
+<td>isSeal()</td>
+</tr>
+<tr>
+<td>freeze()</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>isFreeze()</td>
+</tr>
+</tbody>
+</table>
+<h2 id="DOM文档模型"><a href="#DOM文档模型" class="headerlink" title="DOM文档模型"></a>DOM文档模型</h2><h3 id="节点类型"><a href="#节点类型" class="headerlink" title="节点类型"></a>节点类型</h3><p>每一个节点都有个<code>nodeType</code>属性, 表明节点类型.</p>
+<pre><code>- `nodeName` 节点名字
+- `nodeValue` 节点内容
+</code></pre><h3 id="节点关系"><a href="#节点关系" class="headerlink" title="节点关系"></a>节点关系</h3><ul>
+<li><code>childNodes</code> 每一个节点都有一个<code>childNodes</code>属性, 其中保存着<code>NodeList</code>对象.</li>
+<li><code>NodeList</code> 是一个类数组对象, 虽然有<code>length</code>属性, 但是不是<code>Array</code>类型. <code>NodeList</code>用来保存一组有序的节点, 可以通过位置来访问这些节点. <code>NodeList</code>对象基于<code>DOM</code>结构动态执行查询的结果, 所以<code>NodeList</code>是有生命会呼吸的对象.</li>
+<li><code>parentNode</code> 每一个节点都有这个属性, 指向文档树中的父节点. 包含在<code>childNodes</code>中的所有节点都有共同的父节点<code>parentNode</code></li>
+<li><code>previousSibling</code> 当前节点的上个节点, 第一个节点的<code>perviousSibling</code>为<code>null</code></li>
+<li><code>nextSibling</code> 当前节点的下个节点, 最后一个节点的<code>nextSibling</code>为<code>null</code></li>
+<li><code>firstChild</code> 父节点的<code>childNodes</code>中的第一个节点</li>
+<li><code>lastChild</code> 父节点的<code>childNodes</code>中的最后一个节点</li>
+<li><code>hasChildNodes</code> 是否存在子节点, 有一个或者多个子节点返回<code>true</code></li>
+<li><code>ownerDocument</code> 所有节点都有属性, 指向文档的文档节点</li>
+</ul>
+<h3 id="节点操作"><a href="#节点操作" class="headerlink" title="节点操作"></a>节点操作</h3><ul>
+<li><code>appendChild()</code> 向<code>childNodes</code>列表的末尾添加一个节点, 返回这个新增的节点. 添加节点后, <code>childNodes</code>新增节点, 父节点, 最后一个子节点的关系都会得到更新. 如果传入的参数节点已经是文档树的一部分, 会将该该节点从文档树的原来位置移动到新的位置. 因为DOM映射, 所以同一节点不能同时出现在文档树中的多个位置上.</li>
+<li><code>insertBefore()</code> 在<code>childNodes</code>列表中指定参照物之前插入节点. 有两个参数, 第一个是插入的节点, 第二个是参照物节点. 插入节点后, 被插入的节点会变成参照物节点前一个兄弟节点(perviousSibling), 同时被方法返回. 如果参照节点是<code>null</code>, 则与<code>appendChild</code>执行相同操作.</li>
+<li><code>replaceChild()</code> 替换节点. 接受两个参数, 要插入的节点和要被替换的节点. 将要被替换的节点从文档树中删除, 同时要插入的节点占据位置.</li>
+<li><code>removeChild()</code> 删除节点, 方法返回删除的节点</li>
+</ul>
+<h3 id="其它方法"><a href="#其它方法" class="headerlink" title="其它方法"></a>其它方法</h3><ul>
+<li><code>cloneNode()</code> 克隆节点, 创建一个和参数相同的本节点. 接受一个<code>Boolean</code>参数, 表示是否执行深度复制. <code>true</code>, 执行深度复制, 复制节点以及所有的子节点树. <code>false</code>, 执行浅复制, 只复制节点本身. 复制后返回的节点副本属于文档所有, 并没有指定父节点, 需用用其它节点操作<code>appendChild</code>, <code>insertBefore()</code>, <code>replaceChild()</code>将他添加单文档树中.</li>
+</ul>
+<h3 id="DOM-扩展"><a href="#DOM-扩展" class="headerlink" title="DOM 扩展"></a>DOM 扩展</h3><ul>
+<li><code>querySelector()</code> 方法接收一个CSS选择符(标签, 类, id)，返回与该模式匹配的第一个元素，如果没有找到匹配的元素，返回<code>null</code> .</li>
+<li><code>querySelectorAll()</code> 方法接收一个CSS选择符(标签, 类, id)，返回与该模式匹配的<code>NodeList</code>实例，如果没有找到匹配的元素，返回<code>null</code> .</li>
+<li><code>matchesSelector()</code> 接受一个参数CSS选择符, 如果调用元素与该选择符匹配, 返回<code>true</code>, 否则返回<code>false</code></li>
+<li>其它  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">childElementCount ：返回子元素（不包括文本节点和注释）的个数。</span><br><span class="line">firstElementChild ：指向第一个子元素； firstChild 的元素版。</span><br><span class="line">lastElementChild ：指向最后一个子元素； lastChild 的元素版。</span><br><span class="line">previousElementSibling ：指向前一个同辈元素； previousSibling 的元素版。</span><br><span class="line">nextElementSibling ：指向后一个同辈元素； nextSibling 的元素版。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Document-类型"><a href="#Document-类型" class="headerlink" title="Document 类型"></a>Document 类型</h3><ul>
+<li><p>JavaScript通过<code>document</code>声明文档类型. 在浏览器中, <code>document</code>对象是<code>HTMLDocument</code>(继承自Document类型)的一个实例, 表示整个HTML页面. <code>document</code>对象是<code>window</code>对象的一个属性, 因此可以作为全局对象来访问.</p>
+</li>
+<li><p><code>Document</code>类型表示是XML或者HTML文档, <code>Element</code>类型代表文档中的一个元素. <code>HTMLDocument</code>和<code>HTMLElement</code>只针对HTML文档和元素</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document原型链</span><br><span class="line">HTMLDocument -&gt; Document -&gt; Node -&gt; EventTarget -&gt; Object</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文档的子节点, 第一个就是<code>documentElement</code>属性, 这个属性始终指向HTML页面中的<code>&lt;html&gt;</code>. 作为<code>HTMLDocument</code>的实例, <code>document</code>还有一个<code>body</code>属性, 直接指向<code>&lt;body&gt;</code>元素, 所有浏览器都支持<code>document.documentElement</code>和<code>document.body</code>属性.</p>
+</li>
+<li><p>作为<code>HTMLDocument</code>的实例, <code>document</code>还有一些<code>Document</code>所没有属性, 提供<code>document</code>对象所表现的网页信息. <code>title</code>, 包含<code>&lt;title&gt;</code>元素的文本, 显示在浏览器的标题栏或者标签上, 可以获取或者修改<code>title</code>属性, 修改<code>title</code>属性不会改变<code>&lt;title&gt;</code>元素</p>
+</li>
+<li>网页请求相关的属性, 都存放在请求的<code>HTTP</code>头部<ol>
+<li><code>URL</code> 页面完整的<code>URL</code>, 就是地址栏显示的<code>URL</code></li>
+<li><code>domain</code> 只包含页面的域名</li>
+<li><code>referrer</code> 保存连接到当前页面的的<code>URL</code>, 如果没有页面来源, 就是<code>&#39;&#39;</code></li>
+</ol>
+</li>
+<li>获取元素的方法<ul>
+<li><code>Document</code>提供的方法<ol>
+<li><code>document.getElementById()</code> 返回文档中第一次出现<code>id</code>的元素</li>
+<li><code>document.getElmentByTagName()</code> 返回标签的<code>NodeList</code></li>
+</ol>
+</li>
+<li><code>HTMLDocument</code>提供的方法<ol>
+<li><code>document.getElementByName()</code> 返回特有带<code>name</code>属性的所有元素.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Element-类型"><a href="#Element-类型" class="headerlink" title="Element 类型"></a>Element 类型</h3><ul>
+<li><p>Element 类型用于表现XML或HTML元素，提供了对元素标签名、子节点及特性的访问。所有HTML元素都由 HTMLElement 类型表示，不是直接通过这个类型，也是通过它的子类型来表示。 HTMLElement 类型直接继承自 Element 并添加了一些属性。</p>
+</li>
+<li><p>表示HTML文档元素的 HTMLElement 对象定义了读/写属性，它们映射了元素的 HTML 属性。HTMLElement 定义了通用的 HTML 属性（如id、标题lang和dir）的属性，以及事件处理程序属性（如onclick）。特定的 Element 子类型为其元素定义了特定的属性。例如，查询一张图片的URL，可以使用表示＜img＞元素的 HTMLElement 对象的 src 属性。</p>
+</li>
+<li><p>HTMLElement和其子类型定义了一些属性，它们对应于元素的标准HTML属性。Element类型还定义了 getAttribute() 和 setAttribute() 方法来查询和设置非标准的HTML属性，也可用来查询和设置XML文档中元素上的属性。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a元素的原型链</span><br><span class="line">HTMLAnchorElement-&gt;HTMLElement-&gt;Element-&gt;Node-&gt;EventTarget-&gt;Object</span><br><span class="line">body元素的原型链</span><br><span class="line">HTMLBodyElement-&gt;HTMLElement-&gt;Element-&gt;Node-&gt;EventTarget-&gt;Object</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>dataset</code> HTML5还在Element对象上定义了 dataset 属性。该属性指代一个对象，它的各个属性对应于去掉前缀的 data- 属性。因此 dataset.x 应该保存 data-x 属性的值。带连字符的属性对应于驼峰命名法属性名：data-jquery-test 属性就变成 dataset.jqueryTest 属性。</p>
+</li>
+</ul>
+<p><code>document.createElement()</code> 使用 document.createElement() 方法可以创建新元素。这个方法只接受一个参数，即要创建元素的标签名。这个标签名在HTML文档中不区分大小写，而在XML（包括XHTML）文档中，则是区分大小写的。在新元素上设置这些特性只是给它们赋予了相应的信息。由于新元素尚未被添加到文档树中，因此设置这些特性不会影响浏览器的显示。要把新元素添加到文档树，可以使用 appendChild() 、 insertBefore() 或 replaceChild() 方法。</p>
+<p>元素可以有任意数目的子节点和后代节点，因为元素可以是其他元素的子节点。元素的 childNodes 属性中包含了它的所有子节点，这些子节点有可能是元素、文本节点、注释或处理指令。不同浏览器在看待这些节点方面存在显著的不同。</p>
+<p><code>outerHTML</code> 读取Element的 innerHTML 属性作为字符串标记返回那个元素的内容。HTML5还标准化了 outerHTML 属性。当查询 outerHTML 时，返回的HTML或XML标记的字符串包含被查询元素的开头和结尾标签。当设置元素的 outerHTML 时，元素本身被新的内容所替换。只有 Element 节点定义了 outerHTML 属性，Document节点则无。IE引入的另一个特性是 insertAdjacentHTML() 方法，它将在HTML5中标准化，它将任意的HTML标记字符串插入到指定的元素“相邻”的位置。标记是该方法的第二个参数，并且“相邻”的精确含义依赖于第一个参数的值。第一个参数为具有以下值之一的字符串：”beforebegin”、”afterbegin”、”beforeend”和”afterend”。</p>
+<h3 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h3><ul>
+<li><p>Window对象的 pageXOffset 和 pageYOffset 属性在所有的浏览器中提供这些值，除了IE 8及更早的版本以外。IE（和所有现代浏览器）也可以通过 scrollLeft 和 scrollTop 属性来获得滚动条的位置。令人迷惑的是，正常情况下通过查询文档的根节点（document.documentElement）来获取这些属性值，但在怪异模式下，必须在文档的＜body＞元素（document.body）上查询它们。</p>
+</li>
+<li><p><code>getBoundingClientRect()</code> 判定一个元素的尺寸和位置最简单的方法是调用它的 getBoundingClientRect() 方法。该方法是在IE 5中引入的，而现在当前的所有浏览器都实现了。它不需要参数，返回一个有left、right、top和bottom属性的对象。left和top属性表示元素的左上角的X和Y坐标，right和bottom属性表示元素的右下角的X和Y坐标。在很多浏览器（和W3C标准）中，getBoundingClientRect()返回的对象还包含width和height属性，但是在原始的IE中未实现。它们只是调用方法时文档视觉状态的静态快 照，在用户滚动或改变浏览器窗口大小时不会更新它们。</p>
+</li>
+<li><p><code>scrollTop()</code> Window对象的 scrollTop() 方法（和其同义词 scroll()）接受一个点的X和Y坐标（文档坐标），并作为滚动条的偏移量设置它们。Window的</p>
+</li>
+<li><code>scrollBy()</code> 方法和 scroll() 和 scrollTo() 类似，但是它的参数是相对的，并在当前滚动条的偏移量上增加。</li>
+</ul>
+<h2 id="BOM浏览器对象模型"><a href="#BOM浏览器对象模型" class="headerlink" title="BOM浏览器对象模型"></a>BOM浏览器对象模型</h2><ul>
+<li><p><code>location</code> Window对象的location属性引用的是Location对象, 它表示该窗口中当前显示的文档的URL. Location对象的href属性是一个字符串, 后者包含URL的完整文本.</p>
+</li>
+<li><p>Location对象的<code>hash</code>和<code>search</code>. 如果有的话,hash 属性返回 URL 中的”片段标识符”(/)部. search属性也类似,它返回的是问号(?)之后的URL, 这部分通常是某种类型的查询字符串.</p>
+</li>
+<li><p><code>assign()</code> Location对象的 assign() 方法可以使窗口载入并显示你指定的URL中的文档。</p>
+</li>
+<li><p><code>replace()</code> 方法也类似，但它在载入新文档之前会从浏览历史中把当前文档删除。</p>
+</li>
+<li><p><code>reload()</code> 方法，后者可以让浏览器重新载入当前文档。</p>
+</li>
+<li><p><code>window.history</code> Window对象的 history 属性引用的是该窗口的 History 对象。History 对象是用来把窗口的浏览历史用文档和文档状态列表的形式表示。History 对象的length 属性表示浏览历史列表中的元素数量，但出于安全的因素，脚本不能访问已保存的 URL。（如果允许，则任意脚本都可以窥探你的浏览历史。）</p>
+</li>
+<li><p>History对象的 <code>back()</code> 和 <code>forward()</code> 方法与浏览器的“后退”和“前进”按钮一样：它们使浏览器在浏览历史中前后跳转一格。第三个方法——<code>go()</code>接受一个整数参数，可以在历史列表中向前（正参数）或向后（负参数）跳过任意多个页。</p>
+</li>
+</ul>
+<h2 id="RegExp-对象"><a href="#RegExp-对象" class="headerlink" title="RegExp 对象"></a>RegExp 对象</h2><p>  …</p>
+<h2 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h2><p>  …</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/13/Ajax详解/" rel="next" title="Ajax详解">
+                <i class="fa fa-chevron-left"></i> Ajax详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/07/跨域/" rel="prev" title="跨域">
+                跨域 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Liu Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript核心"><span class="nav-number">1.</span> <span class="nav-text">JavaScript核心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript基础"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预解析"><span class="nav-number">1.1.1.</span> <span class="nav-text">预解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量作用域"><span class="nav-number">1.1.2.</span> <span class="nav-text">变量作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作用域"><span class="nav-number">1.1.3.</span> <span class="nav-text">函数作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存释放与作用域销毁"><span class="nav-number">1.1.4.</span> <span class="nav-text">内存释放与作用域销毁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in循环"><span class="nav-number">1.1.5.</span> <span class="nav-text">for-in循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">1.1.6.</span> <span class="nav-text">其它</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">1.1.7.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值转换"><span class="nav-number">1.1.8.</span> <span class="nav-text">数值转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String类型"><span class="nav-number">1.2.</span> <span class="nav-text">String类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通用方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">通用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问字符串指定位置的方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">访问字符串指定位置的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串位置方法"><span class="nav-number">1.2.3.</span> <span class="nav-text">字符串位置方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串操作方法"><span class="nav-number">1.2.4.</span> <span class="nav-text">字符串操作方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串大小写转换方法"><span class="nav-number">1.2.5.</span> <span class="nav-text">字符串大小写转换方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串匹配"><span class="nav-number">1.2.6.</span> <span class="nav-text">字符串匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较字符串"><span class="nav-number">1.2.7.</span> <span class="nav-text">比较字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他方法"><span class="nav-number">1.2.8.</span> <span class="nav-text">其他方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转换方法"><span class="nav-number">1.2.9.</span> <span class="nav-text">转换方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6方法"><span class="nav-number">1.2.10.</span> <span class="nav-text">ES6方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array类型"><span class="nav-number">1.3.</span> <span class="nav-text">Array类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数组"><span class="nav-number">1.3.1.</span> <span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">操作方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转换方法-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">转换方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序方法"><span class="nav-number">1.3.4.</span> <span class="nav-text">排序方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位置方法"><span class="nav-number">1.3.5.</span> <span class="nav-text">位置方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代方法"><span class="nav-number">1.3.6.</span> <span class="nav-text">迭代方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并归方法"><span class="nav-number">1.3.7.</span> <span class="nav-text">并归方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6方法-1"><span class="nav-number">1.3.8.</span> <span class="nav-text">ES6方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归纳"><span class="nav-number">1.3.9.</span> <span class="nav-text">归纳</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object类型"><span class="nav-number">1.4.</span> <span class="nav-text">Object类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识"><span class="nav-number">1.4.1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测属性"><span class="nav-number">1.4.2.</span> <span class="nav-text">检测属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性的特性"><span class="nav-number">1.4.3.</span> <span class="nav-text">属性的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例方法"><span class="nav-number">1.4.4.</span> <span class="nav-text">实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可扩展性"><span class="nav-number">1.4.5.</span> <span class="nav-text">可扩展性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6方法-2"><span class="nav-number">1.4.6.</span> <span class="nav-text">ES6方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象总结"><span class="nav-number">1.4.7.</span> <span class="nav-text">对象总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM文档模型"><span class="nav-number">1.5.</span> <span class="nav-text">DOM文档模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#节点类型"><span class="nav-number">1.5.1.</span> <span class="nav-text">节点类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点关系"><span class="nav-number">1.5.2.</span> <span class="nav-text">节点关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点操作"><span class="nav-number">1.5.3.</span> <span class="nav-text">节点操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它方法"><span class="nav-number">1.5.4.</span> <span class="nav-text">其它方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-扩展"><span class="nav-number">1.5.5.</span> <span class="nav-text">DOM 扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Document-类型"><span class="nav-number">1.5.6.</span> <span class="nav-text">Document 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Element-类型"><span class="nav-number">1.5.7.</span> <span class="nav-text">Element 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Window-对象"><span class="nav-number">1.5.8.</span> <span class="nav-text">Window 对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BOM浏览器对象模型"><span class="nav-number">1.6.</span> <span class="nav-text">BOM浏览器对象模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RegExp-对象"><span class="nav-number">1.7.</span> <span class="nav-text">RegExp 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#canvas"><span class="nav-number">1.8.</span> <span class="nav-text">canvas</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu Yu</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
