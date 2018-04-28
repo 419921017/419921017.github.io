@@ -43,8 +43,6 @@
     
     <title>
         
-            أرشيف: 2018 | 
-        
         Hexo
     </title>
 
@@ -210,7 +208,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Hexo">
-    <meta name="msapplication-starturl" content="http://yoursite.com/archives/2018/">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2018/04/28/服务器部署(Ubuntu, Node, MongoDb)/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Hexo">
@@ -225,13 +223,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://yoursite.com/archives/2018/">
+    <meta property="og:url" content="http://yoursite.com/2018/04/28/服务器部署(Ubuntu, Node, MongoDb)/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="أرشيف: 2018 | Hexo">
+    <meta property="og:title" content="Hexo">
     <meta property="og:image" content="/img/favicon.ico">
     <meta property="og:description" content="">
     
 
+    
+        <meta property="article:published_time" content="Sat Apr 28 2018 11:56:27 GMT+0800">
+        <meta property="article:modified_time" content="Sat Apr 28 2018 11:56:27 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -239,13 +240,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/archives/2018/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2018/04/28/服务器部署(Ubuntu, Node, MongoDb)/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2018/04/28/服务器部署(Ubuntu, Node, MongoDb)/index.html",
+    "headline": "",
+    "datePublished": "Sat Apr 28 2018 11:56:27 GMT+0800",
+    "dateModified": "Sat Apr 28 2018 11:56:27 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "John Doe",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Hexo",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.ico"
+        }
+    },
+    "keywords": "",
+    "description": "",
+}
+</script>
 
 
     
@@ -279,602 +310,353 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#服务器部署-Ubuntu-Node-MongoDb"><span class="post-toc-number">1.</span> <span class="post-toc-text">服务器部署(Ubuntu, Node, MongoDb)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#登陆远程服务器"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">登陆远程服务器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本地登录"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">本地登录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新增升权用户"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">新增升权用户</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ssh免密登陆"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">ssh免密登陆</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#增强服务器安全等级"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">增强服务器安全等级</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Nodejs生产环境"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">Nodejs生产环境</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Nginx"><span class="post-toc-number">1.1.6.</span> <span class="post-toc-text">Nginx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#管理域名解析"><span class="post-toc-number">1.1.7.</span> <span class="post-toc-text">管理域名解析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#服务器安装MongoDB"><span class="post-toc-number">1.1.8.</span> <span class="post-toc-text">服务器安装MongoDB</span></a></li></ol></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/28/服务器部署(Ubuntu, Node, MongoDb)/"></a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/28/服务器部署(Ubuntu, Node, MongoDb)/" target="_self">واصل القراءة</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="John Doe's avatar">
-            </div>
-            <div>
-                <strong>John Doe</strong>
-                <span>Apr 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/28/JS核心/"></a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/28/JS核心/" target="_self">واصل القراءة</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="John Doe's avatar">
-            </div>
-            <div>
-                <strong>John Doe</strong>
-                <span>Apr 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/28/GET和POST的区别/"></a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/28/GET和POST的区别/" target="_self">واصل القراءة</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="John Doe's avatar">
-            </div>
-            <div>
-                <strong>John Doe</strong>
-                <span>Apr 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/28/JS中的异步/"></a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/28/JS中的异步/" target="_self">واصل القراءة</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="John Doe's avatar">
-            </div>
-            <div>
-                <strong>John Doe</strong>
-                <span>Apr 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/28/JS面向对象之作用于/"></a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            作用域
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/28/JS面向对象之作用于/" target="_self">واصل القراءة</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="John Doe's avatar">
-            </div>
-            <div>
-                <strong>John Doe</strong>
-                <span>Apr 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/28/Ajax详解/"></a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            Ajax
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/28/Ajax详解/" target="_self">واصل القراءة</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="John Doe's avatar">
-            </div>
-            <div>
-                <strong>John Doe</strong>
-                <span>Apr 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/28/JS函数的调用模式/"></a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            ...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/28/JS函数的调用模式/" target="_self">واصل القراءة</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="John Doe's avatar">
-            </div>
-            <div>
-                <strong>John Doe</strong>
-                <span>Apr 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/28/JS的值类型和引用类型/"></a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/28/JS的值类型和引用类型/" target="_self">واصل القراءة</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="John Doe's avatar">
-            </div>
-            <div>
-                <strong>John Doe</strong>
-                <span>Apr 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/28/JS面向对象之闭包/"></a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            闭包
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/28/JS面向对象之闭包/" target="_self">واصل القراءة</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="John Doe's avatar">
-            </div>
-            <div>
-                <strong>John Doe</strong>
-                <span>Apr 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/28/字符串转对象的一些方法/"></a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            字符串转对...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/28/字符串转对象的一些方法/" target="_self">واصل القراءة</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="John Doe's avatar">
-            </div>
-            <div>
-                <strong>John Doe</strong>
-                <span>Apr 28, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-    <!-- Index nav -->
-        <nav class="material-nav mdl-cell mdl-cell--12-col">
-            <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/page/2/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button></a>
-        </nav>
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>John Doe</strong>
+        <span>Apr 28, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=&url=http://yoursite.com/2018/04/28/服务器部署(Ubuntu, Node, MongoDb)/index.html&pic=http://yoursite.com/img/favicon.ico&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=&url=http://yoursite.com/2018/04/28/服务器部署(Ubuntu, Node, MongoDb)/index.html&via=John Doe" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/28/服务器部署(Ubuntu, Node, MongoDb)/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/28/服务器部署(Ubuntu, Node, MongoDb)/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="服务器部署-Ubuntu-Node-MongoDb"><a href="#服务器部署-Ubuntu-Node-MongoDb" class="headerlink" title="服务器部署(Ubuntu, Node, MongoDb)"></a>服务器部署(Ubuntu, Node, MongoDb)</h1><h2 id="登陆远程服务器"><a href="#登陆远程服务器" class="headerlink" title="登陆远程服务器"></a>登陆远程服务器</h2><h3 id="本地登录"><a href="#本地登录" class="headerlink" title="本地登录"></a>本地登录</h3><ol>
+<li><p>命令行登陆 ssh <a href="mailto:root@xx.xx.xx.xx" target="_blank" rel="noopener">root@xx.xx.xx.xx</a></p>
+</li>
+<li><p>查看硬盘使用情况 <code>df -h</code></p>
+</li>
+<li><p><code>.zshrc</code> 修改该文件 软连接</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias ssh_aliyun = &quot;ssh root@xx.xx.xx.xx&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="新增升权用户"><a href="#新增升权用户" class="headerlink" title="新增升权用户"></a>新增升权用户</h3><ol>
+<li>设置配置信息 <code>adduser xxx_manager</code></li>
+<li>授权 <code>gpasswd -a xxx_manager sudo</code>, 设置相对比较高的权限</li>
+<li><p>修改权限文件 <code>sudo visudo</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification</span><br><span class="line">root  ALL=(ALL:ALL) ALL</span><br><span class="line">xxx_manager ALL=(ALL:ALL) ALL</span><br><span class="line"></span><br><span class="line">4个ALL:</span><br><span class="line">1. 对所有sudo生效</span><br><span class="line">2. 可以以任何用户用户执行</span><br><span class="line">3. 任何组</span><br><span class="line">4. 所有命令</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启ssh服务 <code>service ssh restart</code></p>
+</li>
+</ol>
+<h3 id="ssh免密登陆"><a href="#ssh免密登陆" class="headerlink" title="ssh免密登陆"></a>ssh免密登陆</h3><ul>
+<li><p>本地创建</p>
+<ol>
+<li><p>本地创建 <code>ssh-keygen -t rsa -b 4096 -C  &#39;xxx@email.com&#39;</code> , 生成秘钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code></p>
+</li>
+<li><p>ssh代理 <code>eval &quot;$(ssh-agent -s)&quot;</code></p>
+</li>
+<li><p>将<code>ssh key</code>加入到<code>ssh-agent</code> <code>ssh-add ~/.ssh/id_rsa</code></p>
+</li>
+</ol>
+</li>
+<li><p>服务器创建</p>
+<ol>
+<li>连接服务器<code>ssh ssh_aliyun</code></li>
+<li>服务器创建 <code>ssh-keygen -t rsa -b 4096 -C  &#39;xxx@email.com&#39;</code> , 生成秘钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code></li>
+<li>ssh代理 <code>eval &quot;$(ssh-agent -s)&quot;</code></li>
+<li>将<code>ssh key</code>加入到<code>ssh-agent</code> <code>ssh-add ~/.ssh/id_rsa</code></li>
+<li>查看文件是否生成 <code>ls -a</code></li>
+<li>在~/.ssh文件目录下 <code>vi authorized_keys</code>, 将本地的公钥ssh.pub添加到服务器上</li>
+<li>授权 <code>chmod 600 authorized_keys</code></li>
+<li>重启ssh服务 <code>sudo service ssh restart</code></li>
+</ol>
+</li>
+</ul>
+<h3 id="增强服务器安全等级"><a href="#增强服务器安全等级" class="headerlink" title="增强服务器安全等级"></a>增强服务器安全等级</h3><ul>
+<li><p>修改ssh配置文件</p>
+<ol>
+<li>打开配置文件 <code>sudo vi /etc/ssh/sshd_config</code></li>
+<li>修改默认端口, 将<code>Port 22</code>修改为 <code>Port 39999</code>( 阿里云需要设置安全组规则 )</li>
+<li>修改DNS配置项 <code>UseDNS no</code></li>
+<li>是否允许空密码 <code>PermitEmptyPassword no</code></li>
+<li>新增权限(最后一行新增) <code>AllowUsers xxx_manager</code></li>
+<li>修改允许root登陆 <code>PermitRootLogin no</code></li>
+<li>是否允许密码登陆 <code>PasswordAuthentication no</code></li>
+<li>重启ssh服务 <code>sudo service ssh restart</code></li>
+<li>重新登陆 <code>ssh -p 39999 xxx_manager@xx.xx.xx.xx</code></li>
+</ol>
+</li>
+<li><p>防火墙iptables</p>
+</li>
+</ul>
+<h3 id="Nodejs生产环境"><a href="#Nodejs生产环境" class="headerlink" title="Nodejs生产环境"></a>Nodejs生产环境</h3><ol>
+<li>更新 <code>sudo apt-get update</code></li>
+<li>安装 <code>sudo apt-get install vim openssl build-essential libssl-dev wget crul git</code></li>
+<li>安装nvm用来管理nodejs <code>wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash</code></li>
+<li>nvm 安装 nodejs <code>nvm install v8.11.1</code></li>
+<li>nvm 设置默认版本 <code>nvm alias default v8.11.1</code></li>
+<li>nrm 管理registry <code>npm install -g nrm</code></li>
+<li>增加系统文件监控数目 <code>echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf &amp;&amp; sudo sysctl -p</code></li>
+<li>cnpm <code>npm install -g cnpm</code>, 如果模块安装不上可以通过cnpm同步 <code>cnpm sync xxx</code></li>
+<li>安装常用依赖 <code>npm install -g pm2 webpack gulp grunt-cli</code>…</li>
+</ol>
+<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><ul>
+<li>端口代理: 用root级别权限实现对80端口的监听, 同时把来自80端口的流量分配给node服务的另外端口</li>
+<li>安装<ul>
+<li>判断是否存在apache服务器是否存在 <code>sudo service apache stop</code> 或者 <code>sudo service apache2 stop</code></li>
+<li>删除apache <code>sudo apt-get remove apache2</code></li>
+<li>更新包列表 <code>sudo apt-get update</code></li>
+<li>安装nginx <code>sudo apt-get install nginx</code></li>
+<li>判断nginx是否安装成功 <code>nginx -v</code></li>
+</ul>
+</li>
+<li><p>配置</p>
+<ul>
+<li>进入配置目录 <code>cd etc/nginx/conf.d</code></li>
+<li>新建配置文件 <code>sudo vi xxx-com-8081.conf</code>, 命名规则<code>服务名-域名-端口</code></li>
+<li><p>配置文件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 定义服务名</span><br><span class="line">upstream xxx &#123;</span><br><span class="line">    # 设置端口</span><br><span class="line">    server 127.0.0.1:8081;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    // 设置服务器</span><br><span class="line">    server_name: xx.xx.xx.xx;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header X-Nginx-Proxy true;</span><br><span class="line"></span><br><span class="line">        proxy_pass http://xxx;</span><br><span class="line">        proxy_redirect off;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回到上级目录<code>cd .. sudo vi nginx.conf</code></p>
+</li>
+<li>去除注释, 将 <code>conf.d/*</code> 和 <code>sites-enableed/*</code> 这两个文件下的所有文件都加载</li>
+<li>服务器信息不显示 <code>server_tokens off</code></li>
+<li>检测 nginx <code>sudo nginx -t</code></li>
+<li>重启 nginx <code>sudo nginx -s reload</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="管理域名解析"><a href="#管理域名解析" class="headerlink" title="管理域名解析"></a>管理域名解析</h3><h3 id="服务器安装MongoDB"><a href="#服务器安装MongoDB" class="headerlink" title="服务器安装MongoDB"></a>服务器安装MongoDB</h3><ul>
+<li><p>换源</p>
+<ol>
+<li>配置文件 <code>sudo vi /ect/apt/apt.conf</code></li>
+<li>注释镜像</li>
+<li>修改源 <code>sudo vi /ect/apt/sources.list.d/mongodb-org-x.xx.list</code></li>
+<li>将源地址改成 <code>http://mirrors/aliyun.com/xxxxxxxxxxxxx</code></li>
+</ol>
+</li>
+<li><p>安装</p>
+<ol>
+<li><code>sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5</code></li>
+<li><code>echo &quot;deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list</code></li>
+<li><code>sudo apt-get update</code></li>
+<li><code>sudo apt-get install -y mongodb-org</code></li>
+</ol>
+</li>
+<li><p>开启服务</p>
+<ol>
+<li>修改防火墙</li>
+<li>开启 <code>sudo service mongod start</code></li>
+<li>检查日志 <code>cat /var/log/mongodb.log</code></li>
+<li>关闭 <code>sudo service mongod stop</code></li>
+<li>重启 <code>sudo service mongod restart</code></li>
+</ol>
+</li>
+<li><p>修改默认端口</p>
+<ol>
+<li>配置文件 <code>sudo vi /etc/mongod.conf</code></li>
+<li>修改端口 <code>port 19999</code></li>
+<li>修改防火墙</li>
+<li><code>sudo mongo --port 19999</code></li>
+</ol>
+</li>
+<li><p>本地数据备份</p>
+<ul>
+<li>导入新数据<ol>
+<li>本地数据备份 <code>sudo mongodump -h 127.0.0.1:27017 -d xxx-xxx -o xxx-xxx-backup</code></li>
+<li>本都将备份文件压缩 <code>tar zcvf xxx-xxx.tar.gz xxx-xxx</code></li>
+<li>本地将本地压缩后的文件上传到服务器 <code>scp -P 39999 ~/xx/xxx-xxx.tar.gz xxx_manager@xx.xx.xx.xx:/home/xxx_manager/dbbackup</code></li>
+<li>服务器解压缩 <code>tar xvf xxx-xxx.tar.gz</code></li>
+<li>服务器数据导入到数据库 <code>mongorestore --host 127.0.0.1:19999 -d xxx-xxx(数据库名) ./xx/xx/xx(数据路径)</code></li>
+</ol>
+</li>
+<li>新增数据</li>
+</ul>
+</li>
+</ul>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/04/28/JS核心/" id="post_nav-older" class="next-content">
+            أقدم
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
