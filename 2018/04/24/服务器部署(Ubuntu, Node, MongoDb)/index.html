@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="阿里云服务器部署(Ubuntu, Node, MongoDb)登陆远程服务器本地登录 命令行登陆 ssh root@xx.xx.xx.xx  查看硬盘使用情况 df -h  .zshrc 修改该文件 软连接  1alias ssh_aliyun = &amp;quot;ssh root@xx.xx.xx.xx&amp;quot;   新增升权用户 设置配置信息 adduser xxx_manager 授权 gpa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="J阿里云服务器部署(Ubuntu, Node, MongoDb)">
+<meta property="og:url" content="http://yoursite.com/2018/04/24/服务器部署(Ubuntu, Node, MongoDb)/index.html">
+<meta property="og:site_name" content="Liu Yu&#39;s Blog">
+<meta property="og:description" content="阿里云服务器部署(Ubuntu, Node, MongoDb)登陆远程服务器本地登录 命令行登陆 ssh root@xx.xx.xx.xx  查看硬盘使用情况 df -h  .zshrc 修改该文件 软连接  1alias ssh_aliyun = &amp;quot;ssh root@xx.xx.xx.xx&amp;quot;   新增升权用户 设置配置信息 adduser xxx_manager 授权 gpa">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-28T04:22:40.459Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="J阿里云服务器部署(Ubuntu, Node, MongoDb)">
+<meta name="twitter:description" content="阿里云服务器部署(Ubuntu, Node, MongoDb)登陆远程服务器本地登录 命令行登陆 ssh root@xx.xx.xx.xx  查看硬盘使用情况 df -h  .zshrc 修改该文件 软连接  1alias ssh_aliyun = &amp;quot;ssh root@xx.xx.xx.xx&amp;quot;   新增升权用户 设置配置信息 adduser xxx_manager 授权 gpa">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/24/服务器部署(Ubuntu, Node, MongoDb)/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>J阿里云服务器部署(Ubuntu, Node, MongoDb) | Liu Yu's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liu Yu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/24/服务器部署(Ubuntu, Node, MongoDb)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liu Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Yu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">J阿里云服务器部署(Ubuntu, Node, MongoDb)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-24T14:31:33+08:00">2018-04-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="阿里云服务器部署-Ubuntu-Node-MongoDb"><a href="#阿里云服务器部署-Ubuntu-Node-MongoDb" class="headerlink" title="阿里云服务器部署(Ubuntu, Node, MongoDb)"></a>阿里云服务器部署(Ubuntu, Node, MongoDb)</h1><h2 id="登陆远程服务器"><a href="#登陆远程服务器" class="headerlink" title="登陆远程服务器"></a>登陆远程服务器</h2><h3 id="本地登录"><a href="#本地登录" class="headerlink" title="本地登录"></a>本地登录</h3><ol>
+<li><p>命令行登陆 ssh <a href="mailto:root@xx.xx.xx.xx" target="_blank" rel="noopener">root@xx.xx.xx.xx</a></p>
+</li>
+<li><p>查看硬盘使用情况 <code>df -h</code></p>
+</li>
+<li><p><code>.zshrc</code> 修改该文件 软连接</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias ssh_aliyun = &quot;ssh root@xx.xx.xx.xx&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="新增升权用户"><a href="#新增升权用户" class="headerlink" title="新增升权用户"></a>新增升权用户</h3><ol>
+<li>设置配置信息 <code>adduser xxx_manager</code></li>
+<li>授权 <code>gpasswd -a xxx_manager sudo</code>, 设置相对比较高的权限</li>
+<li><p>修改权限文件 <code>sudo visudo</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification</span><br><span class="line">root  ALL=(ALL:ALL) ALL</span><br><span class="line">xxx_manager ALL=(ALL:ALL) ALL</span><br><span class="line"></span><br><span class="line">4个ALL:</span><br><span class="line">1. 对所有sudo生效</span><br><span class="line">2. 可以以任何用户用户执行</span><br><span class="line">3. 任何组</span><br><span class="line">4. 所有命令</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启ssh服务 <code>service ssh restart</code></p>
+</li>
+</ol>
+<h3 id="ssh免密登陆"><a href="#ssh免密登陆" class="headerlink" title="ssh免密登陆"></a>ssh免密登陆</h3><ul>
+<li><p>本地创建</p>
+<ol>
+<li><p>本地创建 <code>ssh-keygen -t rsa -b 4096 -C  &#39;xxx@email.com&#39;</code> , 生成秘钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code></p>
+</li>
+<li><p>ssh代理 <code>eval &quot;$(ssh-agent -s)&quot;</code></p>
+</li>
+<li><p>将<code>ssh key</code>加入到<code>ssh-agent</code> <code>ssh-add ~/.ssh/id_rsa</code></p>
+</li>
+</ol>
+</li>
+<li><p>服务器创建</p>
+<ol>
+<li>连接服务器<code>ssh ssh_aliyun</code></li>
+<li>服务器创建 <code>ssh-keygen -t rsa -b 4096 -C  &#39;xxx@email.com&#39;</code> , 生成秘钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code></li>
+<li>ssh代理 <code>eval &quot;$(ssh-agent -s)&quot;</code></li>
+<li>将<code>ssh key</code>加入到<code>ssh-agent</code> <code>ssh-add ~/.ssh/id_rsa</code></li>
+<li>查看文件是否生成 <code>ls -a</code></li>
+<li>在~/.ssh文件目录下 <code>vi authorized_keys</code>, 将本地的公钥ssh.pub添加到服务器上</li>
+<li>授权 <code>chmod 600 authorized_keys</code></li>
+<li>重启ssh服务 <code>sudo service ssh restart</code></li>
+</ol>
+</li>
+</ul>
+<h3 id="增强服务器安全等级"><a href="#增强服务器安全等级" class="headerlink" title="增强服务器安全等级"></a>增强服务器安全等级</h3><ul>
+<li><p>修改ssh配置文件</p>
+<ol>
+<li>打开配置文件 <code>sudo vi /etc/ssh/sshd_config</code></li>
+<li>修改默认端口, 将<code>Port 22</code>修改为 <code>Port 39999</code>( 阿里云需要设置安全组规则 )</li>
+<li>修改DNS配置项 <code>UseDNS no</code></li>
+<li>是否允许空密码 <code>PermitEmptyPassword no</code></li>
+<li>新增权限(最后一行新增) <code>AllowUsers xxx_manager</code></li>
+<li>修改允许root登陆 <code>PermitRootLogin no</code></li>
+<li>是否允许密码登陆 <code>PasswordAuthentication no</code></li>
+<li>重启ssh服务 <code>sudo service ssh restart</code></li>
+<li>重新登陆 <code>ssh -p 39999 xxx_manager@xx.xx.xx.xx</code></li>
+</ol>
+</li>
+<li><p>防火墙iptables</p>
+</li>
+</ul>
+<h3 id="Nodejs生产环境"><a href="#Nodejs生产环境" class="headerlink" title="Nodejs生产环境"></a>Nodejs生产环境</h3><ol>
+<li>更新 <code>sudo apt-get update</code></li>
+<li>安装 <code>sudo apt-get install vim openssl build-essential libssl-dev wget crul git</code></li>
+<li>安装nvm用来管理nodejs <code>wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash</code></li>
+<li>nvm 安装 nodejs <code>nvm install v8.11.1</code></li>
+<li>nvm 设置默认版本 <code>nvm alias default v8.11.1</code></li>
+<li>nrm 管理registry <code>npm install -g nrm</code></li>
+<li>增加系统文件监控数目 <code>echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf &amp;&amp; sudo sysctl -p</code></li>
+<li>cnpm <code>npm install -g cnpm</code>, 如果模块安装不上可以通过cnpm同步 <code>cnpm sync xxx</code></li>
+<li>安装常用依赖 <code>npm install -g pm2 webpack gulp grunt-cli</code>…</li>
+</ol>
+<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><ul>
+<li>端口代理: 用root级别权限实现对80端口的监听, 同时把来自80端口的流量分配给node服务的另外端口</li>
+<li>安装<ul>
+<li>判断是否存在apache服务器是否存在 <code>sudo service apache stop</code> 或者 <code>sudo service apache2 stop</code></li>
+<li>删除apache <code>sudo apt-get remove apache2</code></li>
+<li>更新包列表 <code>sudo apt-get update</code></li>
+<li>安装nginx <code>sudo apt-get install nginx</code></li>
+<li>判断nginx是否安装成功 <code>nginx -v</code></li>
+</ul>
+</li>
+<li><p>配置</p>
+<ul>
+<li>进入配置目录 <code>cd etc/nginx/conf.d</code></li>
+<li>新建配置文件 <code>sudo vi xxx-com-8081.conf</code>, 命名规则<code>服务名-域名-端口</code></li>
+<li><p>配置文件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 定义服务名</span><br><span class="line">upstream xxx &#123;</span><br><span class="line">    # 设置端口</span><br><span class="line">    server 127.0.0.1:8081;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    // 设置服务器</span><br><span class="line">    server_name: xx.xx.xx.xx;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header X-Nginx-Proxy true;</span><br><span class="line"></span><br><span class="line">        proxy_pass http://xxx;</span><br><span class="line">        proxy_redirect off;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回到上级目录<code>cd .. sudo vi nginx.conf</code></p>
+</li>
+<li>去除注释, 将 <code>conf.d/*</code> 和 <code>sites-enableed/*</code> 这两个文件下的所有文件都加载</li>
+<li>服务器信息不显示 <code>server_tokens off</code></li>
+<li>检测 nginx <code>sudo nginx -t</code></li>
+<li>重启 nginx <code>sudo nginx -s reload</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="管理域名解析"><a href="#管理域名解析" class="headerlink" title="管理域名解析"></a>管理域名解析</h3><h3 id="服务器安装MongoDB"><a href="#服务器安装MongoDB" class="headerlink" title="服务器安装MongoDB"></a>服务器安装MongoDB</h3><ul>
+<li><p>换源</p>
+<ol>
+<li>配置文件 <code>sudo vi /ect/apt/apt.conf</code></li>
+<li>注释镜像</li>
+<li>修改源 <code>sudo vi /ect/apt/sources.list.d/mongodb-org-x.xx.list</code></li>
+<li>将源地址改成 <code>http://mirrors/aliyun.com/xxxxxxxxxxxxx</code></li>
+</ol>
+</li>
+<li><p>安装</p>
+<ol>
+<li><code>sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5</code></li>
+<li><code>echo &quot;deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list</code></li>
+<li><code>sudo apt-get update</code></li>
+<li><code>sudo apt-get install -y mongodb-org</code></li>
+</ol>
+</li>
+<li><p>开启服务</p>
+<ol>
+<li>修改防火墙</li>
+<li>开启 <code>sudo service mongod start</code></li>
+<li>检查日志 <code>cat /var/log/mongodb.log</code></li>
+<li>关闭 <code>sudo service mongod stop</code></li>
+<li>重启 <code>sudo service mongod restart</code></li>
+</ol>
+</li>
+<li><p>修改默认端口</p>
+<ol>
+<li>配置文件 <code>sudo vi /etc/mongod.conf</code></li>
+<li>修改端口 <code>port 19999</code></li>
+<li>修改防火墙</li>
+<li><code>sudo mongo --port 19999</code></li>
+</ol>
+</li>
+<li><p>本地数据备份</p>
+<ul>
+<li>导入新数据<ol>
+<li>本地数据备份 <code>sudo mongodump -h 127.0.0.1:27017 -d xxx-xxx -o xxx-xxx-backup</code></li>
+<li>本都将备份文件压缩 <code>tar zcvf xxx-xxx.tar.gz xxx-xxx</code></li>
+<li>本地将本地压缩后的文件上传到服务器 <code>scp -P 39999 ~/xx/xxx-xxx.tar.gz xxx_manager@xx.xx.xx.xx:/home/xxx_manager/dbbackup</code></li>
+<li>服务器解压缩 <code>tar xvf xxx-xxx.tar.gz</code></li>
+<li>服务器数据导入到数据库 <code>mongorestore --host 127.0.0.1:19999 -d xxx-xxx(数据库名) ./xx/xx/xx(数据路径)</code></li>
+</ol>
+</li>
+<li>新增数据<br>…</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/24/JS面向对象之原型链/" rel="next" title="JS面向对象之面向对象之原型链">
+                <i class="fa fa-chevron-left"></i> JS面向对象之面向对象之原型链
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/28/JS面向对象之原型/" rel="prev" title="JS面向对象之面向对象之原型">
+                JS面向对象之面向对象之原型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Liu Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#阿里云服务器部署-Ubuntu-Node-MongoDb"><span class="nav-number">1.</span> <span class="nav-text">阿里云服务器部署(Ubuntu, Node, MongoDb)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#登陆远程服务器"><span class="nav-number">1.1.</span> <span class="nav-text">登陆远程服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地登录"><span class="nav-number">1.1.1.</span> <span class="nav-text">本地登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新增升权用户"><span class="nav-number">1.1.2.</span> <span class="nav-text">新增升权用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh免密登陆"><span class="nav-number">1.1.3.</span> <span class="nav-text">ssh免密登陆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强服务器安全等级"><span class="nav-number">1.1.4.</span> <span class="nav-text">增强服务器安全等级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nodejs生产环境"><span class="nav-number">1.1.5.</span> <span class="nav-text">Nodejs生产环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx"><span class="nav-number">1.1.6.</span> <span class="nav-text">Nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理域名解析"><span class="nav-number">1.1.7.</span> <span class="nav-text">管理域名解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器安装MongoDB"><span class="nav-number">1.1.8.</span> <span class="nav-text">服务器安装MongoDB</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu Yu</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

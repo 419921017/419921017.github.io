@@ -271,356 +271,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/13/Ajax详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liu Yu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Yu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/13/Ajax详解/" itemprop="url">
-                  Ajax详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-                
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-13T14:31:33+08:00">2017-05-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h1><h2 id="Ajax-是什么"><a href="#Ajax-是什么" class="headerlink" title="Ajax 是什么"></a>Ajax 是什么</h2><ol>
-<li>Asynchronous [e’sɪŋkrənəs] Javascript And XML， AJAX 不是一门的新的语言，而是对现有技术的综合利用。 本质是在HTTP协议的基础上以异步的方式与服务器进行通信。</li>
-<li>异步 : 某段程序执行时不会阻塞其他程序的执行, 表现形式是程序的执行顺序不依赖程序本身的书写顺序, 相反的情况依次执行, 那就是同步<strong>核心在于不会阻塞程序的执行, 从而提升整体执行效率</strong></li>
-</ol>
-<h1 id="原生-Ajax-的使用"><a href="#原生-Ajax-的使用" class="headerlink" title="原生 Ajax 的使用"></a>原生 Ajax 的使用</h1><h2 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h2><ul>
-<li>XMLHttpRequest 是浏览器的内置对象, 作用是在后台与服务器通信( 交换数据 )</li>
-<li>用于网页的局部更新, 而不是刷新整个页面</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个新的 XMLHttpRequest 对象</span><br><span class="line">var xhr = new XMLHttpRequest();</span><br></pre></td></tr></table></figure>
-<h2 id="请求-Request"><a href="#请求-Request" class="headerlink" title="请求 Request"></a>请求 Request</h2><p>HTTP 请求由 3 个部分组成, 正好和 XMLHttpRequest 相对应</p>
-<ol>
-<li><p>请求行 open</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.open( &apos;post&apos;, &apos;01.php&apos; );</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求头 setRequestHeader</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// post 请求需要设置头</span><br><span class="line">xhr.setRequestHeader( &apos;Conent-Type&apos; , &apos;application/x-www-form-urlencoed&apos; );</span><br><span class="line">// get 请求可以不设置请求头</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请求主体 send</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhr.send( &apos;name=Jim&amp;age=18&apos; );</span><br><span class="line">// get 可以传空, 因为在头的时候已经传过数据了</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="响应-Response"><a href="#响应-Response" class="headerlink" title="响应 Response"></a>响应 Response</h2><ol>
-<li>HTTP 响应是由服务端放出的, 客户端更应该关心度额是响应的结果</li>
-<li>HTTP 响应由 3 个部分组成, 与 XMLHttpRequest 的方法或属性成对应关系</li>
-<li>由于服务器做出响应需要时间( 网络延迟等原因 ),所以需要监听服务器响应状态, 再进行处理</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if( xhr.readyState == 4 &amp;&amp; xhr.status == 200 )&#123;</span><br><span class="line">    // 进行下一步操作, 如渲染页面</span><br><span class="line">    document.querySelector( &apos;#result&apos; ).innerHTML = xhr.responseText;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤分析"><a href="#步骤分析" class="headerlink" title="步骤分析"></a>步骤分析</h2><ol start="0">
-<li>请求未初始化 ( 还没有调用 open() )</li>
-<li>请求已经建立, 但是还没有发送 ( 还没有调用send() )</li>
-<li>请求已发送, 正在处理中 ( 通常现在可以从相应中获取内容头 )</li>
-<li>请求在才处理中 , 通常响应中已经有部分数据可以用了, 但是服务器还没有完全完成响应</li>
-<li>响应已经完成, 可以获取并使用服务器的响应了</li>
-</ol>
-<h1 id="其他注意点"><a href="#其他注意点" class="headerlink" title="其他注意点"></a>其他注意点</h1><ol>
-<li>可以使用 onreadystatechange 来监听 XMLHttpRequest 的状态</li>
-<li><p>获取行状态 ( 包括行状态码和状态信息 )</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhr.status  // 状态码</span><br><span class="line">xhr.statusText // 状态码嘻嘻</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取响应头</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhr.getResponseHeader( &apos;Content-Type&apos; );</span><br><span class="line">xhr.getAllResponseHeaders();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取响应主体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xhr.responseText    // json, 文本 类型</span><br><span class="line">xhr.responseXML     // xml 类型</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="API-详解"><a href="#API-详解" class="headerlink" title="API 详解"></a>API 详解</h1><ol>
-<li><code>xhr.open()</code> 发送请求, 可以是 get 或者 post 方式</li>
-<li><code>xhr.setRequestHeader()</code> 设置请求头</li>
-<li><code>xhr.send()</code> 发送请求主体, 如果是 get 方式使用 <code>xhr.send(null)</code>, 因为在 open 中已经发送了请求主体</li>
-<li><code>xhr.onreadystatechange = functtion(){}</code> 监听响应状态</li>
-<li><code>xhr.status</code> 表示响应码, 如 200 表示成功</li>
-<li><code>xhr.statusText</code> 表示响应信息. 如 ok</li>
-<li><code>xhr.getAllResponseHeaders()</code> 获取全部响应头信息</li>
-<li><code>xhr.getResponseHeader( &#39;key&#39; )</code> 获取指定响应头信息</li>
-<li><code>xhr.reponseText xhr.responseXML</code> 都表示响应主体, 格式不同</li>
-</ol>
-<h1 id="get-和-post-的差异"><a href="#get-和-post-的差异" class="headerlink" title="get 和 post 的差异"></a>get 和 post 的差异</h1><ol>
-<li>get 没有请求主体, 使用 <code>xhr.send(null)</code> 发送请求主体</li>
-<li>get 可以通过请求 url 上添加请求函数</li>
-<li>post 可以通过 <code>xhr.send( &#39;name=itcast&amp;age=10&#39; )</code> 发送请求主体</li>
-<li>post 需要设置</li>
-<li>get 性能高( 基本上获取内容都是使用get )</li>
-<li>get 大小限制约 4kb, post 则没有限制</li>
-</ol>
-<h2 id="get-方式的-请求响应"><a href="#get-方式的-请求响应" class="headerlink" title="get 方式的 请求响应"></a>get 方式的 请求响应</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest;</span><br><span class="line">    xhr.open(&apos;get&apos;,&apos;01.php&apos;);</span><br><span class="line">    xhr.send(null);</span><br><span class="line">    xhr.onreadystatechange = function()&#123;</span><br><span class="line">     if(xhr.status == 200 &amp;&amp; xhr.readyState == 4)&#123;</span><br><span class="line">         /*获取到XML格式内容  放回的是DOM对象  document*/</span><br><span class="line">         var xml = xhr.responseXML;</span><br><span class="line">         /*通过选着器可以获取到xml的数据*/</span><br><span class="line">         console.log(xml.querySelectorAll(&apos;array&apos;)[0].querySelector(&apos;src&apos;).innerHTML);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="post-请求和响应"><a href="#post-请求和响应" class="headerlink" title="post 请求和响应"></a>post 请求和响应</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//初始化</span><br><span class="line">var xhr = new XMLHttpRequest();</span><br><span class="line">//请求行</span><br><span class="line">xhr.open(&quot;post&quot;,&quot;03 AjaxPost.php&quot;);</span><br><span class="line">//请求头</span><br><span class="line">xhr.setRequestHeader(&quot;content-type&quot;,&quot;application/x-www-form-urlencoded&quot;)</span><br><span class="line">//请求内容</span><br><span class="line">xhr.send(&quot;username=rxt&amp;password=1234&quot;);</span><br><span class="line"></span><br><span class="line">//监听响应改变</span><br><span class="line">xhr.onreadystatechange = function()&#123;</span><br><span class="line"></span><br><span class="line">    /*什么时候才算是http通讯结束 在readyState=4的是 响应完成*/</span><br><span class="line">    /*什么是才算是通讯成  status 200 */</span><br><span class="line"></span><br><span class="line">    if(xhr.status ==200 &amp;&amp; xhr.readyState == 4)&#123;</span><br><span class="line">        document.querySelector(&quot;div&quot;).innerHTML = xhr.responseText;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h1><ol>
-<li><p>XML 是可扩展标记语言（Extensible Markup Language）的缩写，其中的 标记（markup）是关键部分。XML 可以创建内容，然后使用限定标记标记它，从而使每个单词、短语或块成为可识别、可分类的信息。您创建的文件，或文档实例 由元素（标记）和内容构成。</p>
-</li>
-<li><p>特点</p>
-<ul>
-<li>必须要有根元素</li>
-<li>不能以空格, 数字或者 . 开头, 对大小写敏感</li>
-<li>不能交叉嵌套</li>
-<li>属性双引号</li>
-<li>特殊符号要使用尸体</li>
-<li>注释和 HTML 一样</li>
-</ul>
-</li>
-<li><p>XML 虽然可以<strong>描述</strong>和<strong>传输</strong>复杂数据, 但是其解析过于复杂并且体积较大, 所以实际开发使用较少</p>
-</li>
-<li>格式</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;root&gt;</span><br><span class="line">&lt;arrayList&gt;</span><br><span class="line">    &lt;array&gt;</span><br><span class="line">        &lt;src&gt;images/banner.jpg&lt;/src&gt;</span><br><span class="line">        &lt;newPirce&gt;12.00&lt;/newPirce&gt;</span><br><span class="line">        &lt;oldPrice&gt;30.00&lt;/oldPrice&gt;</span><br><span class="line">    &lt;/array&gt;</span><br><span class="line">    &lt;array&gt;</span><br><span class="line">        &lt;src&gt;images/banner.jpg&lt;/src&gt;</span><br><span class="line">        &lt;newPirce&gt;12.00&lt;/newPirce&gt;</span><br><span class="line">        &lt;oldPrice&gt;30.00&lt;/oldPrice&gt;</span><br><span class="line">    &lt;/array&gt;</span><br><span class="line">&lt;/arrayList&gt;</span><br><span class="line">&lt;/root&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><p>JavaScript Object Notation，另一种轻量级的文本数据交换格式，独立于语言。</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><pre><code>1. 数据在键值对中
-2. 数据由 &quot; , &quot; 分隔, 最后一个键值不能带 &quot; , &quot;
-3. &quot; [] &quot;保存数组, &quot; {} &quot; 保存对象
-4. 使用 &quot;&quot; 双引号包裹键值
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;&quot;src&quot;:&quot;images/detail01.jpg&quot;,&quot;oldPrice&quot;:&quot;10.12&quot;,&quot;newPrice&quot;:&quot;130.00&quot;&#125;,</span><br><span class="line">    &#123;&quot;src&quot;:&quot;images/detail02.jpg&quot;,&quot;oldPrice&quot;:&quot;1.00&quot;,&quot;newPrice&quot;:&quot;11.00&quot;&#125;,</span><br><span class="line">    &#123;&quot;src&quot;:&quot;images/detail03.jpg&quot;,&quot;oldPrice&quot;:&quot;100.00&quot;,&quot;newPrice&quot;:&quot;1000.00&quot;&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h2 id="不同语言下的解析-JSON"><a href="#不同语言下的解析-JSON" class="headerlink" title="不同语言下的解析 JSON"></a>不同语言下的解析 JSON</h2><p>JSON数据在不同语言进行传输时，类型为字符串，不同的语言各自也都对应有解析方法，需要解析完成后才能读取</p>
-<ol>
-<li>php 方法</li>
-</ol>
-<ul>
-<li>json_encode() : 将 php 数组转化为 json 字符</li>
-<li>json_decode() : 将 json 字符串 转换为 php 数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    header(&apos;Content-Type:text/html;charset=utf-8&apos;);</span><br><span class="line">    /*以json格式传输数据的时候要求响应内容格式是   application/json*/</span><br><span class="line">    /*注意也可以不设置  但是这遵循的一个规范*/</span><br><span class="line"></span><br><span class="line">    /*file_get_contents 获取文件内容*/</span><br><span class="line">    $json = file_get_contents(&apos;01.json&apos;);</span><br><span class="line"></span><br><span class="line">    /*输出json内容*/</span><br><span class="line">    echo $json;</span><br><span class="line">    echo &apos;&lt;br&gt;&lt;br&gt;&apos;;</span><br><span class="line"></span><br><span class="line">    $array = array(</span><br><span class="line">        array(&apos;src&apos;=&gt;&apos;images/detail01.jpg&apos;,&apos;newPrice&apos;=&gt;&apos;12.00&apos;,&apos;oldPrice&apos;=&gt;&apos;455.00&apos;),</span><br><span class="line">        array(&apos;src&apos;=&gt;&apos;images/detail02.jpg&apos;,&apos;newPrice&apos;=&gt;&apos;65.00&apos;,&apos;oldPrice&apos;=&gt;&apos;878.00&apos;),</span><br><span class="line">        array( &apos;src&apos;=&gt;&apos;images/detail01.jpg&apos;,&apos;newPrice&apos;=&gt;&apos;100.00&apos;,&apos;oldPrice&apos;=&gt;&apos;1000.00&apos;)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    /*将php数组转化成json字符*/</span><br><span class="line">    $json_array = json_encode($array);</span><br><span class="line">    echo $json_array;</span><br><span class="line">    echo &apos;&lt;br&gt;&lt;br&gt;&apos;;</span><br><span class="line"></span><br><span class="line">    /*将json字符转化成php数组*/</span><br><span class="line">    $array_json = json_decode($json_array);</span><br><span class="line">    echo $array_json;</span><br><span class="line">    echo &apos;&lt;br&gt;&lt;br&gt;&apos;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="javascript-解析方法"><a href="#javascript-解析方法" class="headerlink" title="javascript 解析方法"></a>javascript 解析方法</h2><ul>
-<li>JSON对象<ul>
-<li>JSON.parse() : 字符串 转 JSON 对象</li>
-<li>JSON.stringify() : JSON 对象 转 字符串</li>
-</ul>
-</li>
-<li>JSON 兼容处理 : json2.js</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest;</span><br><span class="line">xhr.open(&apos;get&apos;,&apos;01.php&apos;);</span><br><span class="line">xhr.send(null);</span><br><span class="line">xhr.onreadystatechange = function()&#123;</span><br><span class="line">   if(xhr.status == 200 &amp;&amp; xhr.readyState == 4)&#123;</span><br><span class="line">       /*获取仅仅是字符串*/</span><br><span class="line">       var text = xhr.responseText;</span><br><span class="line"></span><br><span class="line">       /*需要把字符串转化成JSON对象*/</span><br><span class="line">       var json_obj = JSON.parse(text);</span><br><span class="line">       console.log(json_obj);</span><br><span class="line"></span><br><span class="line">       /*我们也可以把JSON对象转化成字符串*/</span><br><span class="line">       var json_str = JSON.stringify(json_obj);</span><br><span class="line">       console.log(json_str);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="封装-Ajax-工具函数"><a href="#封装-Ajax-工具函数" class="headerlink" title="封装 Ajax 工具函数"></a>封装 Ajax 工具函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* 1. 请求的类型                type    get post</span><br><span class="line">* 2. 请求地址                  url</span><br><span class="line">* 3. 是异步的还是同步的         async   false true</span><br><span class="line">* 4. 请求内容的格式            contentType</span><br><span class="line">* 5. 传输的数据                data    json对象</span><br><span class="line">*</span><br><span class="line">* 6.响应成功处理函数           success   function</span><br><span class="line">* 7.响应失败的处理函数         error     function</span><br><span class="line">*</span><br><span class="line">* 这些都是动态参数  参数对象  options</span><br><span class="line">* */</span><br><span class="line"></span><br><span class="line">/*封装一个函数*/</span><br><span class="line">window.$ = &#123;&#125;;</span><br><span class="line">/*申明一个ajax的方法*/</span><br><span class="line">$.ajax = function(options)&#123;</span><br><span class="line"></span><br><span class="line">if(!options || typeof options != &apos;object&apos;)&#123;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*请求的类型*/</span><br><span class="line">var type = options.type || &apos;get&apos;;/*默认get*/</span><br><span class="line">/*请求地址 */</span><br><span class="line">var url = options.url || location.pathname;/*当前的地址*/</span><br><span class="line">/*是异步的还是同步的 */</span><br><span class="line">var async = (options.async === false)?false:true;/*默认异步*/</span><br><span class="line">/*请求内容的格式 */</span><br><span class="line">var contentType = options.contentType || &quot;text/html&quot;;</span><br><span class="line"></span><br><span class="line">/*传输的数据 */</span><br><span class="line">var data = options.data || &#123;&#125;;/*｛name:&apos;&apos;,age:&apos;&apos;｝*/</span><br><span class="line">/*在提交的时候需要转成 name=xjj 这种格式*/</span><br><span class="line"></span><br><span class="line">var dataStr = &apos;&apos;/*数据字符串*/</span><br><span class="line"></span><br><span class="line">for(var key in data)&#123;</span><br><span class="line">    dataStr += key+&apos;=&apos;+data[key]+&apos;&amp;&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dataStr = dataStr &amp;&amp; dataStr.slice(0,-1);</span><br><span class="line"></span><br><span class="line">/*ajax 编程*/</span><br><span class="line">var xhr = new XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">/*请求行*/</span><br><span class="line">/*(type==&apos;get&apos;?url+&apos;?&apos;+dataStr:url)判断当前的请求类型*/</span><br><span class="line">xhr.open(type,(type==&apos;get&apos;?url+&apos;?&apos;+dataStr:url),async);</span><br><span class="line"></span><br><span class="line">/*请求头*/</span><br><span class="line">if(type == &apos;post&apos;)&#123;</span><br><span class="line">    xhr.setRequestHeader(&apos;Content-Type&apos;,&apos;application/x-www-form-urlencoded&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*请求主体*/</span><br><span class="line">/*需要判断请求类型*/</span><br><span class="line">xhr.send(type==&apos;get&apos;?null:dataStr);</span><br><span class="line"></span><br><span class="line">/*监听响应状态的改变  响应状态*/</span><br><span class="line">xhr.onreadystatechange = function()&#123;</span><br><span class="line">    /*请求响应完成并且成功*/</span><br><span class="line">    if(xhr.readyState == 4 &amp;&amp; xhr.status == 200)&#123;</span><br><span class="line">        /*success*/</span><br><span class="line">        var data = &apos;&apos;;</span><br><span class="line">        var contentType = xhr.getResponseHeader(&apos;Content-Type&apos;);</span><br><span class="line">        /*如果我们服务器返回的是xml*/</span><br><span class="line">        if(contentType.indexOf(&apos;xml&apos;) &gt; -1)&#123;</span><br><span class="line">            data = xhr.responseXML;</span><br><span class="line">        &#125;</span><br><span class="line">        /*如果我们的服务器返回的是json字符串*/</span><br><span class="line">        else if(contentType.indexOf(&apos;json&apos;) &gt; -1)&#123;</span><br><span class="line">            /*转化json对象*/</span><br><span class="line">            data = JSON.parse(xhr.responseText);</span><br><span class="line">        &#125;</span><br><span class="line">        /*否则的话他就是字符串*/</span><br><span class="line">        else&#123;</span><br><span class="line">            data = xhr.responseText;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /*回调 成功处理函数*/</span><br><span class="line"></span><br><span class="line">        options.success &amp;&amp; options.success(data);</span><br><span class="line">    &#125;</span><br><span class="line">    /*计时请求xhr.status不成功  他也需要的响应完成才认作是一个错误的请求*/</span><br><span class="line">    else if(xhr.readyState == 4)&#123;</span><br><span class="line">        /*error*/</span><br><span class="line">        options.error &amp;&amp; options.error(&apos;you request fail !&apos;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">$.post = function(options)&#123;</span><br><span class="line">options.type = &apos;post&apos;;</span><br><span class="line">$.ajax(options);</span><br><span class="line">&#125;</span><br><span class="line">$.get = function(options)&#123;</span><br><span class="line">options.type = &apos;get&apos;;</span><br><span class="line">$.ajax(options);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="jQuery-中的-Ajax"><a href="#jQuery-中的-Ajax" class="headerlink" title="jQuery 中的 Ajax"></a>jQuery 中的 Ajax</h1><ul>
-<li>jQuery为我们提供了更强大的Ajax封装</li>
-<li>$.ajax({}) 可配置方式发起Ajax请求</li>
-<li>$.get() 以GET方式发起Ajax请求</li>
-<li>$.post() 以POST方式发起Ajax请求</li>
-<li>$(‘form’).serialize() 序列化表单（即格式化key=val&amp;key=val）</li>
-<li>url 接口地址</li>
-<li>type 请求方式</li>
-<li>timeout 请求超时</li>
-<li>dataType 服务器返回格式</li>
-<li>data 发送请求数据</li>
-<li>beforeSend: function () {} 请求发起前调用</li>
-<li>success 成功响应后调用</li>
-<li>error 错误响应时调用</li>
-<li>complete 响应完成时调用（包括成功和失败）</li>
-<li>jQuery Ajax介绍</li>
-<li><a href="http://www.w3school.com.cn/jquery/jquery_ref_ajax.asp" target="_blank" rel="noopener">http://www.w3school.com.cn/jquery/jquery_ref_ajax.asp</a></li>
-</ul>
-<h2 id="jQuery-中-Ajax-的使用"><a href="#jQuery-中-Ajax-的使用" class="headerlink" title="jQuery 中 Ajax 的使用"></a>jQuery 中 Ajax 的使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type : &apos;get&apos;,</span><br><span class="line">    url : &apos;getCode.php&apos;,</span><br><span class="line">    data : &#123;&apos;mobile&apos; : phone&#125;,</span><br><span class="line">    dataType : &apos;json&apos;,</span><br><span class="line">    beforeSend : function()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    success : function(info)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h1><h2 id="artTemplate-简洁语法模板"><a href="#artTemplate-简洁语法模板" class="headerlink" title="artTemplate 简洁语法模板"></a>artTemplate 简洁语法模板</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 简洁语法</span><br><span class="line">&#123;&#123;if admin&#125;&#125;</span><br><span class="line">    &#123;&#123;include &apos;admin_content&apos;&#125;&#125;</span><br><span class="line"></span><br><span class="line">    &#123;&#123;each list&#125;&#125;</span><br><span class="line">        &lt;div&gt;&#123;&#123;$index&#125;&#125;. &#123;&#123;$value.user&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &#123;&#123;/each&#125;&#125;</span><br><span class="line">&#123;&#123;/if&#125;&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 编写模板</span><br><span class="line">&lt;script id=&quot;test&quot; type=&quot;text/html&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &#123;&#123;each list as value i&#125;&#125;</span><br><span class="line">            &lt;li&gt;索引 &#123;&#123;i + 1&#125;&#125; ：&#123;&#123;value&#125;&#125;&lt;/li&gt;</span><br><span class="line">        &#123;&#123;/each&#125;&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 渲染数据</span><br><span class="line">var data = &#123;</span><br><span class="line">    title: &apos;标签&apos;,</span><br><span class="line">    list: [&apos;文艺&apos;, &apos;博客&apos;, &apos;摄影&apos;, &apos;电影&apos;, &apos;民谣&apos;, &apos;旅行&apos;, &apos;吉他&apos;]</span><br><span class="line">&#125;;</span><br><span class="line">var html = template(&apos;test&apos;, data);</span><br><span class="line">document.getElementById(&apos;content&apos;).innerHTML = html;</span><br></pre></td></tr></table></figure>
-<h2 id="artTemplate-js-原生语法模板"><a href="#artTemplate-js-原生语法模板" class="headerlink" title="artTemplate js 原生语法模板"></a>artTemplate js 原生语法模板</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 模板 js 原生语法</span><br><span class="line">&lt;h1&gt;&lt;%=title%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;%for(i = 0; i &lt; list.length; i ++) &#123;%&gt;</span><br><span class="line">    &lt;li&gt;条目内容 &lt;%=i + 1%&gt; ：&lt;%=list[i]%&gt;&lt;/li&gt;</span><br><span class="line">&lt;%&#125;%&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;% 与 %&gt; 符号包裹起来的语句则为模板的逻辑表达式。</span><br><span class="line">对内容编码输出：&lt;%=content%&gt;</span><br><span class="line">不编码输出：&lt;%=#content%&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="同源跨域"><a href="#同源跨域" class="headerlink" title="同源跨域"></a>同源跨域</h1><ol>
-<li>同源<ol start="2">
-<li>同源策略是浏览器的一种安全策略，所谓同源是指，域名，协议，端口完全相同。</li>
-</ol>
-</li>
-<li>跨域<ol start="3">
-<li><a href="http://api.example.com/detail.html" target="_blank" rel="noopener">http://api.example.com/detail.html</a>  不同源 域名不同</li>
-<li>https//<a href="http://www.example.com/detail.html" target="_blank" rel="noopener">www.example.com/detail.html</a>   不同源 协议不同</li>
-<li><a href="http://www.example.com:8080/detail.html" target="_blank" rel="noopener">http://www.example.com:8080/detail.html</a>    不同源    端口不同</li>
-<li><a href="http://api.example.com:8080/detail.html" target="_blank" rel="noopener">http://api.example.com:8080/detail.html</a>    不同源    域名、端口不同</li>
-<li><a href="https://api.example.com/detail.html" target="_blank" rel="noopener">https://api.example.com/detail.html</a>    不同源    协议、域名不同</li>
-<li><a href="https://www.example.com:8080/detail.html" target="_blank" rel="noopener">https://www.example.com:8080/detail.html</a>    不同源    端口、协议不同</li>
-<li><a href="http://www.example.com/detail/index.html" target="_blank" rel="noopener">http://www.example.com/detail/index.html</a>    同源    只是目录不同</li>
-</ol>
-</li>
-<li>跨域方案<ol>
-<li>顶级域名相同的可以通过domain.name来解决，即同时设置 domain.name = 顶级域名（如example.com）</li>
-<li>document.domain + iframe</li>
-<li>window.name + iframe</li>
-<li>location.hash + iframe</li>
-<li>window.postMessage()</li>
-</ol>
-</li>
-<li>jsonp<ol start="5">
-<li>json with padding</li>
-<li>原理<ol start="7">
-<li>其本质是利用了标签具有可跨域的特性， 由服务端返回一个预先定义好的Javascript函数的调用，并且将服务器数据以该函数参数的形式传递过来， 此方法需要前后端配合完成。</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">当我们用script标签去加载的时候  会把内容解析成js去执行</span><br><span class="line">--&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function fuc(data)&#123;</span><br><span class="line">        console.log(data.name);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;http://www.guangzhou.com/api.php?callback=fuc&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="jQuery-中的-Ajax-1"><a href="#jQuery-中的-Ajax-1" class="headerlink" title="jQuery 中的 Ajax"></a>jQuery 中的 Ajax</h1><ol>
-<li>url: 要求为String类型的参数，（默认为当前页地址）发送请求的地址。</li>
-<li>type: 要求为String类型的参数，请求方式（post或get）默认为get。注意其他http请求方法，例如put和delete也可以使用，但仅部分浏览器支持。</li>
-<li>timeout: 要求为Number类型的参数，设置请求超时时间（毫秒）。此设置将覆盖$.ajaxSetup()方法的全局设置。</li>
-<li>async：要求为Boolean类型的参数，默认设置为true，所有请求均为异步请求。如果需要发送同步请求，请将此选项设置为false。注意，同步请求将锁住浏览器，用户其他操作必须等待请求完成才可以执行。</li>
-<li>cache：要求为Boolean类型的参数，默认为true（当dataType为script时，默认为false）。设置为false将不会从浏览器缓存中加载请求信息。</li>
-<li>data: 要求为Object或String类型的参数，发送到服务器的数据。如果已经不是字符串，将自动转换为字符串格式。get请求中将附加在url后。防止这种自动转换，可以查看processData选项。对象必须为key/value格式，例如<code>{foo1:&quot;bar1&quot;,foo2:&quot;bar2&quot;}</code>转换为<code>&amp;foo1=bar1&amp;foo2=bar2</code>。如果是数组，JQuery将自动为不同值对应同一个名称。例如{foo:[“bar1”,”bar2”]}转换为&amp;foo=bar1&amp;foo=bar2。</li>
-<li>dataType: 要求为String类型的参数，预期服务器返回的数据类型。如果不指定，JQuery将自动根据http包mime信息返回responseXML或responseText，并作为回调函数参数传递。<ul>
-<li>可用的类型如下：<ul>
-<li>xml：返回XML文档，可用JQuery处理。</li>
-<li>html：返回纯文本HTML信息；包含的script标签会在插入DOM时执行。</li>
-<li>script：返回纯文本JavaScript代码。不会自动缓存结果。除非设置了cache参数。注意在远程请求时（不在同一个域下），所有post请求都将转为get请求。</li>
-<li>json：返回JSON数据。</li>
-<li>jsonp：JSONP格式。使用SONP形式调用函数时，例如myurl?callback=?，JQuery将自动替换后一个“?”为正确的函数名，以执行回调函数。</li>
-<li>text：返回纯文本字符串。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>beforeSend：要求为Function类型的参数，发送请求前可以修改XMLHttpRequest对象的函数，例如添加自定义HTTP头。在beforeSend中如果返回false可以取消本次ajax请求。XMLHttpRequest对象是惟一的参数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function(XMLHttpRequest)&#123;</span><br><span class="line">   this;   //调用本次ajax请求时传递的options参数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>complete：要求为Function类型的参数，请求完成后调用的回调函数（请求成功或失败时均调用）。</p>
-<ul>
-<li>参数：XMLHttpRequest对象和一个描述成功请求类型的字符串。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function(XMLHttpRequest, textStatus)&#123;</span><br><span class="line">   this;    //调用本次ajax请求时传递的options参数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>success：要求为Function类型的参数，请求成功后调用的回调函数，有两个参数。</p>
-<ol>
-<li>由服务器返回，并根据dataType参数进行处理后的数据。</li>
-<li>描述状态的字符串。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function(data, textStatus)&#123;</span><br><span class="line">   //data可能是xmlDoc、jsonObj、html、text等等</span><br><span class="line">   this;  //调用本次ajax请求时传递的options参数</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>error：要求为Function类型的参数，请求失败时被调用的函数。该函数有3个参数，即XMLHttpRequest对象、错误信息、捕获的错误对象(可选)。<br> ajax事件函数如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function(XMLHttpRequest, textStatus, errorThrown)&#123;</span><br><span class="line">   //通常情况下textStatus和errorThrown只有其中一个包含信息</span><br><span class="line">   this;   //调用本次ajax请求时传递的options参数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>contentType：要求为String类型的参数，当发送信息至服务器时，内容编码类型默认为”application/x-www-form-urlencoded”。该默认值适合大多数应用场合。</p>
-</li>
-<li>dataFilter：要求为Function类型的参数，给Ajax返回的原始数据进行预处理的函数。提供data和type两个参数。data是Ajax返回的原始数据，type是调用jQuery.ajax时提供的dataType参数。函数返回的值将由jQuery进一步处理。<br>   `function(data, type){<pre><code>//返回处理后的数据
-return data;
-</code></pre>   }`</li>
-<li>global：要求为Boolean类型的参数，默认为true。表示是否触发全局ajax事件。设置为false将不会触发全局ajax事件，ajaxStart或ajaxStop可用于控制各种ajax事件。</li>
-<li>ifModified：要求为Boolean类型的参数，默认为false。仅在服务器数据改变时获取新数据。服务器数据改变判断的依据是Last-Modified头信息。默认值是false，即忽略头信息。</li>
-<li>jsonp：要求为String类型的参数，在一个jsonp请求中重写回调函数的名字。该值用来替代在”callback=?”这种GET或POST请求中URL参数里的”callback”部分，例如<code>{jsonp:&#39;onJsonPLoad&#39;}</code>会导致将<code>&quot;onJsonPLoad=?&quot;</code>传给服务器。</li>
-<li>username：要求为String类型的参数，用于响应HTTP访问认证请求的用户名。</li>
-<li>password：要求为String类型的参数，用于响应HTTP访问认证请求的密码。</li>
-<li>processData：要求为Boolean类型的参数，默认为true。默认情况下，发送的数据将被转换为对象（从技术角度来讲并非字符串）以配合默认内容类型”application/x-www-form-urlencoded”。如果要发送DOM树信息或者其他不希望转换的信息，请设置为false。</li>
-<li>scriptCharset：要求为String类型的参数，只有当请求时dataType为”jsonp”或者”script”，并且type是GET时才会用于强制修改字符集(charset)。通常在本地和远程的内容编码不同时使用。</li>
-</ol>
-<p>案例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">    $(&apos;#send&apos;).click(function()&#123;</span><br><span class="line">         $.ajax(&#123;</span><br><span class="line">             type: &quot;GET&quot;,</span><br><span class="line">             url: &quot;test.json&quot;,</span><br><span class="line">             data: &#123;</span><br><span class="line">               username:$(&quot;#username&quot;).val(), content:$(&quot;#content&quot;).val()</span><br><span class="line">               &#125;,</span><br><span class="line">             dataType: &quot;json&quot;,</span><br><span class="line">             success: function(data)&#123;</span><br><span class="line">                         $(&apos;#resText&apos;).empty();   //清空resText里面的所有内容</span><br><span class="line">                         var html = &apos;&apos;;</span><br><span class="line">                         $.each(data, function(commentIndex, comment)&#123;</span><br><span class="line">                               html += &apos;&lt;div class=&quot;comment&quot;&gt;&lt;h6&gt;&apos; + comment[&apos;username&apos;]</span><br><span class="line">                                         + &apos;:&lt;/h6&gt;&lt;p class=&quot;para&quot;&apos; + comment[&apos;content&apos;]</span><br><span class="line">                                         + &apos;&lt;/p&gt;&lt;/div&gt;&apos;;</span><br><span class="line">                         &#125;);</span><br><span class="line">                         $(&apos;#resText&apos;).html(html);</span><br><span class="line">                      &#125;</span><br><span class="line">         &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/18/JS的值类型和引用类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -796,237 +446,6 @@ return data;
 </li>
 <li>在构造函数中使用<strong>this</strong>结合对象的动态特性, 为实例对象添加成员</li>
 </ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/JS面向对象之闭包/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liu Yu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Yu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/13/JS面向对象之闭包/" itemprop="url">
-                  JS面向对象之闭包
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-                
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-13T14:31:33+08:00">2017-04-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="JS面向对象之闭包"><a href="#JS面向对象之闭包" class="headerlink" title="JS面向对象之闭包"></a>JS面向对象之闭包</h1><h2 id="闭包的概念"><a href="#闭包的概念" class="headerlink" title="闭包的概念"></a>闭包的概念</h2><ul>
-<li>闭包的含义就是闭合,简单来说就是一个具有封闭功能的结构</li>
-<li>闭包就是具有封闭的对外不公开的,包裹结构或空间</li>
-</ul>
-<h2 id="在-js-中的闭包"><a href="#在-js-中的闭包" class="headerlink" title="在 js 中的闭包"></a>在 js 中的闭包</h2><ul>
-<li>在 js 中函数可以构成闭包</li>
-<li>函数是一个代码结构的封闭结构,具有包裹特性</li>
-<li>根据作用域规则, 只允许函数访问外部数据, 外部无法访问函数内部数据</li>
-<li>所以说函数具有封闭的, 不公开的特效, 所以可以构成闭包</li>
-</ul>
-<h2 id="闭包解决什么问题"><a href="#闭包解决什么问题" class="headerlink" title="闭包解决什么问题"></a>闭包解决什么问题</h2><ol>
-<li>闭包不允许外界访问</li>
-<li>外界见解访问闭包中的数据<ul>
-<li>函数可以构成闭包, 解决的问题就是函数外访问到函数内部的数据</li>
-</ul>
-</li>
-</ol>
-<h3 id="得到一个数据"><a href="#得到一个数据" class="headerlink" title="得到一个数据"></a>得到一个数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    function foo()&#123;</span><br><span class="line">        var num = 123;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">    var result = foo();</span><br><span class="line">    console.log(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>外部可以访问到函数内的数据</li>
-<li>但是数据不能进行二次访问, 如果再试访问函数内部数据需要再次调用函数, 虽然得到的移入是num = 123, 但是实际不是第一次函数调用的那个值</li>
-</ol>
-<h3 id="得到一个函数-通过函数访问数据"><a href="#得到一个函数-通过函数访问数据" class="headerlink" title="得到一个函数, 通过函数访问数据"></a>得到一个函数, 通过函数访问数据</h3><ul>
-<li>在函数内的数据, 不能直接被函数外访问,如果函数内再定义一个函数, 那么函数内部数据可以被函数外访问<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var num = Math.random();</span><br><span class="line">    function fn()&#123;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">    return fn;</span><br><span class="line">&#125;</span><br><span class="line">var f = foo();</span><br><span class="line">// f 可以直接访问这个数据 num</span><br><span class="line">var result1 = f();</span><br><span class="line">var result2 = f();</span><br><span class="line">// 得到结果一致,说明多次访问的是同一个数据</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="得到的数据可以是对象"><a href="#得到的数据可以是对象" class="headerlink" title="得到的数据可以是对象"></a>得到的数据可以是对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var  o = &#123;name : &apos;Bob&apos;&#125;;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        return o;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var fn = foo();</span><br><span class="line">var result = fn();</span><br></pre></td></tr></table></figure>
-<h3 id="获得多个数据"><a href="#获得多个数据" class="headerlink" title="获得多个数据"></a>获得多个数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var num1 = Math.random();</span><br><span class="line">    var num2 = Math.random();</span><br><span class="line">    return &#123;</span><br><span class="line">        num1 : function()&#123;</span><br><span class="line">            return num1;</span><br><span class="line">        &#125;,</span><br><span class="line">        num2 : function()&#123;</span><br><span class="line">            return num2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="获得和修改这个数据"><a href="#获得和修改这个数据" class="headerlink" title="获得和修改这个数据"></a>获得和修改这个数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var num = Math.random();</span><br><span class="line">    return &#123;</span><br><span class="line">        getNum : function()&#123;</span><br><span class="line">            return num;</span><br><span class="line">        &#125;,</span><br><span class="line">        setNum : function(value)&#123;</span><br><span class="line">            num = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="闭包的基本结构"><a href="#闭包的基本结构" class="headerlink" title="闭包的基本结构"></a>闭包的基本结构</h2><ol>
-<li>通过函数: 写一个函数, 函数内定义一个新函数, 返回新函数, 使用新函数得到函数内的数据</li>
-<li>通过对象: 写一个函数, 函数内顶一个对象, 对象中绑定多个方法, 返回对象, 利用对象内的方法访问函数内中的数据</li>
-</ol>
-<h2 id="闭包的基本用法"><a href="#闭包的基本用法" class="headerlink" title="闭包的基本用法"></a>闭包的基本用法</h2><ol>
-<li><p>带有私有访问数据的对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">    this.name = &apos;Peter&apos;;</span><br><span class="line">    // setName(&apos;&apos;)</span><br><span class="line">&#125;</span><br><span class="line">// 私有数据指的是只有函数内部可以访问的数据,或者对象内部的方法</span><br><span class="line"></span><br><span class="line">// 简单的例子,判断孩子是不是老张家的</span><br><span class="line">function createPerson()&#123;</span><br><span class="line">    var name = &apos;张全蛋&apos;;</span><br><span class="line">    return &#123;</span><br><span class="line">        getName : function()&#123;</span><br><span class="line">            return name;</span><br><span class="line">        &#125;,</span><br><span class="line">        setName : function(value)&#123;</span><br><span class="line">            // 如果value的第一个字符串是 张 ,就设置</span><br><span class="line">            if(value.charAt(0) === &apos;张&apos;)&#123;</span><br><span class="line">                name = value;</span><br><span class="line">            &#125; esle &#123;</span><br><span class="line">                //不姓 张 ,就将错误抛出</span><br><span class="line">                throw new Error(&apos;你不姓张,难道还能姓王?&apos;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>带有私有数据的函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 不具有私有数据</span><br><span class="line">var fn = function()&#123;&#125;;</span><br><span class="line">function fn()&#123;&#125;</span><br><span class="line"></span><br><span class="line">// 具有私有数据</span><br><span class="line">var foo = (function()&#123;</span><br><span class="line">    // 私有数据</span><br><span class="line">    return function()&#123;</span><br><span class="line">        // 可以访问私有数据</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="闭包的基本模型"><a href="#闭包的基本模型" class="headerlink" title="闭包的基本模型"></a>闭包的基本模型</h2><h3 id="函数模型"><a href="#函数模型" class="headerlink" title="函数模型"></a>函数模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    // 私有数据</span><br><span class="line">    return function()&#123;</span><br><span class="line">        // 可以访问上面的私有数据</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="对象模型"><a href="#对象模型" class="headerlink" title="对象模型"></a>对象模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    // 私有数据</span><br><span class="line">    return &#123;</span><br><span class="line">        method : function()&#123;</span><br><span class="line">            // 可以访问的私有数据</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="闭包的性能问题"><a href="#闭包的性能问题" class="headerlink" title="闭包的性能问题"></a>闭包的性能问题</h2><ul>
-<li>函数的执行需要内存, 函数中定义的变量会在函数执行后自动回收</li>
-<li>因为是闭包结构, 如果还有变量引用这些数据的话, 这些数据不会被回收</li>
-<li>因此在使用闭包的时候,如果不使用这些数据了, 需要将函数赋值为 null<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var foo = (function()&#123;</span><br><span class="line">    var num = 123;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line">// 如果不需要foo中的数据, 赋值为 null</span><br><span class="line">foo = null;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><h2 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h2><pre><code>1. 一个具有封闭的对外不公开的, 包裹结构, 或空间.
-2. 在 js 中函数可以构成闭包. 一般函数是一个代码结构的封闭结构, 即包裹的特性．
-3. 同时根据作用域规则,只允许函数访问外部的数据, 外部无法访问函数内部的数据, 即封闭的对外不公开的特性.
-4. 因此说函数可以构成闭包.
-</code></pre><h2 id="闭包的基本模型-1"><a href="#闭包的基本模型-1" class="headerlink" title="闭包的基本模型"></a>闭包的基本模型</h2><h3 id="这些模型被称作带有缓存功能的函数"><a href="#这些模型被称作带有缓存功能的函数" class="headerlink" title="这些模型被称作带有缓存功能的函数"></a>这些模型被称作带有缓存功能的函数</h3><h3 id="对象模型-1"><a href="#对象模型-1" class="headerlink" title="对象模型"></a>对象模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    // 私有数据</span><br><span class="line">    return &#123;</span><br><span class="line">        method : function()&#123;</span><br><span class="line">            // 通过作用域链操作私有数据</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="函数模型-1"><a href="#函数模型-1" class="headerlink" title="函数模型"></a>函数模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    // 私有数据</span><br><span class="line">    return function()&#123;</span><br><span class="line">        // 通过作用域链操作私有数据</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>可以通过函数赋值的方法进行二次加工<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 二次加的工函数</span><br><span class="line">var fn = foo();</span><br><span class="line">// 正常函数</span><br><span class="line">var fun = function()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="沙箱模式-闭包应用的一个典范"><a href="#沙箱模式-闭包应用的一个典范" class="headerlink" title="沙箱模式(闭包应用的一个典范)"></a>沙箱模式(闭包应用的一个典范)</h2><h3 id="沙箱的概念"><a href="#沙箱的概念" class="headerlink" title="沙箱的概念"></a>沙箱的概念</h3><ul>
-<li>沙盘与盒子, 就可以在有一个小小的空间内模拟现实世界. 特点执行的效果与现实世界一模一样.</li>
-<li>只在沙箱中模拟与现实无关.</li>
-</ul>
-<h3 id="沙箱模式"><a href="#沙箱模式" class="headerlink" title="沙箱模式"></a>沙箱模式</h3><ul>
-<li>沙箱模式就是一个自调用的函数, 代码写到 函数中 一样会执行, 但是不会与外界有任何影响.</li>
-<li>例如 jQuery 中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(function () &#123;</span><br><span class="line"></span><br><span class="line">var jQuery = function () &#123;</span><br><span class="line"> // 所有的算法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// ....</span><br><span class="line">// ....</span><br><span class="line">jQuery.each = function () &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">window.jQuery = window.$ = jQuery;</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">$.each( ... )</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="带有缓存功能的函数"><a href="#带有缓存功能的函数" class="headerlink" title="带有缓存功能的函数"></a>带有缓存功能的函数</h2><ul>
-<li>以 Fibonacii 数列为例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var fib = (function()&#123;</span><br><span class="line">    var data = [1,1];</span><br><span class="line">    return function(n)&#123;</span><br><span class="line">        var value = data[n];</span><br><span class="line">        if(value === undefined)&#123;</span><br><span class="line">            value = fib(n-1) + fib(n-2);</span><br><span class="line">            data[n] = value;</span><br><span class="line">        &#125;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="自定义事件的追加"><a href="#自定义事件的追加" class="headerlink" title="自定义事件的追加"></a>自定义事件的追加</h2><h3 id="原生js中"><a href="#原生js中" class="headerlink" title="原生js中"></a>原生js中</h3><ul>
-<li><p>高级浏览器,使用addEventListener</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dom.addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">    // ...</span><br><span class="line">    // this =&gt; dom 对象</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>IE 低版本浏览器,使用 attachEvent</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dom.attachEvent(&apos;onclick&apos;,function()&#123;</span><br><span class="line">    // ...</span><br><span class="line">    // this =&gt; window</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>两者区别</p>
-<ol>
-<li>this的指向不同</li>
-<li>执行的顺序不同<br> addEventListener 由上往下执行<br> attachEvent 由下往上执行</li>
-</ol>
-</li>
-</ul>
-<h3 id="使用闭包为-window-onload-提供事件追加功能"><a href="#使用闭包为-window-onload-提供事件追加功能" class="headerlink" title="使用闭包为 window.onload 提供事件追加功能"></a>使用闭包为 window.onload 提供事件追加功能</h3><ol>
-<li>实现事件追加,需要存储事件函数,可以使用数组存储事件函数<ul>
-<li>满足事件触发时,存储的事件函数依次按顺序调用</li>
-<li>数组可以满足顺序结构</li>
-</ul>
-</li>
-<li>本身 onload 就应该有默认行为<ul>
-<li>从存储事件函数的数组中依次去除函数并调用</li>
-</ul>
-</li>
-<li>需要构建一个结构,具有 addEvent 和 removeEvent 方法</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var eventObj = (function()&#123;</span><br><span class="line">    // 创建一个数组,存储事件处理函数</span><br><span class="line">    var events = [];</span><br><span class="line">    // 默认行为</span><br><span class="line">    window.onlad = function()&#123;</span><br><span class="line">        for(var i = 0;i &lt; events.length;i++)&#123;</span><br><span class="line">            // 依次执行事件函数</span><br><span class="line">            events[i]();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 创建对象,具有 addEvent 和 removeEvent 方法</span><br><span class="line">    return &#123;</span><br><span class="line">        addEvent : function(fn)&#123;</span><br><span class="line">            // 添加事件处理函数到数组</span><br><span class="line">            events.push(fn);</span><br><span class="line">        &#125;,</span><br><span class="line">        removeEvent : function(fn)&#123;</span><br><span class="line">            // 得到函数在数组中的索引</span><br><span class="line">            var index = events.indexOf(fn);</span><br><span class="line">            // 如果函数存在就删除,不存在不处理</span><br><span class="line">            if(index != -1)&#123;</span><br><span class="line">                events.splice(index, 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1475,6 +894,455 @@ return data;
 <li>查看这个子节点是否还有子节点,如果没有直接存储到数组中,如果有就继续递归</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">function byClass(node, className, arr)&#123;</span><br><span class="line">//得到传入节点的所有子节点</span><br><span class="line">var lists = node.childNodes;</span><br><span class="line">for(var i = 0;i&lt; lists.length;i++)&#123;</span><br><span class="line">//判断是否有相同className元素</span><br><span class="line">if(arr[i],className == className)&#123;</span><br><span class="line">arr.push(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">//判断子节点是否还有子节点</span><br><span class="line">if(arr[i].childNodes.length &gt; 0)&#123;</span><br><span class="line">byClass(arr[i],className,arr);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/JS面向对象之闭包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liu Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Yu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/13/JS面向对象之闭包/" itemprop="url">
+                  JS面向对象之闭包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-13T14:31:33+08:00">2017-04-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JS面向对象之闭包"><a href="#JS面向对象之闭包" class="headerlink" title="JS面向对象之闭包"></a>JS面向对象之闭包</h1><h2 id="闭包的概念"><a href="#闭包的概念" class="headerlink" title="闭包的概念"></a>闭包的概念</h2><ul>
+<li>闭包的含义就是闭合,简单来说就是一个具有封闭功能的结构</li>
+<li>闭包就是具有封闭的对外不公开的,包裹结构或空间</li>
+</ul>
+<h2 id="在-js-中的闭包"><a href="#在-js-中的闭包" class="headerlink" title="在 js 中的闭包"></a>在 js 中的闭包</h2><ul>
+<li>在 js 中函数可以构成闭包</li>
+<li>函数是一个代码结构的封闭结构,具有包裹特性</li>
+<li>根据作用域规则, 只允许函数访问外部数据, 外部无法访问函数内部数据</li>
+<li>所以说函数具有封闭的, 不公开的特效, 所以可以构成闭包</li>
+</ul>
+<h2 id="闭包解决什么问题"><a href="#闭包解决什么问题" class="headerlink" title="闭包解决什么问题"></a>闭包解决什么问题</h2><ol>
+<li>闭包不允许外界访问</li>
+<li>外界见解访问闭包中的数据<ul>
+<li>函数可以构成闭包, 解决的问题就是函数外访问到函数内部的数据</li>
+</ul>
+</li>
+</ol>
+<h3 id="得到一个数据"><a href="#得到一个数据" class="headerlink" title="得到一个数据"></a>得到一个数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    function foo()&#123;</span><br><span class="line">        var num = 123;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">    var result = foo();</span><br><span class="line">    console.log(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>外部可以访问到函数内的数据</li>
+<li>但是数据不能进行二次访问, 如果再试访问函数内部数据需要再次调用函数, 虽然得到的移入是num = 123, 但是实际不是第一次函数调用的那个值</li>
+</ol>
+<h3 id="得到一个函数-通过函数访问数据"><a href="#得到一个函数-通过函数访问数据" class="headerlink" title="得到一个函数, 通过函数访问数据"></a>得到一个函数, 通过函数访问数据</h3><ul>
+<li>在函数内的数据, 不能直接被函数外访问,如果函数内再定义一个函数, 那么函数内部数据可以被函数外访问<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var num = Math.random();</span><br><span class="line">    function fn()&#123;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">    return fn;</span><br><span class="line">&#125;</span><br><span class="line">var f = foo();</span><br><span class="line">// f 可以直接访问这个数据 num</span><br><span class="line">var result1 = f();</span><br><span class="line">var result2 = f();</span><br><span class="line">// 得到结果一致,说明多次访问的是同一个数据</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="得到的数据可以是对象"><a href="#得到的数据可以是对象" class="headerlink" title="得到的数据可以是对象"></a>得到的数据可以是对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var  o = &#123;name : &apos;Bob&apos;&#125;;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        return o;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var fn = foo();</span><br><span class="line">var result = fn();</span><br></pre></td></tr></table></figure>
+<h3 id="获得多个数据"><a href="#获得多个数据" class="headerlink" title="获得多个数据"></a>获得多个数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var num1 = Math.random();</span><br><span class="line">    var num2 = Math.random();</span><br><span class="line">    return &#123;</span><br><span class="line">        num1 : function()&#123;</span><br><span class="line">            return num1;</span><br><span class="line">        &#125;,</span><br><span class="line">        num2 : function()&#123;</span><br><span class="line">            return num2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="获得和修改这个数据"><a href="#获得和修改这个数据" class="headerlink" title="获得和修改这个数据"></a>获得和修改这个数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var num = Math.random();</span><br><span class="line">    return &#123;</span><br><span class="line">        getNum : function()&#123;</span><br><span class="line">            return num;</span><br><span class="line">        &#125;,</span><br><span class="line">        setNum : function(value)&#123;</span><br><span class="line">            num = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="闭包的基本结构"><a href="#闭包的基本结构" class="headerlink" title="闭包的基本结构"></a>闭包的基本结构</h2><ol>
+<li>通过函数: 写一个函数, 函数内定义一个新函数, 返回新函数, 使用新函数得到函数内的数据</li>
+<li>通过对象: 写一个函数, 函数内顶一个对象, 对象中绑定多个方法, 返回对象, 利用对象内的方法访问函数内中的数据</li>
+</ol>
+<h2 id="闭包的基本用法"><a href="#闭包的基本用法" class="headerlink" title="闭包的基本用法"></a>闭包的基本用法</h2><ol>
+<li><p>带有私有访问数据的对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">    this.name = &apos;Peter&apos;;</span><br><span class="line">    // setName(&apos;&apos;)</span><br><span class="line">&#125;</span><br><span class="line">// 私有数据指的是只有函数内部可以访问的数据,或者对象内部的方法</span><br><span class="line"></span><br><span class="line">// 简单的例子,判断孩子是不是老张家的</span><br><span class="line">function createPerson()&#123;</span><br><span class="line">    var name = &apos;张全蛋&apos;;</span><br><span class="line">    return &#123;</span><br><span class="line">        getName : function()&#123;</span><br><span class="line">            return name;</span><br><span class="line">        &#125;,</span><br><span class="line">        setName : function(value)&#123;</span><br><span class="line">            // 如果value的第一个字符串是 张 ,就设置</span><br><span class="line">            if(value.charAt(0) === &apos;张&apos;)&#123;</span><br><span class="line">                name = value;</span><br><span class="line">            &#125; esle &#123;</span><br><span class="line">                //不姓 张 ,就将错误抛出</span><br><span class="line">                throw new Error(&apos;你不姓张,难道还能姓王?&apos;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>带有私有数据的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 不具有私有数据</span><br><span class="line">var fn = function()&#123;&#125;;</span><br><span class="line">function fn()&#123;&#125;</span><br><span class="line"></span><br><span class="line">// 具有私有数据</span><br><span class="line">var foo = (function()&#123;</span><br><span class="line">    // 私有数据</span><br><span class="line">    return function()&#123;</span><br><span class="line">        // 可以访问私有数据</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="闭包的基本模型"><a href="#闭包的基本模型" class="headerlink" title="闭包的基本模型"></a>闭包的基本模型</h2><h3 id="函数模型"><a href="#函数模型" class="headerlink" title="函数模型"></a>函数模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    // 私有数据</span><br><span class="line">    return function()&#123;</span><br><span class="line">        // 可以访问上面的私有数据</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对象模型"><a href="#对象模型" class="headerlink" title="对象模型"></a>对象模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    // 私有数据</span><br><span class="line">    return &#123;</span><br><span class="line">        method : function()&#123;</span><br><span class="line">            // 可以访问的私有数据</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="闭包的性能问题"><a href="#闭包的性能问题" class="headerlink" title="闭包的性能问题"></a>闭包的性能问题</h2><ul>
+<li>函数的执行需要内存, 函数中定义的变量会在函数执行后自动回收</li>
+<li>因为是闭包结构, 如果还有变量引用这些数据的话, 这些数据不会被回收</li>
+<li>因此在使用闭包的时候,如果不使用这些数据了, 需要将函数赋值为 null<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var foo = (function()&#123;</span><br><span class="line">    var num = 123;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line">// 如果不需要foo中的数据, 赋值为 null</span><br><span class="line">foo = null;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><h2 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h2><pre><code>1. 一个具有封闭的对外不公开的, 包裹结构, 或空间.
+2. 在 js 中函数可以构成闭包. 一般函数是一个代码结构的封闭结构, 即包裹的特性．
+3. 同时根据作用域规则,只允许函数访问外部的数据, 外部无法访问函数内部的数据, 即封闭的对外不公开的特性.
+4. 因此说函数可以构成闭包.
+</code></pre><h2 id="闭包的基本模型-1"><a href="#闭包的基本模型-1" class="headerlink" title="闭包的基本模型"></a>闭包的基本模型</h2><h3 id="这些模型被称作带有缓存功能的函数"><a href="#这些模型被称作带有缓存功能的函数" class="headerlink" title="这些模型被称作带有缓存功能的函数"></a>这些模型被称作带有缓存功能的函数</h3><h3 id="对象模型-1"><a href="#对象模型-1" class="headerlink" title="对象模型"></a>对象模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    // 私有数据</span><br><span class="line">    return &#123;</span><br><span class="line">        method : function()&#123;</span><br><span class="line">            // 通过作用域链操作私有数据</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数模型-1"><a href="#函数模型-1" class="headerlink" title="函数模型"></a>函数模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    // 私有数据</span><br><span class="line">    return function()&#123;</span><br><span class="line">        // 通过作用域链操作私有数据</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以通过函数赋值的方法进行二次加工<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 二次加的工函数</span><br><span class="line">var fn = foo();</span><br><span class="line">// 正常函数</span><br><span class="line">var fun = function()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="沙箱模式-闭包应用的一个典范"><a href="#沙箱模式-闭包应用的一个典范" class="headerlink" title="沙箱模式(闭包应用的一个典范)"></a>沙箱模式(闭包应用的一个典范)</h2><h3 id="沙箱的概念"><a href="#沙箱的概念" class="headerlink" title="沙箱的概念"></a>沙箱的概念</h3><ul>
+<li>沙盘与盒子, 就可以在有一个小小的空间内模拟现实世界. 特点执行的效果与现实世界一模一样.</li>
+<li>只在沙箱中模拟与现实无关.</li>
+</ul>
+<h3 id="沙箱模式"><a href="#沙箱模式" class="headerlink" title="沙箱模式"></a>沙箱模式</h3><ul>
+<li>沙箱模式就是一个自调用的函数, 代码写到 函数中 一样会执行, 但是不会与外界有任何影响.</li>
+<li>例如 jQuery 中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(function () &#123;</span><br><span class="line"></span><br><span class="line">var jQuery = function () &#123;</span><br><span class="line"> // 所有的算法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// ....</span><br><span class="line">// ....</span><br><span class="line">jQuery.each = function () &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">window.jQuery = window.$ = jQuery;</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">$.each( ... )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="带有缓存功能的函数"><a href="#带有缓存功能的函数" class="headerlink" title="带有缓存功能的函数"></a>带有缓存功能的函数</h2><ul>
+<li>以 Fibonacii 数列为例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var fib = (function()&#123;</span><br><span class="line">    var data = [1,1];</span><br><span class="line">    return function(n)&#123;</span><br><span class="line">        var value = data[n];</span><br><span class="line">        if(value === undefined)&#123;</span><br><span class="line">            value = fib(n-1) + fib(n-2);</span><br><span class="line">            data[n] = value;</span><br><span class="line">        &#125;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="自定义事件的追加"><a href="#自定义事件的追加" class="headerlink" title="自定义事件的追加"></a>自定义事件的追加</h2><h3 id="原生js中"><a href="#原生js中" class="headerlink" title="原生js中"></a>原生js中</h3><ul>
+<li><p>高级浏览器,使用addEventListener</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dom.addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">    // ...</span><br><span class="line">    // this =&gt; dom 对象</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>IE 低版本浏览器,使用 attachEvent</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dom.attachEvent(&apos;onclick&apos;,function()&#123;</span><br><span class="line">    // ...</span><br><span class="line">    // this =&gt; window</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>两者区别</p>
+<ol>
+<li>this的指向不同</li>
+<li>执行的顺序不同<br> addEventListener 由上往下执行<br> attachEvent 由下往上执行</li>
+</ol>
+</li>
+</ul>
+<h3 id="使用闭包为-window-onload-提供事件追加功能"><a href="#使用闭包为-window-onload-提供事件追加功能" class="headerlink" title="使用闭包为 window.onload 提供事件追加功能"></a>使用闭包为 window.onload 提供事件追加功能</h3><ol>
+<li>实现事件追加,需要存储事件函数,可以使用数组存储事件函数<ul>
+<li>满足事件触发时,存储的事件函数依次按顺序调用</li>
+<li>数组可以满足顺序结构</li>
+</ul>
+</li>
+<li>本身 onload 就应该有默认行为<ul>
+<li>从存储事件函数的数组中依次去除函数并调用</li>
+</ul>
+</li>
+<li>需要构建一个结构,具有 addEvent 和 removeEvent 方法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var eventObj = (function()&#123;</span><br><span class="line">    // 创建一个数组,存储事件处理函数</span><br><span class="line">    var events = [];</span><br><span class="line">    // 默认行为</span><br><span class="line">    window.onlad = function()&#123;</span><br><span class="line">        for(var i = 0;i &lt; events.length;i++)&#123;</span><br><span class="line">            // 依次执行事件函数</span><br><span class="line">            events[i]();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 创建对象,具有 addEvent 和 removeEvent 方法</span><br><span class="line">    return &#123;</span><br><span class="line">        addEvent : function(fn)&#123;</span><br><span class="line">            // 添加事件处理函数到数组</span><br><span class="line">            events.push(fn);</span><br><span class="line">        &#125;,</span><br><span class="line">        removeEvent : function(fn)&#123;</span><br><span class="line">            // 得到函数在数组中的索引</span><br><span class="line">            var index = events.indexOf(fn);</span><br><span class="line">            // 如果函数存在就删除,不存在不处理</span><br><span class="line">            if(index != -1)&#123;</span><br><span class="line">                events.splice(index, 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/使用面向对象进行开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liu Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Yu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/20/使用面向对象进行开发/" itemprop="url">
+                  面向对象基础一之初体验使用面向对象进行开发
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-20T14:31:33+08:00">2017-03-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="面向对象基础一之初体验使用面向对象进行开发"><a href="#面向对象基础一之初体验使用面向对象进行开发" class="headerlink" title="面向对象基础一之初体验使用面向对象进行开发"></a>面向对象基础一之初体验使用面向对象进行开发</h1><blockquote>
+<p>对 JS 中的面向对象的基础进行讲述, 初体验使用面向对象进行开发</p>
+</blockquote>
+<h2 id="主要内容是"><a href="#主要内容是" class="headerlink" title="主要内容是"></a>主要内容是</h2><ol>
+<li>面向对象的概念及特性</li>
+<li>用面向对象的方式解决简单的标签创建实例</li>
+</ol>
+<h1 id="一些基础的概念"><a href="#一些基础的概念" class="headerlink" title="一些基础的概念"></a>一些基础的概念</h1><h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="面向对象的概念"><a href="#面向对象的概念" class="headerlink" title="面向对象的概念"></a>面向对象的概念</h3><ol>
+<li>面向对象就是使用对象</li>
+<li>面向对象开发就是使用对象开发</li>
+<li>面向过程就是以面向过程的方式开发</li>
+<li>面向对象是面向过程的封装</li>
+</ol>
+<h3 id="面向对象的特性"><a href="#面向对象的特性" class="headerlink" title="面向对象的特性"></a>面向对象的特性</h3><ol>
+<li><p>抽象性</p>
+<ul>
+<li>如果需要用一对象来描述一个数据, 那就需要抽取这个对象的<strong>核心数据</strong>来描述</li>
+<li>抽取需要的核心属性和方法</li>
+<li>需要在<strong>特定情况</strong>下,才能明确对象的<strong>具体意义</strong></li>
+</ul>
+</li>
+<li><p>封装性</p>
+<ul>
+<li>封装就是将数据和功能组合到一起<ul>
+<li>在 js 中, 对象就是<strong>键</strong>和**值的集合<ul>
+<li>键值如果是数据(基本数据, 复合数据, 空数据), 就称为<strong>属性</strong></li>
+<li>键值如果是函数,就称为<strong>方法</strong></li>
+</ul>
+</li>
+<li>对象就是将属性和方法<strong>封装</strong>起来</li>
+<li>方法是将过程封装起来</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>继承性</p>
+<ul>
+<li>继承性就是自己没有, 别人有, 将别人的拿过来自己用, 并且成为自己的</li>
+<li>传统继承基于模板</li>
+<li><p>js 的继承基于对象<br>在 js 中的简单的继承模式: 混入模式(mix)<br>在 jQuerty 中的混入叫做: extend</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var o1 = &#123; name : &apos;Jhon&apos; &#125;;</span><br><span class="line">var o2 = &#123; age : 19 &#125;;</span><br><span class="line">function mix(o1,o2)&#123;</span><br><span class="line">    for(var key in o2)&#123;</span><br><span class="line">        o1[key] = o2[key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">mix(o1, o2);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="使用面向过程和面向对象进行标签创建"><a href="#使用面向过程和面向对象进行标签创建" class="headerlink" title="使用面向过程和面向对象进行标签创建"></a>使用面向过程和面向对象进行标签创建</h1><h2 id="使用面向过程创建div-并设置样式"><a href="#使用面向过程创建div-并设置样式" class="headerlink" title="使用面向过程创建div, 并设置样式"></a>使用面向过程创建div, 并设置样式</h2><ul>
+<li>按部就班, 一步一步来</li>
+<li>只能一个一个添加属性</li>
+<li>如果创建多个div标签, 非常麻烦</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var div = document.createElement(&apos;div&apos;);</span><br><span class="line">documet.appendChild(div);</span><br><span class="line">div.style.width = &apos;200px&apos;;</span><br><span class="line">div.style.height = &apos;200px&apos;;</span><br><span class="line">div.style.backgroundColor = &apos;red&apos;;</span><br><span class="line">div.style.border = &apos;10px dashed blue&apos;;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<h2 id="使用面向对象创建div-并设置样式"><a href="#使用面向对象创建div-并设置样式" class="headerlink" title="使用面向对象创建div, 并设置样式"></a>使用面向对象创建div, 并设置样式</h2><ul>
+<li>抽取对象(名词提炼): div, body</li>
+<li><p>分析属性和方法(动词提炼): appendChild, style</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function DivTag()&#123;</span><br><span class="line">    // 注意这里的 this 指的是 通过构造函数创建出来的实例对象</span><br><span class="line">    this.DOM = document.createElement(&apos;div&apos;);</span><br><span class="line">    this.appendTo = function(node)&#123;</span><br><span class="line">        // this是实例对象, 不是DOM节点, 不能直接使用DOM属性和方法</span><br><span class="line">        node.appendChild(this.DOM);</span><br><span class="line">    &#125;;</span><br><span class="line">    this.css = function(option)&#123;</span><br><span class="line">        for(var key in option)&#123;</span><br><span class="line">            this.DOM.style[key] = option[key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var divTag = new DivTag();</span><br><span class="line">divTag.appendTo(document.body);</span><br><span class="line">divTag.css(&#123;</span><br><span class="line">    width : &apos;200px&apos;,</span><br><span class="line">    height : &apos;200px&apos;,</span><br><span class="line">    backgroundColor : &apos;red&apos;,</span><br><span class="line">    border : &apos;10px dashed blue&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样的使用对象的方式进行创建标签非常方便, 创建多个不同样式的标签也非常轻松</p>
+</li>
+<li>但是这样也有缺点, 不能和 jQuery 一样, 不能进行链式变成, 我们可以这样修改, 在每一个方法后面加上一个<code>return this</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function DivTag()&#123;</span><br><span class="line">    // 注意这里的 this 指的是 通过构造函数创建出来的实例对象</span><br><span class="line">    this.DOM = document.createElement(&apos;div&apos;);</span><br><span class="line">    this.appendTo = function(node)&#123;</span><br><span class="line">        // this是实例对象, 不是DOM节点, 不能直接使用DOM属性和方法</span><br><span class="line">        node.appendChild(this.DOM);</span><br><span class="line">        return this;</span><br><span class="line">    &#125;;</span><br><span class="line">    this.css = function(option)&#123;</span><br><span class="line">        for(var key in option)&#123;</span><br><span class="line">            this.DOM.style[key] = option[key];</span><br><span class="line">        &#125;</span><br><span class="line">        return this;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var divTag1 = new DivTag()</span><br><span class="line">    .appendTo(document.body)</span><br><span class="line">    .css(&#123;</span><br><span class="line">        width : &apos;200px&apos;,</span><br><span class="line">        height : 200px,</span><br><span class="line">        backgroundColor : &apos;red&apos;,</span><br><span class="line">        border : &apos;10px dashed blue&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">var divTag2 = new DivTag()</span><br><span class="line">    .appendTo(document.body)</span><br><span class="line">    .css(&#123;</span><br><span class="line">        width : &apos;400px&apos;,</span><br><span class="line">        height : &apos;400px&apos;,</span><br><span class="line">        backgroundColor : &apos;pink&apos;,</span><br><span class="line">        border : &apos;10px dashed green&apos;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="什么是面向对象"><a href="#什么是面向对象" class="headerlink" title="什么是面向对象"></a>什么是面向对象</h2><p>面向对象说白了就是对面向过程进行了封装<br>比如说:<br>需求是 一个字符串是 <code>str = &#39;abcdefg&#39;</code>, 找到里面的<code>e</code>,并返回<code>e</code>的索引</p>
+<ul>
+<li><p>使用面向过程的处理办法就是, 遍历字符串, 得到索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;abcdefg&apos;;</span><br><span class="line">for(var i = 0;i &lt; str.length;i++)&#123;</span><br><span class="line">    var char = str.charAt(i);</span><br><span class="line">    if(char == &apos;e&apos;)&#123;</span><br><span class="line">        conole.log(i);</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用面向过程的处理办法就是, 使用<code>indexOf</code>, 得到索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;abcdefg&apos;;</span><br><span class="line">console.log(str.indexOf(&apos;e&apos;));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>用生活中吃饭的的例子就可以这样理解:</p>
+<ul>
+<li><p>如果你自己烧, 那就需要(非常的麻烦, 时间有很长)</p>
+<ol>
+<li>买菜</li>
+<li>洗菜</li>
+<li>烧饭烧菜</li>
+<li>洗碗</li>
+</ol>
+</li>
+<li><p>如果是上饭店, 那就非常简单(因为买菜, 洗菜, 烧饭烧菜, 洗碗的工作都是别人帮你完成了)</p>
+<ol>
+<li>吃就行了</li>
+</ol>
+</li>
+</ul>
 
           
         
