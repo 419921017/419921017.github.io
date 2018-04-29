@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Liu Yu&#39;s Blog">
 <meta property="og:description" content="递归基础递归的概念 在程序中函数直接或间接调用自己   直接调用自己 间接调用自己   跳出结构,有了跳出才有结果  递归的思想 递归的调用,最终还是要转换为自己这个函数   如果有个函数foo,如果他是递归函数,到最后问题还是转换为函数foo的形式 递归的思想就是将一个未知问题转换为一个已解决的问题来实现  123function foo()&amp;#123;...foo(...)...&amp;#125;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-29T00:50:38.777Z">
+<meta property="og:updated_time" content="2018-04-29T01:41:42.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js递归">
 <meta name="twitter:description" content="递归基础递归的概念 在程序中函数直接或间接调用自己   直接调用自己 间接调用自己   跳出结构,有了跳出才有结果  递归的思想 递归的调用,最终还是要转换为自己这个函数   如果有个函数foo,如果他是递归函数,到最后问题还是转换为函数foo的形式 递归的思想就是将一个未知问题转换为一个已解决的问题来实现  123function foo()&amp;#123;...foo(...)...&amp;#125;">
@@ -660,7 +660,7 @@
 <li>遍历 node 的子节点,</li>
 <li>查看这个子节点是否还有子节点,如果没有直接存储到数组中,如果有就继续递归</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">function byClass(node, className, arr)&#123;</span><br><span class="line">  //得到传入节点的所有子节点</span><br><span class="line">  var lists = node.childNodes;</span><br><span class="line">  for(var i = 0;i&lt; lists.length;i++)&#123;</span><br><span class="line">    //判断是否有相同className元素</span><br><span class="line">    if(arr[i],className == className)&#123;</span><br><span class="line">      arr.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    //判断子节点是否还有子节点</span><br><span class="line">    if(arr[i].childNodes.length &gt; 0)&#123;</span><br><span class="line">      byClass(arr[i],className,arr);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">function byClass(node, className, arr)&#123;</span><br><span class="line">  //得到传入节点的所有子节点</span><br><span class="line">  var lists = node.childNodes;</span><br><span class="line">  for(var i = 0;i&lt; lists.length;i++)&#123;</span><br><span class="line">    //判断是否有相同className元素</span><br><span class="line">    if(arr[i].className == className)&#123;</span><br><span class="line">      arr.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    //判断子节点是否还有子节点</span><br><span class="line">    if(arr[i].childNodes.length &gt; 0)&#123;</span><br><span class="line">      byClass(arr[i],className,arr);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -698,8 +698,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/13/JS面向对象之闭包/" rel="prev" title="JS面向对象之闭包">
-                JS面向对象之闭包 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/13/Ajax详解/" rel="prev" title="Ajax详解">
+                Ajax详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
