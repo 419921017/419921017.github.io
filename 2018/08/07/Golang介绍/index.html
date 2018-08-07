@@ -99,24 +99,24 @@
 
 
 
-  <meta name="description" content="post和get的区别GET和POST是什么 HTTP协议中的两种发送请求的方法  HTTP是什么 HTTP是基于TCP/IP的关于数据如何在万维网中如何通信的协议 HTTP的底层是TCP/IP。所以GET和POST的底层也是TCP/IP，也就是说，GET/POST都是TCP链接。GET和POST能做的事情是一样一样的。你要给GET加上request body，给POST带上url参数，技术上是完">
+  <meta name="description" content="Go语言介绍Go语言解决现代编程难题go语言出现的原因 编程语言的演化的速度追不上计算机演化的速度; 高性能服务器有越来越多的核心, 我们依旧在使用为单核设计的技术在编程 编程技术的演化体现在一个程序或者一个项目是分散且多人合作开发的, Go语言更易分享代码和包  Go语言的特点 Go的高性能体现在编译时间非常快速, 更加智能的编译器只关注那些直接被引用的库, 不需要像Java、C、C++一样遍历">
 <meta property="og:type" content="article">
-<meta property="og:title" content="post和get的区别">
-<meta property="og:url" content="http://yoursite.com/2018/02/15/GET和POST的区别/index.html">
+<meta property="og:title" content="Golang介绍">
+<meta property="og:url" content="http://yoursite.com/2018/08/07/Golang介绍/index.html">
 <meta property="og:site_name" content="Liu Yu&#39;s Blog">
-<meta property="og:description" content="post和get的区别GET和POST是什么 HTTP协议中的两种发送请求的方法  HTTP是什么 HTTP是基于TCP/IP的关于数据如何在万维网中如何通信的协议 HTTP的底层是TCP/IP。所以GET和POST的底层也是TCP/IP，也就是说，GET/POST都是TCP链接。GET和POST能做的事情是一样一样的。你要给GET加上request body，给POST带上url参数，技术上是完">
+<meta property="og:description" content="Go语言介绍Go语言解决现代编程难题go语言出现的原因 编程语言的演化的速度追不上计算机演化的速度; 高性能服务器有越来越多的核心, 我们依旧在使用为单核设计的技术在编程 编程技术的演化体现在一个程序或者一个项目是分散且多人合作开发的, Go语言更易分享代码和包  Go语言的特点 Go的高性能体现在编译时间非常快速, 更加智能的编译器只关注那些直接被引用的库, 不需要像Java、C、C++一样遍历">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-28T04:22:41.815Z">
+<meta property="og:updated_time" content="2018-08-07T03:11:54.799Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="post和get的区别">
-<meta name="twitter:description" content="post和get的区别GET和POST是什么 HTTP协议中的两种发送请求的方法  HTTP是什么 HTTP是基于TCP/IP的关于数据如何在万维网中如何通信的协议 HTTP的底层是TCP/IP。所以GET和POST的底层也是TCP/IP，也就是说，GET/POST都是TCP链接。GET和POST能做的事情是一样一样的。你要给GET加上request body，给POST带上url参数，技术上是完">
+<meta name="twitter:title" content="Golang介绍">
+<meta name="twitter:description" content="Go语言介绍Go语言解决现代编程难题go语言出现的原因 编程语言的演化的速度追不上计算机演化的速度; 高性能服务器有越来越多的核心, 我们依旧在使用为单核设计的技术在编程 编程技术的演化体现在一个程序或者一个项目是分散且多人合作开发的, Go语言更易分享代码和包  Go语言的特点 Go的高性能体现在编译时间非常快速, 更加智能的编译器只关注那些直接被引用的库, 不需要像Java、C、C++一样遍历">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/15/GET和POST的区别/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/07/Golang介绍/"/>
 
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>post和get的区别 | Liu Yu's Blog</title>
+  <title>Golang介绍 | Liu Yu's Blog</title>
   
 
 
@@ -274,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/15/GET和POST的区别/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/Golang介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liu Yu">
@@ -291,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">post和get的区别
+          <h1 class="post-title" itemprop="name headline">Golang介绍
               
             
           </h1>
@@ -310,7 +310,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-15T14:31:33+08:00">2018-02-15</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-07T11:05:33+08:00">2018-08-07</time>
             
 
             
@@ -347,40 +347,66 @@
       
 
       
-        <h1 id="post和get的区别"><a href="#post和get的区别" class="headerlink" title="post和get的区别"></a>post和get的区别</h1><h2 id="GET和POST是什么"><a href="#GET和POST是什么" class="headerlink" title="GET和POST是什么"></a>GET和POST是什么</h2><ol>
-<li>HTTP协议中的两种发送请求的方法</li>
+        <h1 id="Go语言介绍"><a href="#Go语言介绍" class="headerlink" title="Go语言介绍"></a>Go语言介绍</h1><h2 id="Go语言解决现代编程难题"><a href="#Go语言解决现代编程难题" class="headerlink" title="Go语言解决现代编程难题"></a>Go语言解决现代编程难题</h2><h3 id="go语言出现的原因"><a href="#go语言出现的原因" class="headerlink" title="go语言出现的原因"></a>go语言出现的原因</h3><ul>
+<li>编程语言的演化的速度追不上计算机演化的速度; 高性能服务器有越来越多的核心, 我们依旧在使用为单核设计的技术在编程</li>
+<li>编程技术的演化体现在一个程序或者一个项目是分散且多人合作开发的, Go语言更易分享代码和包</li>
+</ul>
+<h3 id="Go语言的特点"><a href="#Go语言的特点" class="headerlink" title="Go语言的特点"></a>Go语言的特点</h3><ul>
+<li>Go的高性能体现在编译时间非常快速, 更加智能的编译器只关注那些直接被引用的库, 不需要像Java、C、C++一样遍历依赖中的所有库</li>
+<li><strong>Go自带强大的标准库</strong></li>
+<li>Go的快速开发体现在语法简介, 关键字数量少易于记忆</li>
+<li><strong>Go内置并发机制</strong>, 不用被迫使用特定的线程库, 就能让软件扩展使用更多资源</li>
+<li>Go不用为面向对象付出额外劳动, <strong>使用接口作为代码复用的基础模块</strong></li>
+<li>Go自带垃圾回收机制, 不需要用户管理内存</li>
+</ul>
+<h4 id="并发-goroutine"><a href="#并发-goroutine" class="headerlink" title="并发 goroutine"></a>并发 goroutine</h4><ul>
+<li>并发是go语言最重要的特性</li>
+<li>goroutine是协程, 协程在线程中运行, 占用的内存远远小于线程<br>-</li>
+<li>channel是一种内置的数据结构, 可以让goroutine来通信, 发送和接收具有类型的数据</li>
+<li>Go语言是通过通信来共享内存, 而不是通过共享内存来通信</li>
+</ul>
+<ol>
+<li>goroutine<ul>
+<li>goroutine是可以和其他goroutine一起并行执行的函数, 主程序main函数也是goroutine</li>
+<li>Go中会只用同一个线程执行多个goroutine</li>
+<li>goroutine使用的内存比线程更少(常常可以启动成千上万个), Go语言在运行时会自动在配置好的一组逻辑处理器上调度执行goroutine</li>
+<li>每个逻辑处理器会绑定到操作系统的一个线程上</li>
+</ul>
+</li>
+<li>channel<ul>
+<li>通道是一种内置的数据结构, 可以让goroutine安全的通信并且避免共享内存访问的问题</li>
+<li>并发中最难的部分就是要确保其他并发运行的线程、进程或者goroutine不会意外修改用户的数据</li>
+<li>不同线程在没有同步保护的情况下修改同一个数据, 会发生灾难; 在其他语言中, 如果使用全局变量或者共享内存, 必须通过锁规则来防止对同一个变量的不同修改</li>
+<li>通道保证同一时间只会有一个goroutine修改数据</li>
+<li>通道不提供跨goroutine的数据访问保护机制, goroutine如果传送的是副本, 每个goroutine对自己的副本修改是安全的; 如果传输的是指针数据, 读和写是由不同goroutine完成的, 每个goroutine需要额外的同步动作</li>
+</ul>
+</li>
 </ol>
-<h2 id="HTTP是什么"><a href="#HTTP是什么" class="headerlink" title="HTTP是什么"></a>HTTP是什么</h2><ol>
-<li>HTTP是基于TCP/IP的关于数据如何在万维网中如何通信的协议</li>
-<li>HTTP的底层是TCP/IP。所以GET和POST的底层也是TCP/IP，也就是说，GET/POST都是TCP链接。GET和POST能做的事情是一样一样的。你要给GET加上request body，给POST带上url参数，技术上是完全行的通的</li>
+<h4 id="Go语言的类型系统"><a href="#Go语言的类型系统" class="headerlink" title="Go语言的类型系统"></a>Go语言的类型系统</h4><ul>
+<li>Go语言的数据类型是灵活且无继承的</li>
+<li>Go语言使用组合(composition)开设计模式, 只需要将一个类型嵌入到另一个类型, 就能复用所有功能</li>
+<li>Go语言中一个类型由其他更微小的类型组合而成, 避免了传统基于继承模型</li>
+<li>Go语言的接口机制, 允许用户对行为建模, 不需要声明某个类型实现了摸个接口, 会自动判断实例是否符合正在使用的接口</li>
+</ul>
+<ol>
+<li><p>类型简单</p>
+<ul>
+<li>系统自带丰富的类型</li>
+<li>支持用户自定义类型</li>
+</ul>
+</li>
+<li><p>接口对行为定义类型</p>
+<ul>
+<li>接口用来描述类型的行为</li>
+<li>一个类型的实例实现了一个接口的所有方法, 这个类型的实例就可以存储在这个接口的类型中, 不需要额外声明</li>
+</ul>
+</li>
 </ol>
-<h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><ol>
-<li>GET在浏览器回退时是无害的</li>
-<li>GET产生的URL地址可以被Bookmark</li>
-<li>GET请求会被浏览器主动cache</li>
-<li>GET请求只能进行url编码</li>
-<li>GET请求参数会被完整保留在浏览器历史记录</li>
-<li>GET请求在URL中传送的参数是有长度限制</li>
-<li>对参数的数据类型，GET只接受ASCII字符</li>
-<li>信息暴露在URL上面</li>
-</ol>
-<h2 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h2><ol>
-<li>POST在浏览器回退时会再次提交请求</li>
-<li>POST产生的URL地址不可以被Bookmark</li>
-<li>PST请求不会被浏览器主动cache, 除非主动设置</li>
-<li>POST请求支持多种编码方式</li>
-<li>POST中的请求参数不会被保留在浏览器历史记录</li>
-<li>POST请求在URL中传送的参数没有长度限制</li>
-<li>对参数的数据类型，POST没有限制</li>
-<li>信息放在Request Body上面</li>
-</ol>
-<h2 id="GET和POST重大区别"><a href="#GET和POST重大区别" class="headerlink" title="GET和POST重大区别"></a>GET和POST重大区别</h2><ol>
-<li>GET产生一个TCP数据包;POST产生两个TCP数据包。</li>
-<li>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200(返回数据);</li>
-<li>而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok(返回数据)。</li>
-<li>GET与POST都有自己的语义，不能随便混用。</li>
-<li>据研究，在网络环境好的情况下，发一次包的时间和发两次包的时间差别基本可以无视。而在网络环境差的情况下，两次包的TCP在验证数据包完整性上，有非常大的优点。</li>
-<li>并不是所有浏览器都会在POST中发送两次包，Firefox就只发送一次。</li>
+<h4 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h4><p>Go有用现代化的垃圾回收机制, Go中内存管理交给编译器做, 虽然有额外开销但是显著降低了开发难度</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ol>
+<li>Go语言是现代的, 快速的, 带有一个强大的标准库</li>
+<li>Go语言内置对并发的支持</li>
+<li>Go语言使用接口作为代码复用的基础模块</li>
 </ol>
 
       
@@ -409,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/28/JS面向对象之原型/" rel="next" title="JS面向对象之面向对象之原型">
-                <i class="fa fa-chevron-left"></i> JS面向对象之面向对象之原型
+              <a href="/2018/04/24/服务器部署(Ubuntu, Node, MongoDb)/" rel="next" title="阿里云服务器部署(Ubuntu, Node, MongoDb)">
+                <i class="fa fa-chevron-left"></i> 阿里云服务器部署(Ubuntu, Node, MongoDb)
               </a>
             
           </div>
@@ -418,10 +444,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/24/服务器部署(Ubuntu, Node, MongoDb)/" rel="prev" title="阿里云服务器部署(Ubuntu, Node, MongoDb)">
-                阿里云服务器部署(Ubuntu, Node, MongoDb) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -535,7 +557,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#post和get的区别"><span class="nav-number">1.</span> <span class="nav-text">post和get的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GET和POST是什么"><span class="nav-number">1.1.</span> <span class="nav-text">GET和POST是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP是什么"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET"><span class="nav-number">1.3.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POST"><span class="nav-number">1.4.</span> <span class="nav-text">POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET和POST重大区别"><span class="nav-number">1.5.</span> <span class="nav-text">GET和POST重大区别</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Go语言介绍"><span class="nav-number">1.</span> <span class="nav-text">Go语言介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Go语言解决现代编程难题"><span class="nav-number">1.1.</span> <span class="nav-text">Go语言解决现代编程难题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#go语言出现的原因"><span class="nav-number">1.1.1.</span> <span class="nav-text">go语言出现的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Go语言的特点"><span class="nav-number">1.1.2.</span> <span class="nav-text">Go语言的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并发-goroutine"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">并发 goroutine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Go语言的类型系统"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Go语言的类型系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存管理"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">内存管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">1.1.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
